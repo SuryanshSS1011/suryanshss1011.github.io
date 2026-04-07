@@ -1,0 +1,39 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { projects } from '../data/site';
+---
+
+<BaseLayout title="Projects — Suryansh Sijwali">
+  <section class="profile">
+    <h1>Projects</h1>
+    <p class="subtitle">A selection of things I've built and researched.</p>
+  </section>
+
+  <section>
+    <div class="project-grid">
+      {projects.map((project) => (
+        <div class="card project-card">
+          <h3>
+            <a href={project.url} target={project.url.startsWith('/') ? '_self' : '_blank'} rel="noopener">
+              {project.title}
+            </a>
+          </h3>
+          <p>{project.description}</p>
+          <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 0.75rem;">
+            {project.tags.map((tag) => (
+              <span class="tag">{tag}</span>
+            ))}
+          </div>
+          <div class="project-links">
+            {project.github && (
+              <a href={project.github} target="_blank" rel="noopener">Code</a>
+            )}
+            {!project.url.startsWith('/') && (
+              <a href={project.url} target="_blank" rel="noopener">Live</a>
+            )}
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+</BaseLayout>
