@@ -19,50 +19,64 @@ Currently focused on LLM-powered code analysis, full-stack development, and expl
     degree: "B.S. Computer Science",
     institution: "Penn State University",
     graduation: "Expected May 2027",
-    honors: ["Schreyer Honors College", "Dean's List", "President Walker Award"]
+    colleges: ["Schreyer Honors College", "College of Engineering", "Eberly College of Science"],
+    minors: ["Physics", "Quantum Information Sciences and Engineering", "Computer Engineering", "Computational Cybersecurity"]
   },
 
-  currentRole: {
-    title: "Software Engineer Intern",
-    company: "Leechy LLC",
-    period: "Jun 2025 - Present"
-  },
+  roles: [
+    { title: "Founding Engineer", company: "Wynlabs", period: "Jan 2025 – Present" },
+    { title: "Software Engineer Intern", company: "Leechy LLC", period: "Jun 2025 – Sep 2025" }
+  ],
 
   interests: ["AI/ML Research", "Full-Stack Development", "Systems Design", "Open Source"]
 };
 
 export const projects = [
   {
+    title: "SecureCodeRL",
+    description: "RL framework guiding LLMs toward generating code that satisfies both functional correctness and security constraints.",
+    tags: ["Research", "RL", "Security"],
+    url: "https://arxiv.org/",
+    github: "https://github.com/SuryanshSS1011/SecureCodeRL",
+    current: true
+  },
+  {
+    title: "Intelligent Document Retrieval System",
+    description: "Hybrid RAG pipeline combining FAISS dense retrieval and BM25, with mandatory citation grounding and evaluation benchmarks.",
+    tags: ["RAG", "NLP", "FastAPI"],
+    url: "https://github.com/SuryanshSS1011/document-retrieval",
+    github: "https://github.com/SuryanshSS1011/document-retrieval",
+    current: true
+  },
+  {
     title: "LLM Performance Bug Detection",
     description: "Research achieving 83.7% accuracy in detecting Java performance bugs using LLM-powered frameworks. Published at IEEE AITest 2025.",
     tags: ["Research", "LLM", "Java"],
     url: "/blog/llm-performance-bug-detection",
-    github: "https://github.com/SuryanshSS1011/Performance-Bugs-LLM"
-  },
-  {
-    title: "Wynlabs.ai",
-    description: "AI-powered copilot for the manufacturing industry, focusing on real-time workflow optimization and predictive analytics.",
-    tags: ["AI/ML", "Manufacturing"],
-    url: "https://www.wynlabs.ai/"
+    github: "https://github.com/SuryanshSS1011/Performance-Bugs-LLM",
+    current: false
   },
   {
     title: "OpenScholar Hub",
-    description: "Research collaboration platform for networking, data sharing, and project management. Targeting Penn State integration.",
+    description: "Research collaboration platform for networking, data sharing, and project management.",
     tags: ["Full-Stack", "Research"],
     url: "https://open-scholar-hub.vercel.app/",
-    github: "https://github.com/SuryanshSS1011/OpenScholarHub"
+    github: "https://github.com/SuryanshSS1011/OpenScholarHub",
+    current: false
   },
   {
     title: "VeriChain",
     description: "Decentralized platform for issuing and verifying academic credentials on blockchain using Solidity and Polygon.",
     tags: ["Blockchain", "Web3"],
     url: "https://verichain-sage.vercel.app/",
-    github: "https://github.com/SuryanshSS1011/VeriChain"
+    github: "https://github.com/SuryanshSS1011/VeriChain",
+    current: false
   },
   {
     title: "CollegeNotesOrg",
     description: "GitHub organization for standardized academic notes with noteparser Python library for multi-format conversion.",
     tags: ["Python", "Education"],
-    url: "https://github.com/CollegeNotesOrg"
+    url: "https://github.com/CollegeNotesOrg",
+    current: false
   }
 ];

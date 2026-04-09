@@ -11,7 +11,7 @@ export async function getStaticPaths() {
 }
 
 const { post } = Astro.props;
-const { Content } = await render(post);
+const { Content, headings } = await render(post);
 
 function formatDate(date: Date) {
   return date.toLocaleDateString('en-US', {
@@ -20,6 +20,9 @@ function formatDate(date: Date) {
     day: 'numeric'
   });
 }
+
+// Filter headings for TOC (h2 and h3 only)
+const tocHeadings = headings.filter(h => h.depth === 2 || h.depth === 3);
 ---
 
 <BaseLayout title={`${post.data.title} — Suryansh Sijwali`} description={post.data.description}>
@@ -34,6 +37,19 @@ function formatDate(date: Date) {
       </p>
     </header>
 
+    {tocHeadings.length > 2 && (
+      <nav class="toc">
+        <h2>Contents</h2>
+        <ul>
+          {tocHeadings.map((heading) => (
+            <li class={heading.depth === 3 ? 'toc-sub' : ''}>
+              <a href={`#${heading.slug}`}>{heading.text}</a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+    )}
+
     <div class="prose">
       <Content />
     </div>
@@ -43,3 +59,43 @@ function formatDate(date: Date) {
     </footer>
   </article>
 </BaseLayout>
+
+<style>
+  .toc {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: var(--spacing-md);
+    margin-bottom: var(--spacing-lg);
+  }
+
+  .toc h2 {
+    font-size: 0.9rem;
+    margin-bottom: var(--spacing-sm);
+    border: none;
+    padding: 0;
+  }
+
+  .toc ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .toc li {
+    margin-bottom: var(--spacing-xs);
+  }
+
+  .toc-sub {
+    padding-left: var(--spacing-md);
+  }
+
+  .toc a {
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+  }
+
+  .toc a:hover {
+    color: var(--accent);
+  }
+</style>

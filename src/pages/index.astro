@@ -30,9 +30,13 @@ function formatDate(date: Date) {
     <h2>About</h2>
     <p style="white-space: pre-line;">{about.bio}</p>
 
-    <div class="card mt-sm">
-      <p><strong>{about.currentRole.title}</strong> at {about.currentRole.company}</p>
-      <p class="text-muted text-sm">{about.currentRole.period}</p>
+    <div class="mt-sm" style="display: flex; flex-direction: column; gap: 0.5rem;">
+      {about.roles.map((role) => (
+        <div class="card">
+          <p><strong>{role.title}</strong> at {role.company}</p>
+          <p class="text-muted text-sm">{role.period}</p>
+        </div>
+      ))}
     </div>
   </section>
 
@@ -40,13 +44,14 @@ function formatDate(date: Date) {
     <h2>Education</h2>
     <p><strong>{about.education.degree}</strong></p>
     <p>{about.education.institution} · {about.education.graduation}</p>
-    <p class="text-muted text-sm mt-sm">{about.education.honors.join(' · ')}</p>
+    <p class="text-muted text-sm mt-sm">{about.education.colleges.join(' · ')}</p>
+    <p class="text-muted text-sm">{about.education.minors.join(', ')}</p>
   </section>
 
   <section>
-    <h2>Featured Projects</h2>
+    <h2>Featured Projects and Research</h2>
     <div class="project-grid">
-      {projects.slice(0, 4).map((project) => (
+      {projects.slice(0, 2).map((project) => (
         <div class="card project-card">
           <h3>
             <a href={project.url} target={project.url.startsWith('/') ? '_self' : '_blank'} rel="noopener">
