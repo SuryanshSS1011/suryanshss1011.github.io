@@ -110,10 +110,10 @@ export const projects: Project[] = [
   },
   {
     title: "Intelligent Document Retrieval System",
-    role: "Capstone · Team Project",
+    role: "Capstone · Morgan Advanced Systems · Team Project",
     badge: "RAG",
     summary:
-      "An offline-capable, citation-grounded RAG platform for document-heavy enterprise use cases. Combines lexical and dense retrieval with cross-encoder reranking, exposed through a FastAPI backend and a Chainlit chat interface.",
+      "Sponsored by Morgan Advanced Systems. An offline-capable, citation-grounded RAG platform for document-heavy enterprise use cases. Combines lexical and dense retrieval with cross-encoder reranking, exposed through a FastAPI backend and a Chainlit chat interface.",
     highlights: [
       "Built a hybrid retrieval pipeline fusing FAISS dense search with BM25 via Reciprocal Rank Fusion, then reranked with a cross-encoder for precision.",
       "Enforced mandatory citation grounding and validation on every AI-generated response, blocking ungrounded outputs before they reach the user.",
