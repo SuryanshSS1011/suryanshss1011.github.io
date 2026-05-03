@@ -1,6 +1,6 @@
 export const site = {
   name: "Suryansh Sijwali",
-  title: "Software Engineer & AI Researcher",
+  title: "AI/ML Engineer & Researcher",
   description: "Architecting intelligent systems that solve complex problems — where research meets implementation.",
   url: "https://suryanshss1011.github.io",
   social: {
@@ -31,52 +31,160 @@ Currently focused on LLM-powered code analysis, full-stack development, and expl
   interests: ["AI/ML Research", "Full-Stack Development", "Systems Design", "Open Source"]
 };
 
-export const projects = [
+export type ProjectLink = { label: string; url: string };
+
+export type Project = {
+  title: string;
+  role: string;
+  period?: string;
+  badge?: string;
+  summary: string;
+  highlights: string[];
+  stack: string[];
+  links: ProjectLink[];
+  sourceNote?: string;
+  current: boolean;
+  category: 'research' | 'engineering';
+};
+
+export const projects: Project[] = [
+  {
+    title: "Wynlabs",
+    role: "Founding Engineer",
+    period: "Jan 2025 – Present",
+    badge: "Industry",
+    summary:
+      "Cross-institutional AI software platform building an industrial copilot for manufacturing, with multi-agent workflows running over live plant-floor data.",
+    highlights: [
+      "Shipped 15+ client POCs end-to-end, embedding with manufacturing teams to scope, build, and deploy AI workflows on live industrial data under tight client timelines.",
+      "Architected multi-agent workflows backed by 2k–5k node knowledge graphs per deployment, powering KPI prediction and time-series analytics over SCADA, PLC, MQTT, and SQL Server data.",
+      "Built FastAPI services and a provisioning CLI for Dockerized data pipelines on AWS, and automated Grafana report generation via API-triggered workflows.",
+      "Designed and maintained a shared frontend NPM package to standardize UI components across client-facing applications."
+    ],
+    stack: ["Python", "FastAPI", "LangChain", "Docker", "Kubernetes", "AWS", "Grafana", "SCADA/PLC/MQTT", "SQL Server", "TypeScript"],
+    links: [{ label: "wynlabs.ai", url: "https://wynlabs.ai" }],
+    sourceNote: "Source code is private (commercial product).",
+    current: true,
+    category: "engineering"
+  },
   {
     title: "SecureCodeRL",
-    description: "RL framework guiding LLMs toward generating code that satisfies both functional correctness and security constraints.",
-    tags: ["Research", "RL", "Security"],
-    url: "https://arxiv.org/",
-    github: "https://github.com/SuryanshSS1011/SecureCodeRL",
-    current: true
+    role: "Research · LCTES 2026 (WIP) · Patishnock Award Winner",
+    badge: "Research",
+    summary:
+      "RL framework that trains LLMs to generate code which is both functionally correct and free of common security weaknesses, optimizing a combined reward against test outcomes and Bandit static analysis.",
+    highlights: [
+      "Combined reward R = 0.6 × R_func + 0.4 × R_sec, with R_func graded on a five-stage partial-credit ladder (syntax valid, runs, produces output, tests pass) to avoid the sparse-reward trap that breaks binary-reward PPO on code.",
+      "Two-stage pipeline: LoRA-based SFT on DeepSeek-Coder-1.3B over the APPS+ stdin dataset (3,588 problems), followed by PPO with Bandit as the security signal.",
+      "Accepted as a work-in-progress paper at the 27th ACM SIGPLAN/SIGBED LCTES 2026, co-located with PLDI 2026 in Boulder, Colorado.",
+      "Interim findings: partial-credit PPO lifted syntax validity from 45% (SFT baseline) to 60% and was the only configuration to achieve a non-zero test pass rate, while keeping security compliance at 100% throughout training.",
+      "Recognized at the Penn State Undergraduate Exhibition with the University Libraries' John Sr. and Kimlyn Patishnock Undergraduate Research Award for Excellence in Information Literacy.",
+      "Indexed on EmergentMind as a canonical reference for partial-credit functional reward in code generation."
+    ],
+    stack: ["Python", "PyTorch", "TRL (PPO)", "PEFT (LoRA)", "Bandit", "DeepSeek-Coder-1.3B", "APPS+"],
+    links: [
+      { label: "Paper (arXiv:2601.01184)", url: "https://arxiv.org/abs/2601.01184" },
+      { label: "GitHub", url: "https://github.com/SuryanshSS1011/basic-rl-feedback-workflow" }
+    ],
+    current: true,
+    category: "research"
+  },
+  {
+    title: "ML for Network Traffic Prediction and Capacity Planning",
+    role: "Ongoing Research Project · Interim Results",
+    badge: "Research",
+    summary:
+      "End-to-end simulation pipeline that generates synthetic backbone traffic, trains two competing forecasting models (SARIMA per-link and a joint LSTM), and quantifies how forecasting quality propagates into real capacity-planning decisions like link utilization and overload rates.",
+    highlights: [
+      "Generated synthetic traffic over a 12-node backbone topology at 5-minute resolution for 14 days, with a 6-hour seasonal pattern matched by the SARIMA seasonal order.",
+      "Trained a SARIMA(2,1,2)(1,0,1,72) baseline per link and a joint LSTM forecaster on a 72-step (6-hour) input window, then ran 5-seed experiments for variance analysis.",
+      "Interim findings: LSTM cuts RMSE by 35% (16.5 vs 25.3), MAPE by 45% (26% vs 47%), and overload rate by 69% (10.6% vs 34.6%) versus SARIMA, with much lower seed-to-seed variance.",
+      "Drafted an IEEE-format methodology and results writeup checked into the repo at report/paper.pdf, updated as the project progresses."
+    ],
+    stack: ["Python", "PyTorch", "statsmodels", "NumPy", "Pandas", "NetworkX", "scikit-learn", "matplotlib", "LaTeX"],
+    links: [
+      { label: "GitHub", url: "https://github.com/SuryanshSS1011/ML-for-Network-Traffic-Prediction-and-Capacity-Planning" }
+    ],
+    current: true,
+    category: "research"
   },
   {
     title: "Intelligent Document Retrieval System",
-    description: "Hybrid RAG pipeline combining FAISS dense retrieval and BM25, with mandatory citation grounding and evaluation benchmarks.",
-    tags: ["RAG", "NLP", "FastAPI"],
-    url: "https://github.com/SuryanshSS1011/document-retrieval",
-    github: "https://github.com/SuryanshSS1011/document-retrieval",
-    current: true
+    role: "Capstone · Team Project",
+    badge: "RAG",
+    summary:
+      "An offline-capable, citation-grounded RAG platform for document-heavy enterprise use cases. Combines lexical and dense retrieval with cross-encoder reranking, exposed through a FastAPI backend and a Chainlit chat interface.",
+    highlights: [
+      "Built a hybrid retrieval pipeline fusing FAISS dense search with BM25 via Reciprocal Rank Fusion, then reranked with a cross-encoder for precision.",
+      "Enforced mandatory citation grounding and validation on every AI-generated response, blocking ungrounded outputs before they reach the user.",
+      "Exposed a FastAPI REST backend with SSE streaming for token-by-token responses, wired to a Chainlit interface for chat-style interaction.",
+      "Designed a retrieval evaluation framework tracking Recall@K, nDCG@K, MRR, and per-model latency benchmarks across configurations."
+    ],
+    stack: ["Python", "FAISS", "BM25", "cross-encoder reranking", "FastAPI", "Chainlit", "SSE", "Docker"],
+    links: [],
+    sourceNote: "Repository is private (academic capstone).",
+    current: false,
+    category: "engineering"
   },
   {
-    title: "LLM Performance Bug Detection",
-    description: "Research achieving 83.7% accuracy in detecting Java performance bugs using LLM-powered frameworks. Published at IEEE AITest 2025.",
-    tags: ["Research", "LLM", "Java"],
-    url: "/blog/llm-performance-bug-detection",
-    github: "https://github.com/SuryanshSS1011/Performance-Bugs-LLM",
-    current: false
+    title: "TruthCast",
+    role: "Solana Track Winner · HackPSU Spring 2026",
+    badge: "Hackathon Winner",
+    summary:
+      "Fully autonomous fact-checking system that decomposes a claim into atomic sub-claims, retrieves and weights evidence, runs adversarial debate when sources disagree, then writes the final verdict to an immutable Solana ledger and produces a natural voice summary.",
+    highlights: [
+      "Decomposes claims using the HiSS method, then retrieves grounded evidence via Gemini with google_search and scores ~4,000 sources using the MBFC credibility dataset.",
+      "Triggers adversarial pro/con debate whenever inter-agent agreement falls below 80%, producing a 7-label verdict (TRUE through CONFLICTING and UNVERIFIABLE) instead of a flat true or false.",
+      "Writes every verdict as a Solana memo on devnet so the result is permanent and tamper-evident, then generates a voice summary via ElevenLabs TTS.",
+      "Streams pipeline progress in real time over SSE, with a Turso (libSQL) hybrid database for serverless deployment and SQLite for local development."
+    ],
+    stack: ["Next.js 14", "TypeScript", "Gemini 2.0 Flash", "Solana (devnet)", "ElevenLabs TTS", "Turso/SQLite", "MBFC dataset", "Sentry"],
+    links: [
+      { label: "Live demo", url: "https://truth-cast-web.vercel.app" },
+      { label: "GitHub", url: "https://github.com/SuryanshSS1011/TruthCast" }
+    ],
+    current: false,
+    category: "engineering"
   },
   {
-    title: "OpenScholar Hub",
-    description: "Research collaboration platform for networking, data sharing, and project management.",
-    tags: ["Full-Stack", "Research"],
-    url: "https://open-scholar-hub.vercel.app/",
-    github: "https://github.com/SuryanshSS1011/OpenScholarHub",
-    current: false
+    title: "Shift",
+    role: "Climate Change Track Winner · GDG @ Penn State Solution Challenge",
+    badge: "Hackathon Winner",
+    summary:
+      "AI-personalized sustainability app that delivers one tailored micro-action per day while being radically transparent about the carbon cost of every AI inference it runs. Built in 12 hours with a small team.",
+    highlights: [
+      "Onboards users in 90 seconds and serves daily actions tailored to commute distance, diet pattern, the city's live grid carbon intensity, and current weather, drawing on EPA and DEFRA emissions data.",
+      "Scored a curated knowledge base of 190 actions and structured them around behavioral science frameworks (Fogg's B=MAP, Tiny Habits) with points, streaks, and SDG tracking.",
+      "Built a Chrome extension and Eco-LLM dashboard that monitor energy (Wh), carbon (gCO2), and water (mL) per Gemini prompt, with semantic caching to serve similar queries at zero additional inference cost.",
+      "At a hypothetical 100,000 daily users, the app's projected impact is around 12,000 tonnes of CO2 removed per year, with a typical carbon ROI of 10,000:1 or higher."
+    ],
+    stack: ["Next.js 14 (PWA)", "TypeScript", "Tailwind", "shadcn/ui", "Groq (Llama 3.3-70B)", "Gemini", "Supabase", "Upstash Redis", "Upstash Vector", "EcoLogits", "Climatiq", "Electricity Maps"],
+    links: [
+      { label: "Live demo", url: "https://useshift.vercel.app" },
+      { label: "GitHub", url: "https://github.com/SuryanshSS1011/Shift" }
+    ],
+    current: false,
+    category: "engineering"
   },
   {
-    title: "VeriChain",
-    description: "Decentralized platform for issuing and verifying academic credentials on blockchain using Solidity and Polygon.",
-    tags: ["Blockchain", "Web3"],
-    url: "https://verichain-sage.vercel.app/",
-    github: "https://github.com/SuryanshSS1011/VeriChain",
-    current: false
-  },
-  {
-    title: "CollegeNotesOrg",
-    description: "GitHub organization for standardized academic notes with noteparser Python library for multi-format conversion.",
-    tags: ["Python", "Education"],
-    url: "https://github.com/CollegeNotesOrg",
-    current: false
+    title: "Fixing Performance Bugs Through LLM Explanations",
+    role: "Research · IEEE AITest 2025",
+    badge: "Published",
+    summary:
+      "Code, dataset, and models from a peer-reviewed paper on using LLM explanations to detect and fix Java performance bugs. Accepted to the 7th IEEE International Conference on Artificial Intelligence Testing (AITest 2025) with a 31.6% acceptance rate.",
+    highlights: [
+      "Curated a dataset of 490 performance bugs across 17 Defects4J projects, organized into a 5-category taxonomy (algorithmic, memory, CPU, redundant computation, I/O) with an 80/20 train/test split.",
+      "Fine-tuned GPT-4o-mini on the curated set to produce explanations alongside predictions, lifting detection accuracy from 67.3% (base) to 83.7% (fine-tuned) and F1 from 64.6% to 82.3%.",
+      "Released the full reproduction stack: extraction scripts for Defects4J, fine-tuning scripts, evaluation harness, and a CLI for running the detector on arbitrary Java files.",
+      "Shipped an interactive project site and conference presentation alongside the code."
+    ],
+    stack: ["Python", "GPT-4o-mini fine-tuning", "Defects4J", "Java", "OpenAI API", "HTML", "Shell"],
+    links: [
+      { label: "Paper (IEEE)", url: "https://doi.org/10.1109/AITest66680.2025.00020" },
+      { label: "Project site", url: "https://suryanshss1011.github.io/Performance-Bugs-LLM" },
+      { label: "GitHub", url: "https://github.com/SuryanshSS1011/Performance-Bugs-LLM" }
+    ],
+    current: false,
+    category: "research"
   }
 ];
