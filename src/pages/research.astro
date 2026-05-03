@@ -1,0 +1,41 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import { projects } from '../data/site';
+
+const research = projects.filter(p => p.category === 'research');
+const current = research.filter(p => p.current);
+const past = research.filter(p => !p.current);
+---
+
+<BaseLayout title="Research — Suryansh Sijwali" description="Peer-reviewed research and ongoing investigations in AI/ML — RL for code generation, network forecasting, citation-grounded RAG, performance bug detection.">
+  <SectionHeading
+    eyebrow="Research"
+    title="Papers and ongoing investigations"
+    description="Peer-reviewed work, work-in-progress papers, and research-grade builds. Status reflects publication or interim findings."
+    level="h1"
+  />
+
+  {current.length > 0 && (
+    <section>
+      <h2>Currently working on</h2>
+      <div class="project-list">
+        {current.map((project) => (
+          <ProjectCard project={project} />
+        ))}
+      </div>
+    </section>
+  )}
+
+  {past.length > 0 && (
+    <section>
+      <h2>Selected past work</h2>
+      <div class="project-list">
+        {past.map((project) => (
+          <ProjectCard project={project} />
+        ))}
+      </div>
+    </section>
+  )}
+</BaseLayout>

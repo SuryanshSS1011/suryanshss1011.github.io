@@ -1,5 +1,8 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import PostListItem from '../components/PostListItem.astro';
 import { site, about, projects } from '../data/site';
 import { getCollection } from 'astro:content';
 
@@ -8,9 +11,13 @@ const posts = (await getCollection('blog'))
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
   .slice(0, 3);
 
-function formatDate(date: Date) {
-  return date.toLocaleDateString('en-US', { year: 'numeric', month: 'short' });
-}
+const featuredResearch = projects
+  .filter(p => p.category === 'research' && p.current)
+  .slice(0, 2);
+
+const featuredEngineering = projects
+  .filter(p => p.category === 'engineering' && p.current)
+  .slice(0, 2);
 ---
 
 <BaseLayout title={`${site.name} — ${site.title}`}>
@@ -27,66 +34,61 @@ function formatDate(date: Date) {
   </section>
 
   <section>
-    <h2>About</h2>
+    <SectionHeading eyebrow="About" title="A little context" />
     <p style="white-space: pre-line;">{about.bio}</p>
 
     <div class="mt-sm" style="display: flex; flex-direction: column; gap: 0.5rem;">
       {about.roles.map((role) => (
         <div class="card">
-          <p><strong>{role.title}</strong> at {role.company}</p>
-          <p class="text-muted text-sm">{role.period}</p>
+          <p style="margin-bottom: 0.25rem;"><strong style="color: var(--text-primary);">{role.title}</strong> at {role.company}</p>
+          <p class="text-muted text-sm" style="margin-bottom: 0;">{role.period}</p>
         </div>
       ))}
     </div>
   </section>
 
   <section>
-    <h2>Education</h2>
-    <p><strong>{about.education.degree}</strong></p>
+    <SectionHeading eyebrow="Education" title={about.education.degree} />
     <p>{about.education.institution} · {about.education.graduation}</p>
     <p class="text-muted text-sm mt-sm">{about.education.colleges.join(' · ')}</p>
-    <p class="text-muted text-sm">{about.education.minors.join(', ')}</p>
+    <p class="text-muted text-sm">Minors: {about.education.minors.join(', ')}</p>
   </section>
 
-  <section>
-    <h2>Featured Projects and Research</h2>
-    <div class="project-grid">
-      {projects.slice(0, 2).map((project) => (
-        <div class="card project-card">
-          <h3>
-            <a href={project.url} target={project.url.startsWith('/') ? '_self' : '_blank'} rel="noopener">
-              {project.title}
-            </a>
-          </h3>
-          <p>{project.description}</p>
-          <div class="project-links">
-            {project.github && (
-              <a href={project.github} target="_blank" rel="noopener">Code</a>
-            )}
-            {!project.url.startsWith('/') && (
-              <a href={project.url} target="_blank" rel="noopener">Live</a>
-            )}
-          </div>
-        </div>
-      ))}
-    </div>
-    <p class="mt-sm"><a href="/projects">View all projects →</a></p>
-  </section>
+  {featuredResearch.length > 0 && (
+    <section>
+      <SectionHeading eyebrow="Research" title="Featured papers and investigations" />
+      <div class="project-list">
+        {featuredResearch.map((project) => (
+          <ProjectCard project={project} compact />
+        ))}
+      </div>
+      <p class="mt-sm"><a href="/research">All research →</a></p>
+    </section>
+  )}
+
+  {featuredEngineering.length > 0 && (
+    <section>
+      <SectionHeading eyebrow="Engineering" title="What I'm shipping" />
+      <div class="project-list">
+        {featuredEngineering.map((project) => (
+          <ProjectCard project={project} compact />
+        ))}
+      </div>
+      <p class="mt-sm"><a href="/engineering">All engineering →</a></p>
+    </section>
+  )}
 
   <section>
-    <h2>Recent Writing</h2>
+    <SectionHeading eyebrow="Writing" title="Recent notes" />
     {posts.length > 0 ? (
       <ul class="post-list">
         {posts.map((post) => (
-          <li class="post-item">
-            <a href={`/blog/${post.id}`}>{post.data.title}</a>
-            <time>{formatDate(post.data.date)}</time>
-          </li>
+          <PostListItem post={post} showExcerpt={false} />
         ))}
       </ul>
     ) : (
       <p class="text-muted">Coming soon.</p>
     )}
-    <p class="mt-sm"><a href="/blog">View all posts →</a></p>
+    <p class="mt-sm"><a href="/blog">All writing →</a></p>
   </section>
 </BaseLayout>

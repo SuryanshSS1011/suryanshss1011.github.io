@@ -1,0 +1,31 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  post: CollectionEntry<'blog'>;
+  showExcerpt?: boolean;
+  showReadingTime?: boolean;
+}
+
+const { post, showExcerpt = true, showReadingTime = true } = Astro.props;
+
+function formatDate(date: Date) {
+  return date.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+}
+
+const wordCount = (post.body ?? '').split(/\s+/).filter(Boolean).length;
+const readingTime = Math.max(1, Math.ceil(wordCount / 220));
+---
+
+<li class="post-item">
+  <a href={`/blog/${post.id}`} class="post-title">{post.data.title}</a>
+  <p class="post-meta">
+    <time datetime={post.data.date.toISOString()}>{formatDate(post.data.date)}</time>
+    {showReadingTime && wordCount > 0 && (
+      <>{' · '}{readingTime} min read</>
+    )}
+  </p>
+  {showExcerpt && post.data.description && (
+    <p class="post-excerpt">{post.data.description}</p>
+  )}
+</li>

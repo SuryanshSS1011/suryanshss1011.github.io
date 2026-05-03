@@ -1,10 +1,20 @@
 ---
+import { site } from '../data/site';
+
 interface Props {
   title: string;
   description?: string;
+  ogImage?: string;
 }
 
-const { title, description = "Suryansh Sijwali - Software Engineer & AI Researcher" } = Astro.props;
+const {
+  title,
+  description = "Suryansh Sijwali — AI/ML Engineer & Researcher",
+  ogImage = "/og.png"
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? site.url).toString();
+const ogImageURL = new URL(ogImage, Astro.site ?? site.url).toString();
 ---
 
 <!DOCTYPE html>
@@ -13,19 +23,48 @@ const { title, description = "Suryansh Sijwali - Software Engineer & AI Research
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalURL} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- Open Graph / social -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:image" content={ogImageURL} />
+    <meta property="og:site_name" content={site.name} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageURL} />
+
+    <!-- Theme set BEFORE paint to avoid FOUC for OS-dark-mode users -->
+    <script is:inline>
+      (() => {
+        const t = localStorage.getItem('theme') ||
+          (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        document.documentElement.setAttribute('data-theme', t);
+      })();
+    </script>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&family=JetBrains+Mono:wght@400;500&display=swap"
+    >
     <title>{title}</title>
   </head>
   <body>
+    <a href="#main" class="skip-link">Skip to content</a>
     <div class="container">
       <nav>
-        <a href="/" class="logo">SS</a>
+        <a href="/" class="logo">Suryansh Sijwali</a>
         <div class="links">
-          <a href="/blog">Blog</a>
-          <a href="/projects">Projects</a>
+          <a href="/">Home</a>
+          <a href="/research">Research</a>
+          <a href="/engineering">Engineering</a>
+          <a href="/blog">Writing</a>
           <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
             <svg class="sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <circle cx="12" cy="12" r="5"></circle>
@@ -45,7 +84,7 @@ const { title, description = "Suryansh Sijwali - Software Engineer & AI Research
         </div>
       </nav>
 
-      <main>
+      <main id="main">
         <slot />
       </main>
 
@@ -55,10 +94,6 @@ const { title, description = "Suryansh Sijwali - Software Engineer & AI Research
     </div>
 
     <script is:inline>
-      const theme = localStorage.getItem('theme') ||
-        (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-      document.documentElement.setAttribute('data-theme', theme);
-
       function updateIcons() {
         const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
         document.querySelector('.sun').style.display = isDark ? 'none' : 'block';
