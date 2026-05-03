@@ -18,3 +18,7 @@ Thumbs.db
 
 # Astro
 .astro/
+
+# Content
+resume.pdf
+Recent_Public_Projects*.pdf
