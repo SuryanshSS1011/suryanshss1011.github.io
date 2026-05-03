@@ -7,7 +7,10 @@ export default defineConfig({
   integrations: [mdx(), sitemap()],
   markdown: {
     shikiConfig: {
-      theme: 'github-dark',
+      themes: {
+        light: 'rose-pine-dawn',
+        dark: 'rose-pine-moon'
+      },
       wrap: true
     }
   }

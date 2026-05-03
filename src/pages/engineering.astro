@@ -1,0 +1,41 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import { projects } from '../data/site';
+
+const engineering = projects.filter(p => p.category === 'engineering');
+const current = engineering.filter(p => p.current);
+const past = engineering.filter(p => !p.current);
+---
+
+<BaseLayout title="Engineering — Suryansh Sijwali" description="Industry AI systems and shipped builds — Wynlabs, TruthCast, Shift, and related projects shipped end-to-end.">
+  <SectionHeading
+    eyebrow="Engineering"
+    title="Industry systems and shipped builds"
+    description="Production AI work, founding-engineer projects, and weekend builds that won tracks."
+    level="h1"
+  />
+
+  {current.length > 0 && (
+    <section>
+      <h2>Currently working on</h2>
+      <div class="project-list">
+        {current.map((project) => (
+          <ProjectCard project={project} />
+        ))}
+      </div>
+    </section>
+  )}
+
+  {past.length > 0 && (
+    <section>
+      <h2>Past work (shipped)</h2>
+      <div class="project-list">
+        {past.map((project) => (
+          <ProjectCard project={project} />
+        ))}
+      </div>
+    </section>
+  )}
+</BaseLayout>

@@ -1,0 +1,60 @@
+---
+import type { Project } from '../data/site';
+
+interface Props {
+  project: Project;
+  compact?: boolean;
+  headingLevel?: 'h2' | 'h3';
+}
+
+const { project, compact = false, headingLevel = 'h3' } = Astro.props;
+const Heading = headingLevel;
+const visibleLinks = compact ? project.links.slice(0, 2) : project.links;
+---
+
+<article class="card project-detail">
+  <header class="project-head">
+    <div class="project-title-row">
+      <Heading>{project.title}</Heading>
+      {project.badge && <span class="badge">{project.badge}</span>}
+    </div>
+    <p class="project-role">
+      {project.role}{project.period && (
+        <>{' · '}<span class="text-muted">{project.period}</span></>
+      )}
+    </p>
+  </header>
+
+  <p class="project-summary">{project.summary}</p>
+
+  {!compact && (
+    <ul class="project-highlights">
+      {project.highlights.map((h) => (
+        <li>{h}</li>
+      ))}
+    </ul>
+  )}
+
+  {!compact && project.stack.length > 0 && (
+    <div class="project-stack">
+      {project.stack.map((tech) => (
+        <span class="tag">{tech}</span>
+      ))}
+    </div>
+  )}
+
+  {(visibleLinks.length > 0 || (!compact && project.sourceNote)) && (
+    <footer class="project-footer">
+      {visibleLinks.length > 0 && (
+        <div class="project-links">
+          {visibleLinks.map((link) => (
+            <a href={link.url} target="_blank" rel="noopener">{link.label} ↗</a>
+          ))}
+        </div>
+      )}
+      {!compact && project.sourceNote && (
+        <p class="text-muted text-sm source-note">{project.sourceNote}</p>
+      )}
+    </footer>
+  )}
+</article>

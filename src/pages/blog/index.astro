@@ -1,36 +1,31 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import SectionHeading from '../../components/SectionHeading.astro';
+import PostListItem from '../../components/PostListItem.astro';
 import { getCollection } from 'astro:content';
 
 const posts = (await getCollection('blog'))
   .filter(post => !post.data.draft)
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
-
-function formatDate(date: Date) {
-  return date.toLocaleDateString('en-US', { year: 'numeric', month: 'short' });
-}
 ---
 
-<BaseLayout title="Blog — Suryansh Sijwali">
-  <section class="profile">
-    <h1>Blog</h1>
-    <p class="subtitle">Writing about AI, software engineering, and research.</p>
-  </section>
+<BaseLayout title="Writing — Suryansh Sijwali" description="Notes on AI, software engineering, and research.">
+  <SectionHeading
+    eyebrow="Writing"
+    title="Notes on AI, software, and research"
+    description="Long-form writeups, research notes, and thoughts on the systems I build and study."
+    level="h1"
+  />
 
   <section>
-    <ul class="post-list">
-      {posts.map((post) => (
-        <li class="post-item">
-          <a href={`/blog/${post.id}`}>{post.data.title}</a>
-          <time datetime={post.data.date.toISOString()}>
-            {formatDate(post.data.date)}
-          </time>
-        </li>
-      ))}
-    </ul>
-
-    {posts.length === 0 && (
-      <p class="text-muted">No posts yet. Check back soon!</p>
+    {posts.length > 0 ? (
+      <ul class="post-list">
+        {posts.map((post) => (
+          <PostListItem post={post} />
+        ))}
+      </ul>
+    ) : (
+      <p class="text-muted">No posts yet. Check back soon.</p>
     )}
   </section>
 </BaseLayout>

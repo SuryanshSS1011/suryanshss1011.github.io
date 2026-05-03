@@ -21,7 +21,9 @@ function formatDate(date: Date) {
   });
 }
 
-// Filter headings for TOC (h2 and h3 only)
+const wordCount = (post.body ?? '').split(/\s+/).filter(Boolean).length;
+const readingTime = Math.max(1, Math.ceil(wordCount / 220));
+
 const tocHeadings = headings.filter(h => h.depth === 2 || h.depth === 3);
 ---
 
@@ -29,9 +31,12 @@ const tocHeadings = headings.filter(h => h.depth === 2 || h.depth === 3);
   <article>
     <header style="margin-bottom: var(--spacing-lg);">
       <h1>{post.data.title}</h1>
-      <p class="text-muted text-sm">
-        {formatDate(post.data.date)}
-        {post.data.tags && (
+      <p class="text-muted text-sm" style="font-family: var(--font-display);">
+        By Suryansh Sijwali · <time datetime={post.data.date.toISOString()}>{formatDate(post.data.date)}</time>
+        {wordCount > 0 && (
+          <> · {readingTime} min read</>
+        )}
+        {post.data.tags && post.data.tags.length > 0 && (
           <span> · {post.data.tags.slice(0, 3).join(', ')}</span>
         )}
       </p>
@@ -55,22 +60,27 @@ const tocHeadings = headings.filter(h => h.depth === 2 || h.depth === 3);
     </div>
 
     <footer style="margin-top: var(--spacing-xl);">
-      <a href="/blog">← Back to blog</a>
+      <a href="/blog">← Back to writing</a>
     </footer>
   </article>
 </BaseLayout>
 
 <style>
   .toc {
-    background: var(--bg-secondary);
+    background: var(--bg-sunken);
     border: 1px solid var(--border);
-    border-radius: 8px;
+    border-radius: var(--radius-md);
     padding: var(--spacing-md);
     margin-bottom: var(--spacing-lg);
   }
 
   .toc h2 {
-    font-size: 0.9rem;
+    font-family: var(--font-display);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
     margin-bottom: var(--spacing-sm);
     border: none;
     padding: 0;
@@ -92,7 +102,7 @@ const tocHeadings = headings.filter(h => h.depth === 2 || h.depth === 3);
 
   .toc a {
     color: var(--text-secondary);
-    font-size: 0.875rem;
+    font-size: 0.9rem;
   }
 
   .toc a:hover {
