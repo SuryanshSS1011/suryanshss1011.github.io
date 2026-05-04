@@ -20,7 +20,10 @@ const featuredEngineering = projects
   .slice(0, 2);
 ---
 
-<BaseLayout title={`${site.name} — ${site.title}`}>
+<BaseLayout
+  title={`${site.name} — ${site.title}`}
+  description="Suryansh Sijwali is an AI/ML engineer and researcher at Penn State and Wynlabs. Work on RL for secure code generation (LCTES 2026 WIP), ML for network capacity planning, citation-grounded RAG, and LLM-based performance bug detection (IEEE AITest 2025)."
+>
   <section class="profile">
     <h1>{site.name}</h1>
     <p class="subtitle">{site.title}</p>

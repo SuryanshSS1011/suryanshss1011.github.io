@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getCollection, render } from 'astro:content';
+import { site } from '../../data/site';
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog');
@@ -25,9 +26,47 @@ const wordCount = (post.body ?? '').split(/\s+/).filter(Boolean).length;
 const readingTime = Math.max(1, Math.ceil(wordCount / 220));
 
 const tocHeadings = headings.filter(h => h.depth === 2 || h.depth === 3);
+
+const postURL = new URL(`/blog/${post.id}/`, Astro.site ?? site.url).toString();
+const ogImageURL = new URL("/og.png", Astro.site ?? site.url).toString();
+
+const blogPostingSchema = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  headline: post.data.title,
+  description: post.data.description,
+  datePublished: post.data.date.toISOString(),
+  url: postURL,
+  image: ogImageURL,
+  wordCount,
+  keywords: post.data.tags?.join(", "),
+  author: {
+    "@type": "Person",
+    name: site.name,
+    url: site.url
+  },
+  publisher: {
+    "@type": "Person",
+    name: site.name,
+    url: site.url
+  },
+  mainEntityOfPage: {
+    "@type": "WebPage",
+    "@id": postURL
+  }
+};
 ---
 
-<BaseLayout title={`${post.data.title} — Suryansh Sijwali`} description={post.data.description}>
+<BaseLayout
+  title={`${post.data.title} — Suryansh Sijwali`}
+  description={post.data.description}
+  ogType="article"
+  articleMeta={{
+    publishedTime: post.data.date.toISOString(),
+    tags: post.data.tags
+  }}
+  jsonLd={blogPostingSchema}
+>
   <article>
     <header style="margin-bottom: var(--spacing-lg);">
       <h1>{post.data.title}</h1>

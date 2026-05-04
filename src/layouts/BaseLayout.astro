@@ -5,16 +5,63 @@ interface Props {
   title: string;
   description?: string;
   ogImage?: string;
+  ogType?: 'website' | 'article';
+  articleMeta?: {
+    publishedTime: string;
+    modifiedTime?: string;
+    tags?: string[];
+  };
+  jsonLd?: Record<string, unknown> | Record<string, unknown>[];
 }
 
 const {
   title,
-  description = "Suryansh Sijwali — AI/ML Engineer & Researcher",
-  ogImage = "/og.png"
+  description = "Suryansh Sijwali is an AI/ML engineer and researcher at Penn State and Wynlabs, working on RL for code generation, citation-grounded RAG, and ML systems for industrial AI.",
+  ogImage = "/og.png",
+  ogType = "website",
+  articleMeta,
+  jsonLd
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? site.url).toString();
 const ogImageURL = new URL(ogImage, Astro.site ?? site.url).toString();
+
+const personSchema = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: site.name,
+  url: site.url,
+  image: new URL("/og.png", site.url).toString(),
+  jobTitle: site.title,
+  description: "AI/ML Engineer & Researcher. Penn State CS undergraduate; Founding Engineer at Wynlabs. Peer-reviewed at IEEE AITest 2025; WIP at LCTES 2026.",
+  alumniOf: {
+    "@type": "CollegeOrUniversity",
+    name: "Penn State University"
+  },
+  affiliation: {
+    "@type": "Organization",
+    name: "Wynlabs",
+    url: "https://wynlabs.ai"
+  },
+  sameAs: [
+    site.social.github,
+    site.social.linkedin
+  ],
+  email: `mailto:${site.social.email}`
+};
+
+const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: site.name,
+  url: site.url,
+  description: site.description,
+  author: { "@type": "Person", name: site.name, url: site.url }
+};
+
+const baseSchemas = [personSchema, websiteSchema];
+const extraSchemas = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
+const allSchemas = [...baseSchemas, ...extraSchemas];
 ---
 
 <!DOCTYPE html>
@@ -27,7 +74,7 @@ const ogImageURL = new URL(ogImage, Astro.site ?? site.url).toString();
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
     <!-- Open Graph / social -->
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content={ogType} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonicalURL} />
@@ -37,6 +84,24 @@ const ogImageURL = new URL(ogImage, Astro.site ?? site.url).toString();
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImageURL} />
+    <meta name="author" content={site.name} />
+    {ogType === 'article' && articleMeta && (
+      <>
+        <meta property="article:published_time" content={articleMeta.publishedTime} />
+        {articleMeta.modifiedTime && (
+          <meta property="article:modified_time" content={articleMeta.modifiedTime} />
+        )}
+        <meta property="article:author" content={site.url} />
+        {articleMeta.tags?.map((tag) => (
+          <meta property="article:tag" content={tag} />
+        ))}
+      </>
+    )}
+
+    <!-- Structured data: Person + WebSite (always); page-specific schemas merged via prop -->
+    {allSchemas.map((schema) => (
+      <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+    ))}
 
     <!-- Theme set BEFORE paint to avoid FOUC for OS-dark-mode users -->
     <script is:inline>
