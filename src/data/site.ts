@@ -58,8 +58,8 @@ export const projects: Project[] = [
     summary:
       "Cross-institutional AI software platform building an industrial copilot for manufacturing. Multi-agent workflows run over live plant-floor data.",
     highlights: [
+      "Architected multi-agent workflows backed by 2k to 5k node knowledge graphs per deployment, orchestrated through LangChain. They power KPI prediction and time-series analytics over SCADA, PLC, MQTT, and SQL Server data.",
       "Shipped 15+ client POCs end-to-end. Embedded with manufacturing teams on tight timelines to scope, build, and deploy AI workflows on live industrial data.",
-      "Architected multi-agent workflows backed by 2k to 5k node knowledge graphs per deployment. They power KPI prediction and time-series analytics over SCADA, PLC, MQTT, and SQL Server data, orchestrated through LangChain.",
       "Built FastAPI services and a provisioning CLI for Dockerized pipelines on AWS and Kubernetes. Grafana reports generate automatically via API-triggered workflows.",
       "Maintained a shared frontend NPM package to standardize UI components across client apps."
     ],
@@ -74,14 +74,14 @@ export const projects: Project[] = [
     role: "LCTES 2026 (WIP) · Patishnock Award Winner",
     badge: "WIP — Accepted",
     summary:
-      "RL framework that trains LLMs to generate code which is both functionally correct and free of common security weaknesses, optimizing a combined reward against test outcomes and Bandit static analysis.",
+      "A reliability-first reinforcement learning framework for small language models in code generation. Designed for embedded and resource-limited settings where models must run on a single GPU or CPU and binary test rewards are too sparse to train reliably.",
     highlights: [
-      "Combined reward R = 0.6 × R_func + 0.4 × R_sec, with R_func graded on a five-stage partial-credit ladder (syntax valid, runs, produces output, tests pass) to avoid the sparse-reward trap that breaks binary-reward PPO on code.",
-      "Two-stage pipeline: LoRA-based SFT on DeepSeek-Coder-1.3B over the APPS+ stdin dataset (3,588 problems), followed by PPO with Bandit as the security signal.",
-      "Accepted as a work-in-progress paper at the 27th ACM SIGPLAN/SIGBED LCTES 2026, co-located with PLDI 2026 in Boulder, Colorado.",
-      "Interim findings: partial-credit PPO lifted syntax validity from 45% (SFT baseline) to 60% and was the only configuration to achieve a non-zero test pass rate, while keeping security compliance at 100% throughout training.",
-      "Recognized at the Penn State Undergraduate Exhibition with the University Libraries' John Sr. and Kimlyn Patishnock Undergraduate Research Award for Excellence in Information Literacy.",
-      "Indexed on EmergentMind as a canonical reference for partial-credit functional reward in code generation."
+      "Targets small language models (≤1.5B parameters) for embedded and on-device toolchains. Binary rewards collapse at this scale because near-miss generations all look like zero, so PPO regresses below SFT on a 1.3B model.",
+      "Introduces a partial-credit functional reward that grades five stages of progress: syntax valid, runs without crash, produces output, and then proportional credit for tests passed. This makes near-miss generations distinguishable to PPO. The combined objective adds a Bandit static-analysis term as a safety guardrail with weights R = 0.6·R_func + 0.4·R_sec.",
+      "Found that a binary-to-partial-credit curriculum outperforms partial-credit training from scratch. PPO-continue, which warm-starts from a binary-reward checkpoint, lifted syntax validity to 63% and ≥1-test-pass to 9% on stdin-style APPS+. Partial-credit from scratch did not surpass the binary baseline within statistical confidence intervals.",
+      "Built on DeepSeek-Coder-1.3B with LoRA, 6.3M trainable parameters, trained on a single NVIDIA V100 16 GB. Evaluation on 100 held-out APPS+ prompts under a strict sandboxed judge.",
+      "Accepted as a WIP paper at the 27th ACM SIGPLAN/SIGBED LCTES 2026, co-located with PLDI 2026 in Boulder, Colorado.",
+      "Won the John Sr. and Kimlyn Patishnock Undergraduate Research Award at the Penn State Undergraduate Exhibition for Excellence in Information Literacy. Indexed on EmergentMind as a canonical reference for partial-credit functional reward in code generation."
     ],
     stack: ["Python", "PyTorch", "TRL (PPO)", "PEFT (LoRA)", "Bandit", "DeepSeek-Coder-1.3B", "APPS+"],
     links: [
