@@ -11,8 +11,8 @@ export const site = {
 };
 
 export const about = {
-  currently: "RL for secure code generation at Penn State (LCTES 2026 WIP) and ML for network traffic forecasting.",
-  upcoming: "LCTES 2026 (WIP, accepted) · IEEE AITest 2025 (published).",
+  currently: "Causality-aware secure reward design for RL-based C code generation, and risk-bounded capacity provisioning via decision-focused conformal forecasting.",
+  upcoming: "LCTES 2026 presentation · June 15 · Boulder, CO.",
 
   bio: `I'm a Computer Science student at Penn State, passionate about building intelligent systems at the intersection of AI research and practical software engineering.
 
