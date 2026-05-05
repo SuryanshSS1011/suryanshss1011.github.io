@@ -138,12 +138,13 @@ export const projects: Project[] = [
     role: "Solana Track Winner · HackPSU Spring 2026",
     badge: "Hackathon Winner",
     summary:
-      "Fully autonomous fact-checking system that decomposes a claim into atomic sub-claims, retrieves and weights evidence, runs adversarial debate when sources disagree, then writes the final verdict to an immutable Solana ledger and produces a natural voice summary.",
+      "Fully autonomous fact-checking system that goes beyond true-or-false. Claims are decomposed into atomic sub-claims, evidence is weighted by source credibility, and an adversarial debate triggers when sources disagree. Verdicts are written to an immutable Solana ledger and read aloud as a voice summary.",
     highlights: [
-      "Decomposes claims using the HiSS method, then retrieves grounded evidence via Gemini with google_search and scores ~4,000 sources using the MBFC credibility dataset.",
-      "Triggers adversarial pro/con debate whenever inter-agent agreement falls below 80%, producing a 7-label verdict (TRUE through CONFLICTING and UNVERIFIABLE) instead of a flat true or false.",
-      "Writes every verdict as a Solana memo on devnet so the result is permanent and tamper-evident, then generates a voice summary via ElevenLabs TTS.",
-      "Streams pipeline progress in real time over SSE, with a Turso (libSQL) hybrid database for serverless deployment and SQLite for local development."
+      "Decomposes claims into atomic sub-claims using the HiSS method, then retrieves evidence via Gemini with google_search.",
+      "Scores ~4,000 sources for credibility using the MBFC dataset, so contradictory but low-credibility evidence gets down-weighted instead of just counted.",
+      "Triggers adversarial pro/con debate whenever inter-agent agreement falls below 80%. Outputs a 7-label verdict spanning TRUE through CONFLICTING and UNVERIFIABLE, rather than a flat boolean.",
+      "Writes every verdict as a Solana memo on devnet so the result is permanent and tamper-evident. Generates a voice summary via ElevenLabs TTS.",
+      "Streams pipeline progress in real time over SSE. Backed by Turso (libSQL) for serverless deployment, with SQLite for local development."
     ],
     stack: ["Next.js 14", "TypeScript", "Gemini 2.0 Flash", "Solana (devnet)", "ElevenLabs TTS", "Turso/SQLite", "MBFC dataset", "Sentry"],
     links: [
