@@ -2,16 +2,36 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ProjectCard from '../components/ProjectCard.astro';
 import SectionHeading from '../components/SectionHeading.astro';
-import { projects } from '../data/site';
+import { projects, site } from '../data/site';
 
 const research = projects.filter(p => p.category === 'research');
 const current = research.filter(p => p.current);
 const past = research.filter(p => !p.current);
+
+const aiTestPaperSchema = {
+  "@context": "https://schema.org",
+  "@type": "ScholarlyArticle",
+  name: "Fixing Performance Bugs Through LLM Explanations",
+  author: {
+    "@type": "Person",
+    name: site.name,
+    url: site.url
+  },
+  isPartOf: {
+    "@type": "PublicationEvent",
+    name: "7th IEEE International Conference on Artificial Intelligence Testing (AITest 2025)",
+    publishedBy: { "@type": "Organization", name: "IEEE" }
+  },
+  datePublished: "2025",
+  identifier: "10.1109/AITest66680.2025.00020",
+  url: "https://doi.org/10.1109/AITest66680.2025.00020"
+};
 ---
 
 <BaseLayout
   title="Research · Suryansh Sijwali"
   description="Research projects and peer-reviewed papers by Suryansh Sijwali: SecureCodeRL (LCTES 2026 WIP, Patishnock Award), ML for network traffic prediction, and LLM explanations for Java performance bugs (IEEE AITest 2025)."
+  jsonLd={aiTestPaperSchema}
 >
   <SectionHeading
     eyebrow="Research"
