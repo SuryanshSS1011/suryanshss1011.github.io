@@ -35,14 +35,6 @@ const visibleLinks = compact ? project.links.slice(0, 2) : project.links;
     </ul>
   )}
 
-  {!compact && project.stack.length > 0 && (
-    <div class="project-stack">
-      {project.stack.map((tech) => (
-        <span class="tag">{tech}</span>
-      ))}
-    </div>
-  )}
-
   {(visibleLinks.length > 0 || (!compact && project.sourceNote)) && (
     <footer class="project-footer">
       {visibleLinks.length > 0 && (
