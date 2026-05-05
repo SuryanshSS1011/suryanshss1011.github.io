@@ -54,7 +54,6 @@ export const projects: Project[] = [
   {
     title: "Wynlabs",
     role: "Founding Engineer",
-    period: "Jan 2025 – Present",
     badge: "Industry / Startup",
     summary:
       "Cross-institutional AI software platform building an industrial copilot for manufacturing, with multi-agent workflows running over live plant-floor data.",
