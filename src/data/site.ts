@@ -179,10 +179,11 @@ export const projects: Project[] = [
     role: "IEEE AITest 2025",
     badge: "Published",
     summary:
-      "Code, dataset, and models from a peer-reviewed paper on using LLM explanations to detect and fix Java performance bugs. Accepted to the 7th IEEE International Conference on Artificial Intelligence Testing (AITest 2025) with a 31.6% acceptance rate.",
+      "Using LLM explanations as a training signal to detect and fix Java performance bugs, not just labels. Peer-reviewed at the 7th IEEE International Conference on Artificial Intelligence Testing (AITest 2025) with a 31.6% acceptance rate.",
     highlights: [
-      "Curated a dataset of 490 performance bugs across 17 Defects4J projects, organized into a 5-category taxonomy (algorithmic, memory, CPU, redundant computation, I/O) with an 80/20 train/test split.",
-      "Fine-tuned GPT-4o-mini on the curated set to produce explanations alongside predictions, lifting detection accuracy from 67.3% (base) to 83.7% (fine-tuned) and F1 from 64.6% to 82.3%.",
+      "The deeper idea: training an LLM to explain a performance bug, not just classify it, produces a stronger detection signal than label-only fine-tuning.",
+      "Curated a dataset of 490 performance bugs across 17 Defects4J projects, organized into a 5-category taxonomy: algorithmic, memory, CPU, redundant computation, and I/O. Standard 80/20 train/test split.",
+      "Fine-tuned GPT-4o-mini to produce explanations alongside predictions. Detection accuracy lifted from 67.3% baseline to 83.7% after fine-tuning, and F1 from 64.6% to 82.3%.",
       "Released the full reproduction stack: extraction scripts for Defects4J, fine-tuning scripts, evaluation harness, and a CLI for running the detector on arbitrary Java files.",
       "Shipped an interactive project site and conference presentation alongside the code."
     ],
