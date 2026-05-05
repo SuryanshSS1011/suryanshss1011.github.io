@@ -1,3 +1,4 @@
+<!-- Hardcoded to match global.css light-mode tokens: --bg-primary (#fdfaf3), --accent (#b4471f), --text-primary (#1a1a1a), --text-secondary (#3a342e), --text-muted (#6b6157). Update both files together. Regen og.png with rsvg-convert -w 1200 -h 630. -->
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
   <rect width="1200" height="630" fill="#fdfaf3"/>
   <rect x="80" y="80" width="80" height="4" fill="#b4471f"/>
