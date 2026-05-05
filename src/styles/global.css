@@ -21,12 +21,15 @@
   --shadow-card: 0 1px 2px rgba(40, 30, 18, 0.04), 0 4px 12px rgba(40, 30, 18, 0.05);
 
   --max-width: 760px;
-  --spacing-xs: 0.5rem;
-  --spacing-sm: 1rem;
-  --spacing-md: 1.5rem;
-  --spacing-lg: 2rem;
-  --spacing-xl: 3rem;
-  --spacing-2xl: 4rem;
+  /* Spacing scale: 4px (0.25rem) grid. Ratios anchor on 2× at the small end and 1.5× from md upward. */
+  --spacing-2xs: 0.25rem;
+  --spacing-xs:  0.5rem;
+  --spacing-sm:  0.75rem;
+  --spacing-md:  1rem;
+  --spacing-lg:  1.5rem;
+  --spacing-xl:  2rem;
+  --spacing-2xl: 3rem;
+  --spacing-3xl: 4rem;
 
   --radius-sm: 4px;
   --radius-md: 6px;
@@ -109,12 +112,12 @@ h1, h2, h3, h4 {
   letter-spacing: -0.01em;
 }
 
-h1 { font-size: 2.25rem; margin-bottom: var(--spacing-md); letter-spacing: -0.02em; }
-h2 { font-size: 1.6rem; margin-bottom: var(--spacing-sm); }
+h1 { font-size: 2.25rem; margin-bottom: var(--spacing-lg); letter-spacing: -0.02em; }
+h2 { font-size: 1.6rem; margin-bottom: var(--spacing-md); }
 h3 { font-size: 1.15rem; margin-bottom: var(--spacing-xs); }
 
 p {
-  margin-bottom: var(--spacing-sm);
+  margin-bottom: var(--spacing-md);
   color: var(--text-secondary);
 }
 
@@ -150,11 +153,11 @@ a:focus-visible {
 .skip-link {
   position: absolute;
   top: -100px;
-  left: var(--spacing-sm);
+  left: var(--spacing-md);
   z-index: 100;
   background: var(--accent);
   color: var(--bg-primary);
-  padding: 0.5rem 0.875rem;
+  padding: var(--spacing-xs) var(--spacing-sm);
   border-radius: var(--radius-sm);
   font-family: var(--font-display);
   font-weight: 500;
@@ -164,7 +167,7 @@ a:focus-visible {
 }
 
 .skip-link:focus {
-  top: var(--spacing-sm);
+  top: var(--spacing-md);
   color: var(--bg-primary);
 }
 
@@ -172,14 +175,14 @@ a:focus-visible {
 .container {
   max-width: var(--max-width);
   margin: 0 auto;
-  padding: var(--spacing-lg) var(--spacing-md);
+  padding: var(--spacing-xl) var(--spacing-lg);
   position: relative;
   z-index: 1;
 }
 
 @media (min-width: 640px) {
   .container {
-    padding: var(--spacing-2xl) var(--spacing-lg);
+    padding: var(--spacing-3xl) var(--spacing-xl);
   }
 }
 
@@ -188,10 +191,10 @@ nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: var(--spacing-md) 0;
-  margin-bottom: var(--spacing-2xl);
+  padding: var(--spacing-lg) 0;
+  margin-bottom: var(--spacing-3xl);
   flex-wrap: wrap;
-  gap: var(--spacing-sm);
+  gap: var(--spacing-md);
 }
 
 nav .logo {
@@ -210,13 +213,13 @@ nav .logo:hover {
 
 nav .links {
   display: flex;
-  gap: var(--spacing-md);
+  gap: var(--spacing-lg);
   align-items: center;
   flex-wrap: wrap;
 }
 
 @media (max-width: 480px) {
-  nav .links { gap: var(--spacing-sm); }
+  nav .links { gap: var(--spacing-md); }
 }
 
 nav .links a {
@@ -265,7 +268,7 @@ nav .links a:hover {
   background: var(--bg-secondary);
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
-  padding: var(--spacing-md);
+  padding: var(--spacing-lg);
   transition: border-color var(--transition), transform var(--transition);
 }
 
@@ -284,14 +287,14 @@ nav .links a:hover {
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-lg);
+  gap: var(--spacing-xl);
 }
 
 .post-item {
   display: flex;
   flex-direction: column;
   gap: var(--spacing-xs);
-  padding-bottom: var(--spacing-lg);
+  padding-bottom: var(--spacing-xl);
   border-bottom: 1px solid var(--border);
 }
 
@@ -342,7 +345,7 @@ nav .links a:hover {
   font-family: var(--font-display);
   font-size: 0.75rem;
   font-weight: 500;
-  padding: 0.25rem 0.5rem;
+  padding: var(--spacing-2xs) var(--spacing-xs);
   background: var(--bg-sunken);
   border: 1px solid var(--border);
   border-radius: var(--radius-sm);
@@ -357,7 +360,7 @@ nav .links a:hover {
   font-weight: 600;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  padding: 0.2rem 0.5rem;
+  padding: var(--spacing-2xs) var(--spacing-xs);
   border-radius: var(--radius-sm);
   background: var(--accent-soft);
   color: var(--accent);
@@ -367,7 +370,7 @@ nav .links a:hover {
 /* Project Grid */
 .project-grid {
   display: grid;
-  gap: var(--spacing-md);
+  gap: var(--spacing-lg);
 }
 
 .project-card .project-title-row {
@@ -376,13 +379,13 @@ nav .links a:hover {
 
 .project-card p {
   font-size: 0.95rem;
-  margin-bottom: var(--spacing-sm);
+  margin-bottom: var(--spacing-md);
   line-height: 1.6;
 }
 
 .project-links {
   display: flex;
-  gap: var(--spacing-md);
+  gap: var(--spacing-lg);
   font-size: 0.9rem;
   font-weight: 500;
   flex-wrap: wrap;
@@ -404,25 +407,25 @@ nav .links a:hover {
 .project-list {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-md);
+  gap: var(--spacing-lg);
 }
 
 .project-detail {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-sm);
+  gap: var(--spacing-md);
 }
 
 .project-head {
   display: flex;
   flex-direction: column;
-  gap: 0.25rem;
+  gap: var(--spacing-2xs);
 }
 
 .project-title-row {
   display: flex;
   align-items: center;
-  gap: var(--spacing-sm);
+  gap: var(--spacing-md);
   flex-wrap: wrap;
 }
 
@@ -451,7 +454,7 @@ nav .links a:hover {
   margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 0.4rem;
+  gap: var(--spacing-xs);
 }
 
 .project-highlights li {
@@ -466,18 +469,18 @@ nav .links a:hover {
 
 .project-stack {
   display: flex;
-  gap: 0.4rem;
+  gap: var(--spacing-xs);
   flex-wrap: wrap;
-  margin-top: 0.25rem;
+  margin-top: var(--spacing-2xs);
 }
 
 .project-footer {
   display: flex;
   flex-direction: column;
-  gap: 0.4rem;
+  gap: var(--spacing-xs);
   padding-top: var(--spacing-xs);
   border-top: 1px dashed var(--border);
-  margin-top: 0.25rem;
+  margin-top: var(--spacing-2xs);
 }
 
 .source-note {
@@ -488,7 +491,7 @@ nav .links a:hover {
 
 /* Profile / Hero */
 .profile {
-  margin-bottom: var(--spacing-2xl);
+  margin-bottom: var(--spacing-3xl);
 }
 
 .profile h1 {
@@ -502,20 +505,20 @@ nav .links a:hover {
   font-style: italic;
   color: var(--text-secondary);
   font-size: 1.15rem;
-  margin-bottom: var(--spacing-md);
+  margin-bottom: var(--spacing-lg);
 }
 
 .profile .status {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-sm);
-  margin: 0 0 var(--spacing-md) 0;
+  gap: var(--spacing-md);
+  margin: 0 0 var(--spacing-lg) 0;
 }
 
 .profile .status-row {
   display: flex;
   flex-direction: column;
-  gap: 0.25rem;
+  gap: var(--spacing-2xs);
 }
 
 .profile .status dt {
@@ -536,13 +539,13 @@ nav .links a:hover {
 
 .profile .bio {
   font-size: 1.05rem;
-  margin-bottom: var(--spacing-lg);
+  margin-bottom: var(--spacing-xl);
   line-height: 1.7;
 }
 
 .profile .links {
   display: flex;
-  gap: var(--spacing-md);
+  gap: var(--spacing-lg);
   flex-wrap: wrap;
 }
 
@@ -563,18 +566,18 @@ nav .links a:hover {
 
 /* Section */
 section {
-  margin-bottom: var(--spacing-2xl);
+  margin-bottom: var(--spacing-3xl);
 }
 
 section > h2 {
   padding-bottom: var(--spacing-xs);
   border-bottom: 1px solid var(--border);
-  margin-bottom: var(--spacing-md);
+  margin-bottom: var(--spacing-lg);
 }
 
 /* SectionHeading component */
 .section-heading {
-  margin-bottom: var(--spacing-md);
+  margin-bottom: var(--spacing-lg);
 }
 
 .section-heading h2 {
@@ -591,8 +594,8 @@ section > h2 {
 
 /* Footer */
 footer {
-  margin-top: var(--spacing-2xl);
-  padding-top: var(--spacing-lg);
+  margin-top: var(--spacing-3xl);
+  padding-top: var(--spacing-xl);
   border-top: 1px solid var(--border);
   color: var(--text-muted);
   font-size: 0.85rem;
@@ -619,28 +622,28 @@ footer a:hover {
 }
 
 .prose h2 {
+  margin-top: var(--spacing-3xl);
+  margin-bottom: var(--spacing-lg);
+}
+
+.prose h3 {
   margin-top: var(--spacing-2xl);
   margin-bottom: var(--spacing-md);
 }
 
-.prose h3 {
-  margin-top: var(--spacing-xl);
-  margin-bottom: var(--spacing-sm);
-}
-
 .prose p {
-  margin-bottom: var(--spacing-md);
+  margin-bottom: var(--spacing-lg);
 }
 
 .prose pre {
   background: var(--bg-sunken);
   border: 1px solid var(--border);
   border-radius: var(--radius-md);
-  padding: var(--spacing-md);
+  padding: var(--spacing-lg);
   overflow-x: auto;
   font-family: var(--font-mono);
   font-size: 0.88rem;
-  margin: var(--spacing-lg) 0;
+  margin: var(--spacing-xl) 0;
   line-height: 1.6;
 }
 
@@ -673,8 +676,8 @@ footer a:hover {
 }
 
 .prose ul, .prose ol {
-  margin: var(--spacing-md) 0;
-  padding-left: var(--spacing-lg);
+  margin: var(--spacing-lg) 0;
+  padding-left: var(--spacing-xl);
 }
 
 .prose li {
@@ -687,10 +690,10 @@ footer a:hover {
 
 .prose blockquote {
   border-left: 2px solid var(--accent);
-  padding-left: var(--spacing-md);
+  padding-left: var(--spacing-lg);
   color: var(--text-secondary);
   font-style: italic;
-  margin: var(--spacing-lg) 0;
+  margin: var(--spacing-xl) 0;
 }
 
 .prose a {
@@ -703,24 +706,24 @@ footer a:hover {
   max-width: 100%;
   height: auto;
   border-radius: var(--radius-md);
-  margin: var(--spacing-lg) 0;
+  margin: var(--spacing-xl) 0;
 }
 
 .prose hr {
   border: none;
   border-top: 1px solid var(--border);
-  margin: var(--spacing-2xl) 0;
+  margin: var(--spacing-3xl) 0;
 }
 
 .prose table {
   width: 100%;
   border-collapse: collapse;
-  margin: var(--spacing-lg) 0;
+  margin: var(--spacing-xl) 0;
   font-size: 0.95rem;
 }
 
 .prose th, .prose td {
-  padding: var(--spacing-sm);
+  padding: var(--spacing-md);
   border: 1px solid var(--border);
   text-align: left;
 }
@@ -734,12 +737,12 @@ footer a:hover {
 /* Utilities */
 .text-muted { color: var(--text-muted); }
 .text-sm { font-size: 0.875rem; }
-.mt-sm { margin-top: var(--spacing-sm); }
-.mb-sm { margin-bottom: var(--spacing-sm); }
+.mt-md { margin-top: var(--spacing-md); }
+.mb-md { margin-bottom: var(--spacing-md); }
 
 /* Responsive */
 @media (max-width: 640px) {
   h1 { font-size: 1.75rem; }
   .profile h1 { font-size: 2rem; }
-  nav { margin-bottom: var(--spacing-xl); }
+  nav { margin-bottom: var(--spacing-2xl); }
 }

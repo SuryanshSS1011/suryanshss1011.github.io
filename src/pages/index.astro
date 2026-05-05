@@ -50,10 +50,10 @@ const featuredEngineering = projects
     <SectionHeading eyebrow="About" title="A little context" />
     <p style="white-space: pre-line;">{about.bio}</p>
 
-    <div class="mt-sm" style="display: flex; flex-direction: column; gap: 0.5rem;">
+    <div class="mt-md" style="display: flex; flex-direction: column; gap: var(--spacing-xs);">
       {about.roles.map((role) => (
         <div class="card">
-          <p style="margin-bottom: 0.25rem;"><strong style="color: var(--text-primary);">{role.title}</strong> at {role.company}</p>
+          <p style="margin-bottom: var(--spacing-2xs);"><strong style="color: var(--text-primary);">{role.title}</strong> at {role.company}</p>
           <p class="text-muted text-sm" style="margin-bottom: 0;">{role.period}</p>
         </div>
       ))}
@@ -63,7 +63,7 @@ const featuredEngineering = projects
   <section>
     <SectionHeading eyebrow="Education" title={about.education.degree} />
     <p>{about.education.institution} · {about.education.graduation}</p>
-    <p class="text-muted text-sm mt-sm">{about.education.colleges.join(' · ')}</p>
+    <p class="text-muted text-sm mt-md">{about.education.colleges.join(' · ')}</p>
     <p class="text-muted text-sm">Minors: {about.education.minors.join(', ')}</p>
   </section>
 
@@ -75,7 +75,7 @@ const featuredEngineering = projects
           <ProjectCard project={project} compact />
         ))}
       </div>
-      <p class="mt-sm"><a href="/research">All research →</a></p>
+      <p class="mt-md"><a href="/research">All research →</a></p>
     </section>
   )}
 
@@ -87,7 +87,7 @@ const featuredEngineering = projects
           <ProjectCard project={project} compact />
         ))}
       </div>
-      <p class="mt-sm"><a href="/engineering">All engineering →</a></p>
+      <p class="mt-md"><a href="/engineering">All engineering →</a></p>
     </section>
   )}
 
@@ -102,6 +102,6 @@ const featuredEngineering = projects
     ) : (
       <p class="text-muted">Coming soon.</p>
     )}
-    <p class="mt-sm"><a href="/blog">All writing →</a></p>
+    <p class="mt-md"><a href="/blog">All writing →</a></p>
   </section>
 </BaseLayout>
