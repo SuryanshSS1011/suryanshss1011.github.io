@@ -93,15 +93,17 @@ export const projects: Project[] = [
   },
   {
     title: "ML for Network Traffic Prediction and Capacity Planning",
-    role: "Interim Results",
+    role: "Finalizing methodology",
     badge: "WIP",
     summary:
-      "End-to-end simulation pipeline that generates synthetic backbone traffic, trains two competing forecasting models (SARIMA per-link and a joint LSTM), and quantifies how forecasting quality propagates into real capacity-planning decisions like link utilization and overload rates.",
+      "Training and calibrating traffic forecasters so predictions minimize operational cost like SLA violations and over-provisioning, not statistical error. Evaluated end-to-end on real backbone traffic with multi-seed paired comparisons against modern baselines.",
     highlights: [
-      "Generated synthetic traffic over a 12-node backbone topology at 5-minute resolution for 14 days, with a 6-hour seasonal pattern matched by the SARIMA seasonal order.",
-      "Trained a SARIMA(2,1,2)(1,0,1,72) baseline per link and a joint LSTM forecaster on a 72-step (6-hour) input window, then ran 5-seed experiments for variance analysis.",
-      "Interim findings: LSTM cuts RMSE by 35% (16.5 vs 25.3), MAPE by 45% (26% vs 47%), and overload rate by 69% (10.6% vs 34.6%) versus SARIMA, with much lower seed-to-seed variance.",
-      "Drafted an IEEE-format methodology and results writeup checked into the repo at report/paper.pdf, updated as the project progresses."
+      "Operator-cost-aware evaluation framework. A 2D evaluation matrix over training cost ratio and operator cost ratio, with bootstrap confidence intervals and 5-seed paired comparisons against MSE. This is the methodological scaffolding that makes every downstream finding legible.",
+      "Cusp-linear (L1) asymmetric loss dominates squared asymmetric loss across the entire operator-cost matrix. Established empirically with tighter confidence intervals, deeper wins, and a saturation point at α=20 that squared loss does not exhibit. Connects to and empirically validates the Eramo 2020 argument.",
+      "Match-your-loss-to-your-cost principle. Under L1, optimal training α tracks operator α along the diagonal. Under squared loss, the diagonal stretches. Explained by loss-consistency theory from Gneiting 2011.",
+      "Conformal calibration for distribution-free coverage. Conformalized quantile regression and adaptive conformal inference (DtACI) layered on top of the asymmetric-loss-trained forecaster, giving finite-sample coverage guarantees on the provisioned interval.",
+      "Pareto frontier of training ratios. Different operator cost structures trace different optimal training points. No single forecaster is best for all operators.",
+      "Real backbone evaluation. Currently Abilene, with GÉANT and CESNET-TimeSeries24 in the pipeline. Synthetic 12-node topology kept only as a sanity check. Baselines include MSE, pinball/quantile loss, LSTM, and a deeper bench (PatchTST, iTransformer, DCRNN, Chronos) as the experiment matrix expands."
     ],
     stack: ["Python", "PyTorch", "statsmodels", "NumPy", "Pandas", "NetworkX", "scikit-learn", "matplotlib", "LaTeX"],
     links: [
