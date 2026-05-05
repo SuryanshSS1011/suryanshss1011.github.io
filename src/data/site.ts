@@ -56,12 +56,12 @@ export const projects: Project[] = [
     role: "Founding Engineer",
     badge: "Industry / Startup",
     summary:
-      "Cross-institutional AI software platform building an industrial copilot for manufacturing, with multi-agent workflows running over live plant-floor data.",
+      "Cross-institutional AI software platform building an industrial copilot for manufacturing. Multi-agent workflows run over live plant-floor data.",
     highlights: [
-      "Shipped 15+ client POCs end-to-end, embedding with manufacturing teams to scope, build, and deploy AI workflows on live industrial data under tight client timelines.",
-      "Architected multi-agent workflows backed by 2k–5k node knowledge graphs per deployment, powering KPI prediction and time-series analytics over SCADA, PLC, MQTT, and SQL Server data.",
-      "Built FastAPI services and a provisioning CLI for Dockerized data pipelines on AWS, and automated Grafana report generation via API-triggered workflows.",
-      "Designed and maintained a shared frontend NPM package to standardize UI components across client-facing applications."
+      "Shipped 15+ client POCs end-to-end. Embedded with manufacturing teams on tight timelines to scope, build, and deploy AI workflows on live industrial data.",
+      "Architected multi-agent workflows backed by 2k to 5k node knowledge graphs per deployment. They power KPI prediction and time-series analytics over SCADA, PLC, MQTT, and SQL Server data, orchestrated through LangChain.",
+      "Built FastAPI services and a provisioning CLI for Dockerized pipelines on AWS and Kubernetes. Grafana reports generate automatically via API-triggered workflows.",
+      "Maintained a shared frontend NPM package to standardize UI components across client apps."
     ],
     stack: ["Python", "FastAPI", "LangChain", "Docker", "Kubernetes", "AWS", "Grafana", "SCADA/PLC/MQTT", "SQL Server", "TypeScript"],
     links: [{ label: "wynlabs.ai", url: "https://wynlabs.ai" }],
