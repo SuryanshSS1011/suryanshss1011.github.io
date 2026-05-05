@@ -95,7 +95,7 @@ export const projects: Project[] = [
   {
     title: "ML for Network Traffic Prediction and Capacity Planning",
     role: "Ongoing Research Project · Interim Results",
-    badge: "Ongoing",
+    badge: "WIP",
     summary:
       "End-to-end simulation pipeline that generates synthetic backbone traffic, trains two competing forecasting models (SARIMA per-link and a joint LSTM), and quantifies how forecasting quality propagates into real capacity-planning decisions like link utilization and overload rates.",
     highlights: [
