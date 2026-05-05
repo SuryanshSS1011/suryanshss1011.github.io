@@ -159,12 +159,12 @@ export const projects: Project[] = [
     role: "Climate Change Track Winner · GDG @ Penn State Solution Challenge",
     badge: "Hackathon Winner",
     summary:
-      "AI-personalized sustainability app that delivers one tailored micro-action per day while being radically transparent about the carbon cost of every AI inference it runs. Built in 12 hours with a small team.",
+      "AI-personalized sustainability app that delivers one tailored micro-action per day. The app stays transparent about the carbon cost of every AI inference it runs. Built in 12 hours with a small team.",
     highlights: [
-      "Onboards users in 90 seconds and serves daily actions tailored to commute distance, diet pattern, the city's live grid carbon intensity, and current weather, drawing on EPA and DEFRA emissions data.",
-      "Scored a curated knowledge base of 190 actions and structured them around behavioral science frameworks (Fogg's B=MAP, Tiny Habits) with points, streaks, and SDG tracking.",
-      "Built a Chrome extension and Eco-LLM dashboard that monitor energy (Wh), carbon (gCO2), and water (mL) per Gemini prompt, with semantic caching to serve similar queries at zero additional inference cost.",
-      "At a hypothetical 100,000 daily users, the app's projected impact is around 12,000 tonnes of CO2 removed per year, with a typical carbon ROI of 10,000:1 or higher."
+      "Onboards users in 90 seconds. Daily actions are tailored to commute distance, diet pattern, the city's live grid carbon intensity, and current weather, drawing on EPA and DEFRA emissions data.",
+      "Curated and scored a knowledge base of 190 actions. Structured around behavioral science frameworks like Fogg's B=MAP and Tiny Habits, with points, streaks, and SDG tracking layered on top.",
+      "Built a Chrome extension and Eco-LLM dashboard that monitor energy (Wh), carbon (gCO2), and water (mL) per Gemini prompt. Semantic caching serves similar queries at zero additional inference cost.",
+      "Projected impact at a hypothetical 100,000 daily users is around 12,000 tonnes of CO2 removed per year, with a typical carbon ROI of 10,000:1 or higher."
     ],
     stack: ["Next.js 14 (PWA)", "TypeScript", "Tailwind", "shadcn/ui", "Groq (Llama 3.3-70B)", "Gemini", "Supabase", "Upstash Redis", "Upstash Vector", "EcoLogits", "Climatiq", "Electricity Maps"],
     links: [
