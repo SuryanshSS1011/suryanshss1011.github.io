@@ -16,7 +16,7 @@ interface Props {
 
 const {
   title,
-  description = "Suryansh Sijwali is an AI/ML engineer and researcher at Penn State and Wynlabs, working on RL for code generation, citation-grounded RAG, and ML systems for industrial AI.",
+  description = "Suryansh Sijwali is an AI/ML engineer and researcher at Penn State, working on RL for code generation, citation-grounded RAG, and ML systems for industrial AI.",
   ogImage = "/og.png",
   ogType = "website",
   articleMeta,
@@ -33,15 +33,10 @@ const personSchema = {
   url: site.url,
   image: new URL("/og.png", site.url).toString(),
   jobTitle: site.title,
-  description: "AI/ML Engineer & Researcher. Penn State CS undergraduate; Founding Engineer at Wynlabs. Peer-reviewed at IEEE AITest 2025; WIP at LCTES 2026.",
+  description: "AI/ML Engineer & Researcher. Penn State CS undergraduate. Peer-reviewed at IEEE AITest 2025; WIP at LCTES 2026.",
   alumniOf: {
     "@type": "CollegeOrUniversity",
     name: "Penn State University"
-  },
-  affiliation: {
-    "@type": "Organization",
-    name: "Wynlabs",
-    url: "https://wynlabs.ai"
   },
   sameAs: [
     site.social.github,
@@ -72,6 +67,10 @@ const allSchemas = [...baseSchemas, ...extraSchemas];
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalURL} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="shortcut icon" href="/favicon.ico" />
 
     <!-- Open Graph / social -->
     <meta property="og:type" content={ogType} />
