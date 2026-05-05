@@ -72,7 +72,7 @@ export const projects: Project[] = [
   },
   {
     title: "SecureCodeRL",
-    role: "Research · LCTES 2026 (WIP) · Patishnock Award Winner",
+    role: "LCTES 2026 (WIP) · Patishnock Award Winner",
     badge: "WIP — Accepted",
     summary:
       "RL framework that trains LLMs to generate code which is both functionally correct and free of common security weaknesses, optimizing a combined reward against test outcomes and Bandit static analysis.",
@@ -94,7 +94,7 @@ export const projects: Project[] = [
   },
   {
     title: "ML for Network Traffic Prediction and Capacity Planning",
-    role: "Ongoing Research Project · Interim Results",
+    role: "Interim Results",
     badge: "WIP",
     summary:
       "End-to-end simulation pipeline that generates synthetic backbone traffic, trains two competing forecasting models (SARIMA per-link and a joint LSTM), and quantifies how forecasting quality propagates into real capacity-planning decisions like link utilization and overload rates.",
@@ -113,10 +113,10 @@ export const projects: Project[] = [
   },
   {
     title: "Intelligent Document Retrieval System",
-    role: "Capstone · Morgan Advanced Systems · Team Project",
+    role: "Penn State Learning Factory · Morgan Advanced Systems",
     badge: "Capstone",
     summary:
-      "Sponsored by Morgan Advanced Systems. An offline-capable, citation-grounded RAG platform for document-heavy enterprise use cases. Combines lexical and dense retrieval with cross-encoder reranking, exposed through a FastAPI backend and a Chainlit chat interface.",
+      "Team capstone through the Penn State Learning Factory, sponsored by Morgan Advanced Systems. An offline-capable, citation-grounded RAG platform for document-heavy enterprise use cases. Combines lexical and dense retrieval with cross-encoder reranking, exposed through a FastAPI backend and a Chainlit chat interface.",
     highlights: [
       "Built a hybrid retrieval pipeline fusing FAISS dense search with BM25 via Reciprocal Rank Fusion, then reranked with a cross-encoder for precision.",
       "Enforced mandatory citation grounding and validation on every AI-generated response, blocking ungrounded outputs before they reach the user.",
@@ -171,7 +171,7 @@ export const projects: Project[] = [
   },
   {
     title: "Fixing Performance Bugs Through LLM Explanations",
-    role: "Research · IEEE AITest 2025",
+    role: "IEEE AITest 2025",
     badge: "Published",
     summary:
       "Code, dataset, and models from a peer-reviewed paper on using LLM explanations to detect and fix Java performance bugs. Accepted to the 7th IEEE International Conference on Artificial Intelligence Testing (AITest 2025) with a 31.6% acceptance rate.",
