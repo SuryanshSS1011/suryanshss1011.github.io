@@ -113,14 +113,15 @@ export const projects: Project[] = [
     category: "research"
   },
   {
-    title: "Intelligent Document Retrieval System",
-    role: "Penn State Learning Factory · Morgan Advanced Systems",
+    title: "Knowledge Retrieval System for Technical Documents",
+    role: "Penn State Learning Factory · Morgan Advanced Materials",
     badge: "Capstone",
     summary:
-      "Team capstone through the Penn State Learning Factory, sponsored by Morgan Advanced Systems. An offline-capable, citation-grounded RAG platform for document-heavy enterprise use cases. Combines lexical and dense retrieval with cross-encoder reranking, exposed through a FastAPI backend and a Chainlit chat interface.",
+      "Offline, citation-grounded RAG system for technical documents. Team capstone through the Penn State Learning Factory, sponsored by Morgan Advanced Materials, deployed on a local GPU workstation at the sponsor's office. The system addresses two parallel problems: time lost to manual document search, and knowledge loss when experienced staff depart.",
     highlights: [
+      "Enforced citation-based grounding on every AI-generated response. Ungrounded outputs are blocked before they reach the user, which is the policy that makes the system safe to deploy on regulated, internal documents.",
       "Built a hybrid retrieval pipeline fusing FAISS dense search with BM25 via Reciprocal Rank Fusion, then reranked with a cross-encoder for precision.",
-      "Enforced mandatory citation grounding and validation on every AI-generated response, blocking ungrounded outputs before they reach the user.",
+      "Ingestion pipeline handles multiple document formats and produces searchable embeddings. Retrieval engine, API, and UI run as separate components on the local GPU workstation.",
       "Exposed a FastAPI REST backend with SSE streaming for token-by-token responses, wired to a Chainlit interface for chat-style interaction.",
       "Designed a retrieval evaluation framework tracking Recall@K, nDCG@K, MRR, and per-model latency benchmarks across configurations."
     ],
