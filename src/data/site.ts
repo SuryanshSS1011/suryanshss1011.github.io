@@ -117,7 +117,7 @@ export const projects: Project[] = [
     role: "Penn State Learning Factory · Morgan Advanced Materials",
     badge: "Capstone",
     summary:
-      "Offline, citation-grounded RAG system for technical documents. Team capstone through the Penn State Learning Factory, sponsored by Morgan Advanced Materials, deployed on a local GPU workstation at the sponsor's office. The system addresses two parallel problems: time lost to manual document search, and knowledge loss when experienced staff depart.",
+      "Offline, citation-grounded RAG system for technical documents. Team capstone through the Penn State Learning Factory, sponsored by Morgan Advanced Materials, deployed on a local GPU workstation at the sponsor's office. The system addresses two parallel problems: time lost to manual document search, and knowledge loss when experienced staff depart. Featured at the Learning Factory Showcase.",
     highlights: [
       "Enforced citation-based grounding on every AI-generated response. Ungrounded outputs are blocked before they reach the user, which is the policy that makes the system safe to deploy on regulated, internal documents.",
       "Built a hybrid retrieval pipeline fusing FAISS dense search with BM25 via Reciprocal Rank Fusion, then reranked with a cross-encoder for precision.",
@@ -126,7 +126,9 @@ export const projects: Project[] = [
       "Designed a retrieval evaluation framework tracking Recall@K, nDCG@K, MRR, and per-model latency benchmarks across configurations."
     ],
     stack: ["Python", "FAISS", "BM25", "cross-encoder reranking", "FastAPI", "Chainlit", "SSE", "Docker"],
-    links: [],
+    links: [
+      { label: "Learning Factory showcase", url: "https://sites.psu.edu/lfshowcasesp26/2026/04/29/knowledge-retrieval-system-for-technical-documents/" }
+    ],
     sourceNote: "Repository is private (academic capstone).",
     current: false,
     category: "engineering"
