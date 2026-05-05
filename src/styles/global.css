@@ -508,15 +508,14 @@ nav .links a:hover {
 .profile .status {
   display: flex;
   flex-direction: column;
-  gap: 0.35rem;
+  gap: var(--spacing-sm);
   margin: 0 0 var(--spacing-md) 0;
 }
 
 .profile .status-row {
   display: flex;
-  gap: 0.65rem;
-  align-items: baseline;
-  flex-wrap: wrap;
+  flex-direction: column;
+  gap: 0.25rem;
 }
 
 .profile .status dt {
@@ -526,8 +525,6 @@ nav .links a:hover {
   text-transform: uppercase;
   letter-spacing: 0.1em;
   color: var(--accent);
-  flex: 0 0 auto;
-  min-width: 5rem;
 }
 
 .profile .status dd {
