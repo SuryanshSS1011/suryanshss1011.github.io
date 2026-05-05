@@ -11,6 +11,9 @@ export const site = {
 };
 
 export const about = {
+  currently: "RL for secure code generation at Penn State (LCTES 2026 WIP) and ML for network traffic forecasting.",
+  upcoming: "LCTES 2026 (WIP, accepted) · IEEE AITest 2025 (published).",
+
   bio: `I'm a Computer Science student at Penn State, passionate about building intelligent systems at the intersection of AI research and practical software engineering.
 
 Currently focused on LLM-powered code analysis, full-stack development, and exploring how AI can solve real-world problems in manufacturing, education, and beyond.`,
@@ -52,7 +55,7 @@ export const projects: Project[] = [
     title: "Wynlabs",
     role: "Founding Engineer",
     period: "Jan 2025 – Present",
-    badge: "Industry",
+    badge: "Industry / Startup",
     summary:
       "Cross-institutional AI software platform building an industrial copilot for manufacturing, with multi-agent workflows running over live plant-floor data.",
     highlights: [
@@ -70,7 +73,7 @@ export const projects: Project[] = [
   {
     title: "SecureCodeRL",
     role: "Research · LCTES 2026 (WIP) · Patishnock Award Winner",
-    badge: "Research",
+    badge: "WIP — Accepted",
     summary:
       "RL framework that trains LLMs to generate code which is both functionally correct and free of common security weaknesses, optimizing a combined reward against test outcomes and Bandit static analysis.",
     highlights: [
@@ -92,7 +95,7 @@ export const projects: Project[] = [
   {
     title: "ML for Network Traffic Prediction and Capacity Planning",
     role: "Ongoing Research Project · Interim Results",
-    badge: "Research",
+    badge: "Ongoing",
     summary:
       "End-to-end simulation pipeline that generates synthetic backbone traffic, trains two competing forecasting models (SARIMA per-link and a joint LSTM), and quantifies how forecasting quality propagates into real capacity-planning decisions like link utilization and overload rates.",
     highlights: [
@@ -111,7 +114,7 @@ export const projects: Project[] = [
   {
     title: "Intelligent Document Retrieval System",
     role: "Capstone · Morgan Advanced Systems · Team Project",
-    badge: "RAG",
+    badge: "Capstone",
     summary:
       "Sponsored by Morgan Advanced Systems. An offline-capable, citation-grounded RAG platform for document-heavy enterprise use cases. Combines lexical and dense retrieval with cross-encoder reranking, exposed through a FastAPI backend and a Chainlit chat interface.",
     highlights: [
