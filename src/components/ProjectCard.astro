@@ -1,5 +1,6 @@
 ---
 import type { Project } from '../data/site';
+import { site } from '../data/site';
 
 interface Props {
   project: Project;
@@ -10,9 +11,23 @@ interface Props {
 const { project, compact = false, headingLevel = 'h3' } = Astro.props;
 const Heading = headingLevel;
 const visibleLinks = compact ? project.links.slice(0, 2) : project.links;
+
+const siteHost = new URL(site.url).host;
+const isExternal = (url: string) => {
+  try {
+    return new URL(url, site.url).host !== siteHost;
+  } catch {
+    return false;
+  }
+};
 ---
 
-<article class="card project-detail">
+<article class={`card project-detail${project.image ? ' has-image' : ''}`}>
+  {project.image && (
+    <div class="project-image">
+      <img src={project.image.src} alt={project.image.alt} loading="lazy" />
+    </div>
+  )}
   <header class="project-head">
     <div class="project-title-row">
       <Heading>{project.title}</Heading>
@@ -39,9 +54,28 @@ const visibleLinks = compact ? project.links.slice(0, 2) : project.links;
     <footer class="project-footer">
       {visibleLinks.length > 0 && (
         <div class="project-links">
-          {visibleLinks.map((link) => (
-            <a href={link.url} target="_blank" rel="noopener">{link.label} ↗</a>
-          ))}
+          {visibleLinks.map((link) => {
+            const external = isExternal(link.url);
+            return (
+              <a
+                href={link.url}
+                {...(external ? { target: '_blank', rel: 'noopener' } : {})}
+              >
+                <span>{link.label}</span>
+                {external ? (
+                  <svg class="link-arrow" width="11" height="11" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M3 9 L9 3" />
+                    <path d="M4 3 L9 3 L9 8" />
+                  </svg>
+                ) : (
+                  <svg class="link-arrow" width="11" height="11" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M2 6 L10 6" />
+                    <path d="M7 3 L10 6 L7 9" />
+                  </svg>
+                )}
+              </a>
+            );
+          })}
         </div>
       )}
       {!compact && project.sourceNote && (

@@ -1,11 +1,11 @@
-/* Design Tokens — Warm Paper + Ink */
+/* Design Tokens: Warm Paper + Ink */
 :root {
   /* Fonts */
   --font-body: 'Source Serif 4', 'Source Serif Pro', Georgia, 'Times New Roman', serif;
   --font-display: 'Geist', 'Inter', system-ui, -apple-system, sans-serif;
   --font-mono: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, monospace;
 
-  /* Warm paper — light */
+  /* Warm paper: light */
   --bg-primary: #fdfaf3;
   --bg-secondary: #f7f4ee;
   --bg-sunken: #efeae0;
@@ -18,7 +18,6 @@
   --accent-hover: #8f3514;
   --accent-soft: rgba(180, 71, 31, 0.10);
   --accent-soft-border: rgba(180, 71, 31, 0.25);
-  --shadow-card: 0 1px 2px rgba(40, 30, 18, 0.04), 0 4px 12px rgba(40, 30, 18, 0.05);
 
   --max-width: 760px;
   /* Spacing scale: 4px (0.25rem) grid. Ratios anchor on 2× at the small end and 1.5× from md upward. */
@@ -51,12 +50,11 @@
   --accent-hover: #ea9168;
   --accent-soft: rgba(217, 122, 74, 0.14);
   --accent-soft-border: rgba(217, 122, 74, 0.30);
-  --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.3), 0 4px 14px rgba(0, 0, 0, 0.35);
 }
 
 /* Hover asymmetry note: light-mode hover darkens the accent (#b4471f → #8f3514);
    dark-mode hover lightens it (#d97a4a → #ea9168). Both moves lift contrast vs.
-   the page — opposite directionally, identical perceptually. Do not "normalize". */
+   the page; opposite directionally, identical perceptually. Do not "normalize". */
 
 /* Reset */
 *, *::before, *::after {
@@ -83,7 +81,7 @@ body {
   transition: background var(--transition), color var(--transition);
 }
 
-/* Subtle paper grain on desktop only — gated to avoid iOS Safari blend-mode
+/* Subtle paper grain on desktop only. Gated to avoid iOS Safari blend-mode
    issues and low-end Android opaque-rendering issues. No mix-blend-mode. */
 @media (prefers-reduced-motion: no-preference) and (min-width: 768px) {
   body::before {
@@ -137,7 +135,7 @@ a:focus-visible {
   border-radius: var(--radius-sm);
 }
 
-/* Eyebrow label — small uppercase terracotta tag above section headings */
+/* Eyebrow label: small uppercase terracotta tag above section headings */
 .eyebrow {
   display: block;
   font-family: var(--font-display);
@@ -149,7 +147,7 @@ a:focus-visible {
   margin-bottom: var(--spacing-xs);
 }
 
-/* Skip link — visible only on focus */
+/* Skip link: visible only on focus */
 .skip-link {
   position: absolute;
   top: -100px;
@@ -216,6 +214,7 @@ nav .links {
   gap: var(--spacing-lg);
   align-items: center;
   flex-wrap: wrap;
+  margin-left: auto;
 }
 
 @media (max-width: 480px) {
@@ -237,6 +236,14 @@ nav .links a:hover {
   text-decoration-color: var(--accent);
   text-underline-offset: 6px;
   text-decoration-thickness: 1px;
+}
+
+nav .links a[aria-current="page"] {
+  color: var(--text-primary);
+  text-decoration: underline;
+  text-decoration-color: var(--accent);
+  text-underline-offset: 6px;
+  text-decoration-thickness: 1.5px;
 }
 
 /* Theme Toggle */
@@ -263,23 +270,50 @@ nav .links a:hover {
   outline-offset: 2px;
 }
 
-/* Cards — sunken paper, no resting shadow */
+/* Cards: sunken paper, flat hover (no lift, no shadow) */
 .card {
   background: var(--bg-secondary);
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
   padding: var(--spacing-lg);
-  transition: border-color var(--transition), transform var(--transition);
+  transition: border-color var(--transition);
 }
 
 .card:hover {
   border-color: var(--border-strong);
-  transform: translateY(-1px);
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .card { transition: border-color var(--transition); }
-  .card:hover { transform: none; }
+.card:hover :is(h3, .project-title-row h3, .post-title) {
+  color: var(--text-primary);
+}
+
+/* Card with image: image escapes card padding to sit edge-to-edge inside the border. */
+.card.has-image {
+  overflow: hidden;
+}
+
+.project-image {
+  margin: calc(var(--spacing-lg) * -1) calc(var(--spacing-lg) * -1) var(--spacing-lg);
+  background: var(--bg-sunken);
+  border-bottom: 1px solid var(--border);
+  aspect-ratio: 16 / 7;
+  overflow: hidden;
+}
+
+.project-image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* On wide cards (research/engineering full-detail pages), allow taller imagery. */
+@media (min-width: 720px) {
+  .project-image {
+    aspect-ratio: 21 / 9;
+    max-height: 280px;
+  }
 }
 
 /* Post List */
@@ -339,7 +373,7 @@ nav .links a:hover {
   overflow: hidden;
 }
 
-/* Tags — neutral warm */
+/* Tags: neutral warm */
 .tag {
   display: inline-block;
   font-family: var(--font-display);
@@ -352,7 +386,7 @@ nav .links a:hover {
   color: var(--text-muted);
 }
 
-/* Badge — small terracotta wash, the only filled accent surface */
+/* Badge: small terracotta wash, the only filled accent surface */
 .badge {
   display: inline-block;
   font-family: var(--font-display);
@@ -394,13 +428,25 @@ nav .links a:hover {
 
 .project-links a {
   color: var(--accent);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  text-decoration: none;
 }
 
 .project-links a:hover {
   color: var(--accent-hover);
+}
+
+.project-links a:hover span {
   text-decoration: underline;
   text-underline-offset: 4px;
   text-decoration-thickness: 1px;
+}
+
+.link-arrow {
+  flex-shrink: 0;
+  transform: translateY(0.5px);
 }
 
 /* Project Detail (research/engineering pages) */
@@ -478,9 +524,7 @@ nav .links a:hover {
   display: flex;
   flex-direction: column;
   gap: var(--spacing-xs);
-  padding-top: var(--spacing-xs);
-  border-top: 1px dashed var(--border);
-  margin-top: var(--spacing-2xs);
+  margin-top: var(--spacing-xs);
 }
 
 .source-note {
@@ -526,8 +570,8 @@ nav .links a:hover {
   font-weight: 600;
   font-size: 0.72rem;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--accent);
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
 }
 
 .profile .status dd {
@@ -564,14 +608,52 @@ nav .links a:hover {
   text-decoration-thickness: 1px;
 }
 
+/* Education grid */
+.ed-grid {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  column-gap: var(--spacing-lg);
+  row-gap: var(--spacing-xs);
+  margin: 0;
+}
+
+.ed-grid dt {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  padding-top: 0.3rem;
+}
+
+.ed-grid dd {
+  margin: 0;
+  font-size: 0.98rem;
+  color: var(--text-secondary);
+  line-height: 1.55;
+}
+
+.ed-grid .ed-tail {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+@media (max-width: 480px) {
+  .ed-grid {
+    grid-template-columns: 1fr;
+    row-gap: var(--spacing-2xs);
+  }
+  .ed-grid dt { padding-top: var(--spacing-sm); }
+  .ed-grid dt:first-of-type { padding-top: 0; }
+}
+
 /* Section */
 section {
   margin-bottom: var(--spacing-3xl);
 }
 
 section > h2 {
-  padding-bottom: var(--spacing-xs);
-  border-bottom: 1px solid var(--border);
   margin-bottom: var(--spacing-lg);
 }
 
@@ -609,6 +691,17 @@ footer a {
 
 footer a:hover {
   color: var(--text-secondary);
+}
+
+footer .footer-meta {
+  margin-top: var(--spacing-2xs);
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  opacity: 0.75;
+}
+
+footer .footer-meta time {
+  font-variant-numeric: tabular-nums;
 }
 
 /* Blog Post Content */
@@ -662,7 +755,7 @@ footer a:hover {
   border: none;
 }
 
-/* Shiki dual-theme support — Astro emits both light and dark code blocks; swap via [data-theme] */
+/* Shiki dual-theme support: Astro emits both light and dark code blocks; swap via [data-theme] */
 .prose pre.astro-code,
 .prose pre.astro-code span {
   background-color: var(--shiki-light-bg) !important;
