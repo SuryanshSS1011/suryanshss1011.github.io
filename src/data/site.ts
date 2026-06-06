@@ -1,18 +1,21 @@
 export const site = {
   name: "Suryansh Sijwali",
   title: "AI/ML Engineer & Researcher",
-  description: "Architecting intelligent systems that solve complex problems — where research meets implementation.",
+  description: "Architecting intelligent systems that solve complex problems, where research meets implementation.",
   url: "https://suryanshss1011.github.io",
   social: {
     github: "https://github.com/SuryanshSS1011",
     linkedin: "https://linkedin.com/in/suryansh-sijwali",
-    email: "suryansh.sijwali@gmail.com"
+    email: "suryansh.sijwali@gmail.com",
+    orcid: "https://orcid.org/0009-0005-7739-1657",
+    scholar: "https://scholar.google.com/citations?user=aEkJyD0AAAAJ&hl=en"
   }
 };
 
 export const about = {
-  currently: "Causality-aware secure reward design for RL-based C code generation, and risk-bounded capacity provisioning via decision-focused conformal forecasting.",
-  upcoming: "LCTES 2026 presentation · June 15 · Boulder, CO.",
+  currently: "Causality-aware secure reward design for RL-based C code generation.",
+  submitted: "Match Your Loss to Your Cost: asymmetric losses and conformal capacity bands for backbone traffic forecasting. CNSM 2026, June 1, 2026.",
+  upcoming: "LCTES 2026 presentation · June 16 · Boulder, CO.",
 
   bio: `I'm a Computer Science student at Penn State, passionate about building intelligent systems at the intersection of AI research and practical software engineering.
 
@@ -23,18 +26,15 @@ Currently focused on LLM-powered code analysis, full-stack development, and expl
     institution: "Penn State University",
     graduation: "Expected May 2027",
     colleges: ["Schreyer Honors College", "College of Engineering", "Eberly College of Science"],
-    minors: ["Physics", "Quantum Information Sciences and Engineering", "Computer Engineering", "Computational Cybersecurity"]
+    minors: ["Mathematics", "Computer Engineering", "Computational Cybersecurity"]
   },
-
-  roles: [
-    { title: "Founding Engineer", company: "Wynlabs", period: "Jan 2025 – Present" },
-    { title: "Software Engineer Intern", company: "Leechy LLC", period: "Jun 2025 – Sep 2025" }
-  ],
 
   interests: ["AI/ML Research", "Full-Stack Development", "Systems Design", "Open Source"]
 };
 
 export type ProjectLink = { label: string; url: string };
+
+export type ProjectImage = { src: string; alt: string };
 
 export type Project = {
   title: string;
@@ -48,66 +48,84 @@ export type Project = {
   sourceNote?: string;
   current: boolean;
   category: 'research' | 'engineering';
+  image?: ProjectImage;
 };
 
 export const projects: Project[] = [
   {
-    title: "Wynlabs",
-    role: "Founding Engineer",
-    badge: "Industry / Startup",
+    title: "Warren",
+    role: "Solo · in active development",
+    badge: "Building",
     summary:
-      "Cross-institutional AI software platform building an industrial copilot for manufacturing. Multi-agent workflows run over live plant-floor data.",
+      "Turn your Wikipedia rabbit hole into a beautiful, shareable map. Your actual clicked path becomes a bright animated spine; all other links sit as faint context so the graph never becomes a hairball.",
     highlights: [
-      "Architected multi-agent workflows backed by 2k to 5k node knowledge graphs per deployment, orchestrated through LangChain. They power KPI prediction and time-series analytics over SCADA, PLC, MQTT, and SQL Server data.",
-      "Shipped 15+ client POCs end-to-end. Embedded with manufacturing teams on tight timelines to scope, build, and deploy AI workflows on live industrial data.",
-      "Built FastAPI services and a provisioning CLI for Dockerized pipelines on AWS and Kubernetes. Grafana reports generate automatically via API-triggered workflows.",
-      "Maintained a shared frontend NPM package to standardize UI components across client apps."
+      "Spine-and-focus graph principle: clicked path is a thick animated edge, neighbors dim, distant nodes fade. Sidesteps the Obsidian/Roam-style hairball at 200+ nodes.",
+      "Reads inside the map: clicking a node opens a floating burrow card anchored to the node, so the map never leaves the screen.",
+      "Reverse-engineered from the share card inward: the artifact is designed first (Spotify Wrapped lesson), then the experience fills it."
     ],
-    stack: ["Python", "FastAPI", "LangChain", "Docker", "Kubernetes", "AWS", "Grafana", "SCADA/PLC/MQTT", "SQL Server", "TypeScript"],
-    links: [{ label: "wynlabs.ai", url: "https://wynlabs.ai" }],
-    sourceNote: "Source code is private (commercial product).",
+    stack: ["Next.js 16", "TypeScript", "Tailwind v4", "Supabase", "Claude Haiku 4.5", "react-force-graph-2d", "@vercel/og", "Wikimedia REST"],
+    links: [
+      { label: "Read the writeup", url: "/blog/warren/" },
+      { label: "GitHub", url: "https://github.com/SuryanshSS1011/Warren" }
+    ],
     current: true,
     category: "engineering"
   },
   {
-    title: "SecureCodeRL",
-    role: "LCTES 2026 (WIP) · Patishnock Award Winner",
-    badge: "WIP — Accepted",
+    title: "Wynlabs",
+    role: "Founding Engineer · Jan 2025 – Mar 2026",
+    badge: "Industry / Startup",
     summary:
-      "A reliability-first reinforcement learning framework for small language models in code generation. Designed for embedded and resource-limited settings where models must run on a single GPU or CPU and binary test rewards are too sparse to train reliably.",
+      "Founding engineer on an industrial copilot platform. Multi-agent AI workflows over live SCADA, PLC, MQTT, and SQL Server data on the plant floor.",
     highlights: [
-      "Targets small language models (≤1.5B parameters) for embedded and on-device toolchains. Binary rewards collapse at this scale because near-miss generations all look like zero, so PPO regresses below SFT on a 1.3B model.",
-      "Introduces a partial-credit functional reward that grades five stages of progress: syntax valid, runs without crash, produces output, and then proportional credit for tests passed. This makes near-miss generations distinguishable to PPO. The combined objective adds a Bandit static-analysis term as a safety guardrail with weights R = 0.6·R_func + 0.4·R_sec.",
-      "Found that a binary-to-partial-credit curriculum outperforms partial-credit training from scratch. PPO-continue, which warm-starts from a binary-reward checkpoint, lifted syntax validity to 63% and ≥1-test-pass to 9% on stdin-style APPS+. Partial-credit from scratch did not surpass the binary baseline within statistical confidence intervals.",
-      "Built on DeepSeek-Coder-1.3B with LoRA, 6.3M trainable parameters, trained on a single NVIDIA V100 16 GB. Evaluation on 100 held-out APPS+ prompts under a strict sandboxed judge.",
-      "Accepted as a WIP paper at the 27th ACM SIGPLAN/SIGBED LCTES 2026, co-located with PLDI 2026 in Boulder, Colorado.",
-      "Won the John Sr. and Kimlyn Patishnock Undergraduate Research Award at the Penn State Undergraduate Exhibition for Excellence in Information Literacy. Indexed on EmergentMind as a canonical reference for partial-credit functional reward in code generation."
+      "Multi-agent workflows on per-deployment knowledge graphs (2k to 5k nodes), orchestrated through LangChain.",
+      "Shipped 15+ client POCs end-to-end, embedded with manufacturing teams.",
+      "Built FastAPI services + a provisioning CLI for Dockerized pipelines on AWS and Kubernetes."
+    ],
+    stack: ["Python", "FastAPI", "LangChain", "Docker", "Kubernetes", "AWS", "SCADA/PLC/MQTT", "TypeScript"],
+    links: [
+      { label: "Read the writeup", url: "/blog/wynlabs/" },
+      { label: "wynlabs.ai", url: "https://wynlabs.ai" }
+    ],
+    sourceNote: "Source code is private (commercial product).",
+    current: false,
+    category: "engineering"
+  },
+  {
+    title: "Partial-Credit RL for Reliable Code Generation with SLMs",
+    role: "LCTES 2026 (WIP) · Patishnock Award Winner",
+    badge: "WIP · Accepted",
+    summary:
+      "Reliability-first RL for small language models in code generation. Joint reward R = 0.6·R_func + 0.4·R_sec with a five-stage partial-credit functional ladder.",
+    highlights: [
+      "On DeepSeek-Coder-1.3B over 100 APPS+ prompts: SFT 44% syntax / 3% ≥1-pass. Binary-reward PPO degrades to 18% / 0%. Partial-credit from scratch reaches 27% / 2%.",
+      "Binary-to-partial-credit schedule (PPO-continue) wins: 63% syntax, 9% ≥1-pass, 2% all-pass (single attempt). Curriculum learning the schedule matters more than the reward shape alone.",
+      "LoRA r=16 (6.3M trainable params, 0.47%), single V100 16GB, Bandit-graded R_sec. Security null on APPS+ (algorithmic); CWE-mapped partial credit is the next step."
     ],
     stack: ["Python", "PyTorch", "TRL (PPO)", "PEFT (LoRA)", "Bandit", "DeepSeek-Coder-1.3B", "APPS+"],
     links: [
+      { label: "Read the writeup", url: "/blog/securecoderl/" },
       { label: "Paper (arXiv:2601.01184)", url: "https://arxiv.org/abs/2601.01184" },
-      { label: "GitHub", url: "https://github.com/SuryanshSS1011/basic-rl-feedback-workflow" }
+      { label: "GitHub", url: "https://github.com/SuryanshSS1011/SecureCodeRL" }
     ],
     current: true,
     category: "research"
   },
   {
-    title: "ML for Network Traffic Prediction and Capacity Planning",
-    role: "Finalizing methodology",
-    badge: "WIP",
+    title: "Match Your Loss to Your Cost",
+    role: "CNSM 2026 (submitted June 1, 2026)",
+    badge: "Submitted",
     summary:
-      "Training and calibrating traffic forecasters so predictions minimize operational cost like SLA violations and over-provisioning, not statistical error. Evaluated end-to-end on real backbone traffic with multi-seed paired comparisons against modern baselines.",
+      "Decision-aware traffic forecasting for backbone capacity planning. Asymmetric losses and conformal capacity bands trained against operator cost, not RMSE. Three real backbones, 20 seeds, paired-bootstrap CIs.",
     highlights: [
-      "Operator-cost-aware evaluation framework. A 2D evaluation matrix over training cost ratio and operator cost ratio, with bootstrap confidence intervals and 5-seed paired comparisons against MSE. This is the methodological scaffolding that makes every downstream finding legible.",
-      "Cusp-linear (L1) asymmetric loss dominates squared asymmetric loss across the entire operator-cost matrix. Established empirically with tighter confidence intervals, deeper wins, and a saturation point at α=20 that squared loss does not exhibit. Connects to and empirically validates the Eramo 2020 argument.",
-      "Match-your-loss-to-your-cost principle. Under L1, optimal training α tracks operator α along the diagonal. Under squared loss, the diagonal stretches. Explained by loss-consistency theory from Gneiting 2011.",
-      "Conformal calibration for distribution-free coverage. Conformalized quantile regression and adaptive conformal inference (DtACI) layered on top of the asymmetric-loss-trained forecaster, giving finite-sample coverage guarantees on the provisioned interval.",
-      "Pareto frontier of training ratios. Different operator cost structures trace different optimal training points. No single forecaster is best for all operators.",
-      "Real backbone evaluation. Currently Abilene, with GÉANT and CESNET-TimeSeries24 in the pipeline. Synthetic 12-node topology kept only as a sanity check. Baselines include MSE, pinball/quantile loss, LSTM, and a deeper bench (PatchTST, iTransformer, DCRNN, Chronos) as the experiment matrix expands."
+      "Cusp-linear loss matched to operator ratio: +76% Abilene, +75% GÉANT, +54% CESNET vs MSE at top operator asymmetry. L1 is the canonical consistent scoring rule for the τ-quantile (Gneiting 2011); squared asymmetric collapses on heavy-tailed GÉANT.",
+      "Cross-architecture: matched 5:1 win reproduces on DLinear (+30 to +97%) and iTransformer (+28 to +79%) across Abilene/GÉANT/CESNET.",
+      "ACI vs split CQR: overload rate 155× lower on Abilene, 9.1× lower on GÉANT, 3.8× lower on CESNET. ACI's across-seed coverage variance is 30 to 200× smaller."
     ],
-    stack: ["Python", "PyTorch", "statsmodels", "NumPy", "Pandas", "NetworkX", "scikit-learn", "matplotlib", "LaTeX"],
+    stack: ["Python", "PyTorch", "statsmodels", "NumPy", "Pandas", "scikit-learn"],
     links: [
-      { label: "GitHub", url: "https://github.com/SuryanshSS1011/ML-for-Network-Traffic-Prediction-and-Capacity-Planning" }
+      { label: "Read the writeup", url: "/blog/match-loss-to-cost/" },
+      { label: "GitHub", url: "https://github.com/SuryanshSS1011/match-loss-to-cost" }
     ],
     current: true,
     category: "research"
@@ -117,16 +135,15 @@ export const projects: Project[] = [
     role: "Penn State Learning Factory · Morgan Advanced Materials",
     badge: "Capstone",
     summary:
-      "Offline, citation-grounded RAG system for technical documents. Team capstone through the Penn State Learning Factory, sponsored by Morgan Advanced Materials, deployed on a local GPU workstation at the sponsor's office. The system addresses two parallel problems: time lost to manual document search, and knowledge loss when experienced staff depart. Featured at the Learning Factory Showcase.",
+      "Offline, citation-grounded RAG for technical documents. Refuses to answer when it can't cite a source. Deployed on a local GPU workstation at the sponsor's office.",
     highlights: [
-      "Enforced citation-based grounding on every AI-generated response. Ungrounded outputs are blocked before they reach the user, which is the policy that makes the system safe to deploy on regulated, internal documents.",
-      "Built a hybrid retrieval pipeline fusing FAISS dense search with BM25 via Reciprocal Rank Fusion, then reranked with a cross-encoder for precision.",
-      "Ingestion pipeline handles multiple document formats and produces searchable embeddings. Retrieval engine, API, and UI run as separate components on the local GPU workstation.",
-      "Exposed a FastAPI REST backend with SSE streaming for token-by-token responses, wired to a Chainlit interface for chat-style interaction.",
-      "Designed a retrieval evaluation framework tracking Recall@K, nDCG@K, MRR, and per-model latency benchmarks across configurations."
+      "Citation enforcement blocks ungrounded outputs before the user sees them. That is the policy that makes the system safe on regulated content.",
+      "Hybrid retrieval: FAISS + BM25 fused via Reciprocal Rank Fusion, then a cross-encoder reranker.",
+      "FastAPI + SSE backend, Chainlit chat UI, evaluation harness for Recall@K, nDCG@K, MRR, and latency."
     ],
     stack: ["Python", "FAISS", "BM25", "cross-encoder reranking", "FastAPI", "Chainlit", "SSE", "Docker"],
     links: [
+      { label: "Read the writeup", url: "/blog/morgan-rag/" },
       { label: "Learning Factory showcase", url: "https://sites.psu.edu/lfshowcasesp26/2026/04/29/knowledge-retrieval-system-for-technical-documents/" }
     ],
     sourceNote: "Repository is private (academic capstone).",
@@ -138,16 +155,15 @@ export const projects: Project[] = [
     role: "Solana Track Winner · HackPSU Spring 2026",
     badge: "Hackathon Winner",
     summary:
-      "Fully autonomous fact-checking system that goes beyond true-or-false. Claims are decomposed into atomic sub-claims, evidence is weighted by source credibility, and an adversarial debate triggers when sources disagree. Verdicts are written to an immutable Solana ledger and read aloud as a voice summary.",
+      "Multi-agent fact-checking pipeline with adversarial debate, source-credibility weighting, and on-chain provenance via Solana memos on devnet.",
     highlights: [
-      "Decomposes claims into atomic sub-claims using the HiSS method, then retrieves evidence via Gemini with google_search.",
-      "Scores ~4,000 sources for credibility using the MBFC dataset, so contradictory but low-credibility evidence gets down-weighted instead of just counted.",
-      "Triggers adversarial pro/con debate whenever inter-agent agreement falls below 80%. Outputs a 7-label verdict spanning TRUE through CONFLICTING and UNVERIFIABLE, rather than a flat boolean.",
-      "Writes every verdict as a Solana memo on devnet so the result is permanent and tamper-evident. Generates a voice summary via ElevenLabs TTS.",
-      "Streams pipeline progress in real time over SSE. Backed by Turso (libSQL) for serverless deployment, with SQLite for local development."
+      "Decomposes claims via HiSS, retrieves with Gemini + google_search, weights by MBFC source credibility (~4,000 domains).",
+      "Pro/con debate fires only when inter-agent agreement falls below 80%. Emits one of 7 verdicts (TRUE through UNVERIFIABLE), not a boolean.",
+      "Writes verdicts to a Solana memo for permanent provenance. Voice summary via ElevenLabs TTS."
     ],
-    stack: ["Next.js 14", "TypeScript", "Gemini 2.0 Flash", "Solana (devnet)", "ElevenLabs TTS", "Turso/SQLite", "MBFC dataset", "Sentry"],
+    stack: ["Next.js 14", "TypeScript", "Gemini 2.0 Flash", "Solana (devnet)", "ElevenLabs TTS", "Turso/SQLite", "MBFC dataset"],
     links: [
+      { label: "Read the writeup", url: "/blog/truthcast/" },
       { label: "Live demo", url: "https://truth-cast-web.vercel.app" },
       { label: "GitHub", url: "https://github.com/SuryanshSS1011/TruthCast" }
     ],
@@ -159,15 +175,15 @@ export const projects: Project[] = [
     role: "Climate Change Track Winner · GDG @ Penn State Solution Challenge",
     badge: "Hackathon Winner",
     summary:
-      "AI-personalized sustainability app that delivers one tailored micro-action per day. The app stays transparent about the carbon cost of every AI inference it runs. Built in 12 hours with a small team.",
+      "One AI-personalized sustainability action per day, with radical transparency about the carbon cost of every inference. Built in 12 hours.",
     highlights: [
-      "Onboards users in 90 seconds. Daily actions are tailored to commute distance, diet pattern, the city's live grid carbon intensity, and current weather, drawing on EPA and DEFRA emissions data.",
-      "Curated and scored a knowledge base of 190 actions. Structured around behavioral science frameworks like Fogg's B=MAP and Tiny Habits, with points, streaks, and SDG tracking layered on top.",
-      "Built a Chrome extension and Eco-LLM dashboard that monitor energy (Wh), carbon (gCO2), and water (mL) per Gemini prompt. Semantic caching serves similar queries at zero additional inference cost.",
-      "Projected impact at a hypothetical 100,000 daily users is around 12,000 tonnes of CO2 removed per year, with a typical carbon ROI of 10,000:1 or higher."
+      "Daily actions tailored to commute, diet, live grid carbon intensity, and weather, drawn from EPA + DEFRA emissions data and 190 curated actions.",
+      "Chrome extension and Eco-LLM dashboard track energy (Wh), carbon (gCO2), and water (mL) per Gemini prompt. Semantic caching serves repeat queries at zero added inference cost.",
+      "Typical carbon ROI 10,000:1. Projected 12,000 tonnes of CO2 removed per year at 100k DAU."
     ],
-    stack: ["Next.js 14 (PWA)", "TypeScript", "Tailwind", "shadcn/ui", "Groq (Llama 3.3-70B)", "Gemini", "Supabase", "Upstash Redis", "Upstash Vector", "EcoLogits", "Climatiq", "Electricity Maps"],
+    stack: ["Next.js 14 (PWA)", "TypeScript", "Tailwind", "Groq (Llama 3.3-70B)", "Gemini", "Supabase", "Upstash Vector", "EcoLogits"],
     links: [
+      { label: "Read the writeup", url: "/blog/shift/" },
       { label: "Live demo", url: "https://useshift.vercel.app" },
       { label: "GitHub", url: "https://github.com/SuryanshSS1011/Shift" }
     ],
@@ -179,16 +195,15 @@ export const projects: Project[] = [
     role: "IEEE AITest 2025",
     badge: "Published",
     summary:
-      "Using LLM explanations as a training signal to detect and fix Java performance bugs, not just labels. Peer-reviewed at the 7th IEEE International Conference on Artificial Intelligence Testing (AITest 2025) with a 31.6% acceptance rate.",
+      "Using LLM explanations as a training signal (not just labels) to detect Java performance bugs. Peer-reviewed at IEEE AITest 2025.",
     highlights: [
-      "The deeper idea: training an LLM to explain a performance bug, not just classify it, produces a stronger detection signal than label-only fine-tuning.",
-      "Curated a dataset of 490 performance bugs across 17 Defects4J projects, organized into a 5-category taxonomy: algorithmic, memory, CPU, redundant computation, and I/O. Standard 80/20 train/test split.",
-      "Fine-tuned GPT-4o-mini to produce explanations alongside predictions. Detection accuracy lifted from 67.3% baseline to 83.7% after fine-tuning, and F1 from 64.6% to 82.3%.",
-      "Released the full reproduction stack: extraction scripts for Defects4J, fine-tuning scripts, evaluation harness, and a CLI for running the detector on arbitrary Java files.",
-      "Shipped an interactive project site and conference presentation alongside the code."
+      "Curated dataset of 490 performance bugs across 17 Defects4J projects, 5-category taxonomy (algorithmic, memory, CPU, redundant, I/O).",
+      "Fine-tuned GPT-4o-mini to produce explanations alongside predictions. Detection accuracy 67.3% → 83.7%, F1 64.6% → 82.3%.",
+      "Full reproduction stack public: extraction, categorization, fine-tuning, evaluation harness."
     ],
-    stack: ["Python", "GPT-4o-mini fine-tuning", "Defects4J", "Java", "OpenAI API", "HTML", "Shell"],
+    stack: ["Python", "GPT-4o-mini fine-tuning", "Defects4J", "Java", "OpenAI API"],
     links: [
+      { label: "Read the writeup", url: "/blog/performance-bugs-llm/" },
       { label: "Paper (IEEE)", url: "https://doi.org/10.1109/AITest66680.2025.00020" },
       { label: "Project site", url: "https://suryanshss1011.github.io/Performance-Bugs-LLM" },
       { label: "GitHub", url: "https://github.com/SuryanshSS1011/Performance-Bugs-LLM" }

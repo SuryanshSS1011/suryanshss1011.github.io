@@ -11,17 +11,25 @@ const posts = (await getCollection('blog'))
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
   .slice(0, 3);
 
-const featuredResearch = projects
+const currentResearch = projects
   .filter(p => p.category === 'research' && p.current)
   .slice(0, 2);
 
-const featuredEngineering = projects
+const pastResearch = projects
+  .filter(p => p.category === 'research' && !p.current)
+  .slice(0, 2);
+
+const currentEngineering = projects
   .filter(p => p.category === 'engineering' && p.current)
+  .slice(0, 2);
+
+const pastEngineering = projects
+  .filter(p => p.category === 'engineering' && !p.current)
   .slice(0, 2);
 ---
 
 <BaseLayout
-  title={`${site.name} — ${site.title}`}
+  title={`${site.name} · ${site.title}`}
   description="Suryansh Sijwali is an AI/ML engineer and researcher at Penn State. Work on RL for secure code generation (LCTES 2026 WIP), ML for network capacity planning, citation-grounded RAG, and LLM-based performance bug detection (IEEE AITest 2025)."
 >
   <section class="profile">
@@ -33,6 +41,10 @@ const featuredEngineering = projects
         <dd>{about.currently}</dd>
       </div>
       <div class="status-row">
+        <dt>Submitted</dt>
+        <dd>{about.submitted}</dd>
+      </div>
+      <div class="status-row">
         <dt>Upcoming</dt>
         <dd>{about.upcoming}</dd>
       </div>
@@ -42,6 +54,8 @@ const featuredEngineering = projects
     <div class="links">
       <a href={site.social.github} target="_blank" rel="noopener">GitHub</a>
       <a href={site.social.linkedin} target="_blank" rel="noopener">LinkedIn</a>
+      <a href={site.social.orcid} target="_blank" rel="noopener">ORCID</a>
+      <a href={site.social.scholar} target="_blank" rel="noopener">Scholar</a>
       <a href={`mailto:${site.social.email}`}>Email</a>
     </div>
   </section>
@@ -49,29 +63,38 @@ const featuredEngineering = projects
   <section>
     <SectionHeading eyebrow="About" title="A little context" />
     <p style="white-space: pre-line;">{about.bio}</p>
-
-    <div class="mt-md" style="display: flex; flex-direction: column; gap: var(--spacing-xs);">
-      {about.roles.map((role) => (
-        <div class="card">
-          <p style="margin-bottom: var(--spacing-2xs);"><strong style="color: var(--text-primary);">{role.title}</strong> at {role.company}</p>
-          <p class="text-muted text-sm" style="margin-bottom: 0;">{role.period}</p>
-        </div>
-      ))}
-    </div>
   </section>
 
   <section>
     <SectionHeading eyebrow="Education" title={about.education.degree} />
-    <p>{about.education.institution} · {about.education.graduation}</p>
-    <p class="text-muted text-sm mt-md">{about.education.colleges.join(' · ')}</p>
-    <p class="text-muted text-sm">Minors: {about.education.minors.join(', ')}</p>
+    <dl class="ed-grid">
+      <dt>School</dt>
+      <dd>{about.education.institution} <span class="ed-tail">· {about.education.colleges.join(' · ')}</span></dd>
+
+      <dt>Expected</dt>
+      <dd>{about.education.graduation}</dd>
+
+      <dt>Minors</dt>
+      <dd>{about.education.minors.join(' · ')}</dd>
+    </dl>
   </section>
 
-  {featuredResearch.length > 0 && (
+  {currentResearch.length > 0 && (
     <section>
-      <SectionHeading eyebrow="Research" title="Featured papers and investigations" />
+      <SectionHeading eyebrow="Research" title="In progress" />
       <div class="project-list">
-        {featuredResearch.map((project) => (
+        {currentResearch.map((project) => (
+          <ProjectCard project={project} compact />
+        ))}
+      </div>
+    </section>
+  )}
+
+  {pastResearch.length > 0 && (
+    <section>
+      <SectionHeading eyebrow="Research" title="Published" />
+      <div class="project-list">
+        {pastResearch.map((project) => (
           <ProjectCard project={project} compact />
         ))}
       </div>
@@ -79,11 +102,22 @@ const featuredEngineering = projects
     </section>
   )}
 
-  {featuredEngineering.length > 0 && (
+  {currentEngineering.length > 0 && (
     <section>
-      <SectionHeading eyebrow="Engineering" title="What I'm shipping" />
+      <SectionHeading eyebrow="Engineering" title="Currently building" />
       <div class="project-list">
-        {featuredEngineering.map((project) => (
+        {currentEngineering.map((project) => (
+          <ProjectCard project={project} compact />
+        ))}
+      </div>
+    </section>
+  )}
+
+  {pastEngineering.length > 0 && (
+    <section>
+      <SectionHeading eyebrow="Engineering" title="Past work (shipped)" />
+      <div class="project-list">
+        {pastEngineering.map((project) => (
           <ProjectCard project={project} compact />
         ))}
       </div>
