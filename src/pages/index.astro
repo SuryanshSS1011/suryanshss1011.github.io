@@ -48,7 +48,9 @@ const flagships = flagshipTitles
         <dd>{about.upcoming}</dd>
       </div>
     </dl>
-    <p class="bio">{site.description}</p>
+    <div class="bio">
+      {site.bioLines.map((line) => <p>{line}</p>)}
+    </div>
 
     <div class="links">
       <a href={site.social.github} target="_blank" rel="noopener">GitHub</a>

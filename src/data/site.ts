@@ -1,7 +1,16 @@
+// Visible hero bio is rendered line-by-line from this array. The single-string
+// `description` below is reserved for og:description and is the joined form.
+const bioLines = [
+  "Penn State CS.",
+  "IEEE AITest 2025 · LCTES 2026 WIP.",
+  "Research that ships and systems that get used."
+];
+
 export const site = {
   name: "Suryansh Sijwali",
   title: "AI/ML Engineer & Researcher",
-  description: "Penn State CS. RL for reliable code generation, decision-aware ML for networks, citation-grounded retrieval. Research that ships and systems that get used.",
+  bioLines,
+  description: bioLines.join(' '),
   url: "https://suryanshss1011.github.io",
   social: {
     github: "https://github.com/SuryanshSS1011",
