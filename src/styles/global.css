@@ -316,6 +316,66 @@ nav .links a[aria-current="page"] {
   }
 }
 
+/* Inline figures inside project cards (e.g. reward ladder) */
+.figure {
+  margin: var(--spacing-sm) 0 var(--spacing-md);
+  padding: var(--spacing-md);
+  background: var(--bg-sunken);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+}
+
+.reward-ladder {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2xs);
+  font-family: var(--font-mono);
+}
+
+.reward-ladder .ladder-row {
+  display: grid;
+  grid-template-columns: minmax(40%, 1fr) auto auto;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.reward-ladder .ladder-bar {
+  height: 0.7rem;
+  background: var(--accent);
+  border-radius: 2px;
+  opacity: 0.85;
+}
+
+.reward-ladder .ladder-label {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+.reward-ladder .ladder-value {
+  font-size: 0.75rem;
+  color: var(--text-primary);
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+@media (max-width: 480px) {
+  .reward-ladder .ladder-row {
+    grid-template-columns: 1fr auto;
+    row-gap: 0;
+  }
+  .reward-ladder .ladder-label {
+    grid-column: 1 / 2;
+  }
+  .reward-ladder .ladder-value {
+    grid-column: 2 / 3;
+  }
+  .reward-ladder .ladder-bar {
+    grid-column: 1 / -1;
+    margin-bottom: 0.15rem;
+  }
+}
+
 /* Post List */
 .post-list {
   list-style: none;
@@ -470,13 +530,20 @@ nav .links a[aria-current="page"] {
 
 .project-title-row {
   display: flex;
-  align-items: center;
+  align-items: baseline;
   gap: var(--spacing-md);
   flex-wrap: wrap;
 }
 
 .project-title-row h3 {
   margin-bottom: 0;
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.project-title-row .badge {
+  margin-left: auto;
+  flex-shrink: 0;
 }
 
 .project-role {
@@ -606,6 +673,25 @@ nav .links a[aria-current="page"] {
   text-decoration-color: var(--accent);
   text-underline-offset: 4px;
   text-decoration-thickness: 1px;
+}
+
+/* Bucket label: sub-page section label, demoted from h2 to avoid competing with the page H1 */
+.bucket-label {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin: 0 0 var(--spacing-md) 0;
+  padding-top: var(--spacing-md);
+  border-top: 1px solid var(--border);
+}
+
+/* First bucket-label on a page sits closer to the page heading and skips the top rule */
+section:first-of-type > .bucket-label {
+  border-top: none;
+  padding-top: 0;
 }
 
 /* Education grid */

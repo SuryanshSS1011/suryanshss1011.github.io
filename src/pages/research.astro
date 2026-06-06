@@ -8,30 +8,60 @@ const research = projects.filter(p => p.category === 'research');
 const current = research.filter(p => p.current);
 const past = research.filter(p => !p.current);
 
+const author = { "@type": "Person", name: site.name, url: site.url };
+
 const aiTestPaperSchema = {
   "@context": "https://schema.org",
   "@type": "ScholarlyArticle",
   name: "Fixing Performance Bugs Through LLM Explanations",
-  author: {
-    "@type": "Person",
-    name: site.name,
-    url: site.url
-  },
+  author,
   isPartOf: {
     "@type": "PublicationEvent",
     name: "7th IEEE International Conference on Artificial Intelligence Testing (AITest 2025)",
     publishedBy: { "@type": "Organization", name: "IEEE" }
   },
-  datePublished: "2025",
+  datePublished: "2025-07-22",
   identifier: "10.1109/AITest66680.2025.00020",
   url: "https://doi.org/10.1109/AITest66680.2025.00020"
 };
+
+const lctesPaperSchema = {
+  "@context": "https://schema.org",
+  "@type": "ScholarlyArticle",
+  name: "Scheduled Partial-Credit RL for Reliable Code Generation with Small Language Models",
+  alternateName: "SecureCodeRL",
+  author,
+  isPartOf: {
+    "@type": "PublicationEvent",
+    name: "27th ACM SIGPLAN/SIGBED International Conference on Languages, Compilers, and Tools for Embedded Systems (LCTES 2026)",
+    publishedBy: { "@type": "Organization", name: "ACM" },
+    location: "Boulder, Colorado, United States"
+  },
+  creativeWorkStatus: "WIP — Accepted",
+  url: "https://github.com/SuryanshSS1011/SecureCodeRL/blob/main/paper/lctes26-paper.pdf"
+};
+
+const cnsmPaperSchema = {
+  "@context": "https://schema.org",
+  "@type": "ScholarlyArticle",
+  name: "Match Your Loss to Your Cost: Asymmetric Losses and Conformal Capacity Bands for Backbone Traffic Forecasting",
+  author,
+  isPartOf: {
+    "@type": "PublicationEvent",
+    name: "21st International Conference on Network and Service Management (CNSM 2026)"
+  },
+  creativeWorkStatus: "Submitted",
+  dateCreated: "2026-06-01",
+  url: "https://github.com/SuryanshSS1011/match-loss-to-cost"
+};
+
+const allPaperSchemas = [aiTestPaperSchema, lctesPaperSchema, cnsmPaperSchema];
 ---
 
 <BaseLayout
   title="Research · Suryansh Sijwali"
-  description="Research projects and peer-reviewed papers by Suryansh Sijwali: SecureCodeRL (LCTES 2026 WIP, Patishnock Award), ML for network traffic prediction, and LLM explanations for Java performance bugs (IEEE AITest 2025)."
-  jsonLd={aiTestPaperSchema}
+  description="Peer-reviewed and WIP research by Suryansh Sijwali. Fixing Performance Bugs Through LLM Explanations (IEEE AITest 2025), SecureCodeRL: Scheduled Partial-Credit RL for Reliable Code Generation with SLMs (LCTES 2026 WIP, Patishnock Award), Match Your Loss to Your Cost: asymmetric losses and conformal capacity bands for backbone traffic forecasting (CNSM 2026 submission)."
+  jsonLd={allPaperSchemas}
 >
   <SectionHeading
     eyebrow="Research"
@@ -42,7 +72,7 @@ const aiTestPaperSchema = {
 
   {current.length > 0 && (
     <section>
-      <h2>Currently working on</h2>
+      <p class="bucket-label">In progress</p>
       <div class="project-list">
         {current.map((project) => (
           <ProjectCard project={project} />
@@ -53,7 +83,7 @@ const aiTestPaperSchema = {
 
   {past.length > 0 && (
     <section>
-      <h2>Selected past work</h2>
+      <p class="bucket-label">Published</p>
       <div class="project-list">
         {past.map((project) => (
           <ProjectCard project={project} />

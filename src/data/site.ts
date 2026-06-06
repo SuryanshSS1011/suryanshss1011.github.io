@@ -1,7 +1,7 @@
 export const site = {
   name: "Suryansh Sijwali",
   title: "AI/ML Engineer & Researcher",
-  description: "Architecting intelligent systems that solve complex problems, where research meets implementation.",
+  description: "Penn State CS. RL for reliable code generation, decision-aware ML for networks, citation-grounded retrieval. Research that ships and systems that get used.",
   url: "https://suryanshss1011.github.io",
   social: {
     github: "https://github.com/SuryanshSS1011",
@@ -14,7 +14,7 @@ export const site = {
 
 export const about = {
   currently: "Causality-aware secure reward design for RL-based C code generation.",
-  submitted: "Match Your Loss to Your Cost: asymmetric losses and conformal capacity bands for backbone traffic forecasting. CNSM 2026, June 1, 2026.",
+  submitted: "Match Your Loss to Your Cost · CNSM 2026 (June 1)",
   upcoming: "LCTES 2026 presentation · June 16 · Boulder, CO.",
 
   bio: `I'm a Computer Science student at Penn State, passionate about building intelligent systems at the intersection of AI research and practical software engineering.
@@ -36,6 +36,9 @@ export type ProjectLink = { label: string; url: string };
 
 export type ProjectImage = { src: string; alt: string };
 
+export type ProjectFigure =
+  | { type: 'reward-ladder'; rows: { label: string; value: string; fill: number }[] };
+
 export type Project = {
   title: string;
   role: string;
@@ -49,6 +52,7 @@ export type Project = {
   current: boolean;
   category: 'research' | 'engineering';
   image?: ProjectImage;
+  figure?: ProjectFigure;
 };
 
 export const projects: Project[] = [
@@ -92,8 +96,8 @@ export const projects: Project[] = [
     category: "engineering"
   },
   {
-    title: "Partial-Credit RL for Reliable Code Generation with SLMs",
-    role: "LCTES 2026 (WIP) · Patishnock Award Winner",
+    title: "SecureCodeRL",
+    role: "Scheduled Partial-Credit RL for Reliable Code Generation with Small Language Models · LCTES 2026 (WIP) · Patishnock Award",
     badge: "WIP · Accepted",
     summary:
       "Reliability-first RL for small language models in code generation. Joint reward R = 0.6·R_func + 0.4·R_sec with a five-stage partial-credit functional ladder.",
@@ -108,7 +112,17 @@ export const projects: Project[] = [
       { label: "Paper (arXiv:2601.01184)", url: "https://arxiv.org/abs/2601.01184" },
       { label: "GitHub", url: "https://github.com/SuryanshSS1011/SecureCodeRL" }
     ],
-    current: true,
+    figure: {
+      type: 'reward-ladder',
+      rows: [
+        { label: "syntax error", value: "0.0", fill: 8 },
+        { label: "valid syntax", value: "0.2", fill: 24 },
+        { label: "runs, no crash", value: "0.4", fill: 42 },
+        { label: "produces output", value: "0.6", fill: 60 },
+        { label: "passes k of T", value: "0.6 + 0.4·k/T", fill: 92 }
+      ]
+    },
+    current: false,
     category: "research"
   },
   {
@@ -127,7 +141,7 @@ export const projects: Project[] = [
       { label: "Read the writeup", url: "/blog/match-loss-to-cost/" },
       { label: "GitHub", url: "https://github.com/SuryanshSS1011/match-loss-to-cost" }
     ],
-    current: true,
+    current: false,
     category: "research"
   },
   {

@@ -1,5 +1,5 @@
 ---
-title: "Partial-Credit RL for Reliable Code Generation with Small Language Models"
+title: "Scheduled Partial-Credit RL for Reliable Code Generation with Small Language Models"
 description: "A reliability-first RL framework for SLM code generation. Partial-credit functional reward, binary-to-partial curriculum, on DeepSeek-Coder-1.3B and APPS+. LCTES 2026 WIP."
 date: 2026-05-30T12:00:00
 tags: ["Research", "Reinforcement Learning", "Code Generation", "LCTES 2026"]

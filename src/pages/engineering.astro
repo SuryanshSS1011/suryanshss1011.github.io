@@ -11,7 +11,7 @@ const past = engineering.filter(p => !p.current);
 
 <BaseLayout
   title="Engineering · Suryansh Sijwali"
-  description="Engineering projects shipped end-to-end: Wynlabs (founding engineer, industrial AI copilot), TruthCast (HackPSU Solana track winner), Shift (GDG climate track winner), and a Morgan Advanced Materials-sponsored RAG capstone."
+  description="Engineering projects by Suryansh Sijwali. Currently building Warren (Wikipedia rabbit-hole map). Past: Wynlabs (founding engineer, industrial AI copilot), a Morgan Advanced Materials-sponsored citation-grounded RAG capstone, TruthCast (HackPSU Solana track winner), Shift (GDG climate track winner)."
 >
   <SectionHeading
     eyebrow="Engineering"
@@ -22,7 +22,7 @@ const past = engineering.filter(p => !p.current);
 
   {current.length > 0 && (
     <section>
-      <h2>Currently working on</h2>
+      <p class="bucket-label">Building now</p>
       <div class="project-list">
         {current.map((project) => (
           <ProjectCard project={project} />
@@ -33,7 +33,7 @@ const past = engineering.filter(p => !p.current);
 
   {past.length > 0 && (
     <section>
-      <h2>Past work (shipped)</h2>
+      <p class="bucket-label">Shipped</p>
       <div class="project-list">
         {past.map((project) => (
           <ProjectCard project={project} />
