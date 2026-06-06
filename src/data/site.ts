@@ -14,7 +14,7 @@ export const site = {
 
 export const about = {
   currently: "Causality-aware secure reward design for RL-based C code generation.",
-  submitted: "Match Your Loss to Your Cost · CNSM 2026 (June 1)",
+  submitted: "Match Your Loss to Your Cost · CNSM 2026",
   upcoming: "LCTES 2026 presentation · June 16 · Boulder, CO.",
 
   bio: `I'm a Computer Science student at Penn State, passionate about building intelligent systems at the intersection of AI research and practical software engineering.
