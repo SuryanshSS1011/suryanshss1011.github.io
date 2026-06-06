@@ -58,7 +58,7 @@ const blogPostingSchema = {
 ---
 
 <BaseLayout
-  title={`${post.data.title} — Suryansh Sijwali`}
+  title={`${post.data.title} · Suryansh Sijwali`}
   description={post.data.description}
   ogType="article"
   articleMeta={{
@@ -82,16 +82,19 @@ const blogPostingSchema = {
     </header>
 
     {tocHeadings.length > 2 && (
-      <nav class="toc">
-        <h2>Contents</h2>
-        <ul>
-          {tocHeadings.map((heading) => (
-            <li class={heading.depth === 3 ? 'toc-sub' : ''}>
-              <a href={`#${heading.slug}`}>{heading.text}</a>
+      <aside class="toc" aria-label="Table of contents">
+        <p class="toc-label">Contents</p>
+        <ol class="toc-list">
+          {tocHeadings.map((heading, i) => (
+            <li class={heading.depth === 3 ? 'toc-item toc-sub' : 'toc-item'}>
+              {heading.depth === 2 && (
+                <span class="toc-num" aria-hidden="true">{String(tocHeadings.filter((h, j) => j <= i && h.depth === 2).length).padStart(2, '0')}</span>
+              )}
+              <a href={`#${heading.slug}`} data-toc-link={heading.slug}>{heading.text}</a>
             </li>
           ))}
-        </ul>
-      </nav>
+        </ol>
+      </aside>
     )}
 
     <div class="prose">
@@ -105,46 +108,161 @@ const blogPostingSchema = {
 </BaseLayout>
 
 <style>
-  .toc {
-    background: var(--bg-sunken);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-md);
-    padding: var(--spacing-lg);
-    margin-bottom: var(--spacing-xl);
+  /* TOC: editorial margin note. No card chrome, no list markers, no decimal default. */
+
+  /* Defensive resets: kill any inherited list styling, padding, or backgrounds. */
+  .toc,
+  .toc * {
+    background: transparent;
+    border-radius: 0;
   }
 
-  .toc h2 {
+  .toc {
+    margin: 0 0 var(--spacing-2xl) 0;
+    padding: 0 0 0 var(--spacing-md);
+    border-left: 1px solid var(--border);
+    background: transparent;
+  }
+
+  .toc-label {
     font-family: var(--font-display);
-    font-size: 0.75rem;
+    font-size: 0.68rem;
     font-weight: 600;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: var(--spacing-md);
-    border: none;
+    color: var(--text-muted);
+    margin: 0 0 var(--spacing-sm) 0;
     padding: 0;
   }
 
-  .toc ul {
-    list-style: none;
+  /* Force list reset hard, in case anything else tries to add markers. */
+  ol.toc-list {
+    list-style: none !important;
+    list-style-type: none !important;
     padding: 0;
     margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
   }
 
-  .toc li {
-    margin-bottom: var(--spacing-xs);
+  ol.toc-list > li.toc-item {
+    list-style: none !important;
+    list-style-type: none !important;
+    display: grid;
+    grid-template-columns: 1.75rem 1fr;
+    align-items: baseline;
+    gap: 0.5rem;
+    line-height: 1.4;
+    margin: 0;
+    padding: 0;
   }
 
-  .toc-sub {
-    padding-left: var(--spacing-lg);
+  ol.toc-list > li.toc-item::marker {
+    content: none;
+  }
+
+  .toc-item.toc-sub {
+    padding-left: var(--spacing-md);
+  }
+
+  .toc-num {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    font-weight: 500;
+    color: var(--text-muted);
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 0.02em;
+  }
+
+  .toc-sub .toc-num {
+    visibility: hidden;
   }
 
   .toc a {
-    color: var(--text-secondary);
-    font-size: 0.9rem;
+    color: var(--text-muted);
+    text-decoration: none;
+    font-family: var(--font-display);
+    font-size: 0.88rem;
+    line-height: 1.45;
+    transition: color var(--transition), border-color var(--transition);
+    border-left: 1.5px solid transparent;
+    padding-left: 0.6rem;
+    margin-left: -0.6rem;
   }
 
   .toc a:hover {
-    color: var(--accent);
+    color: var(--text-primary);
+    text-decoration: none;
+  }
+
+  .toc a[data-active="true"] {
+    color: var(--text-primary);
+    border-left-color: var(--accent);
+  }
+
+  /* Desktop: float to the right of the prose as a sticky rail. */
+  @media (min-width: 1100px) {
+    .toc {
+      position: sticky;
+      top: var(--spacing-2xl);
+      float: right;
+      width: 16rem;
+      margin: 0 -19rem 0 0;
+      padding-left: var(--spacing-lg);
+      max-height: calc(100vh - 4rem);
+      overflow-y: auto;
+      scrollbar-width: thin;
+    }
+
+    ol.toc-list {
+      gap: 0.55rem;
+    }
+
+    .toc a {
+      font-size: 0.83rem;
+    }
+  }
+
+  @media (min-width: 1280px) {
+    .toc {
+      width: 18rem;
+      margin-right: -21rem;
+    }
   }
 </style>
+
+<script>
+  // Scrollspy: highlight the heading closest to the top of the viewport.
+  const links = document.querySelectorAll<HTMLAnchorElement>('.toc a[data-toc-link]');
+  if (links.length > 0) {
+    const headingIds = Array.from(links).map((a) => a.dataset.tocLink!).filter(Boolean);
+    const headings = headingIds
+      .map((id) => document.getElementById(id))
+      .filter((el): el is HTMLElement => !!el);
+
+    let activeId: string | null = null;
+    const setActive = (id: string | null) => {
+      if (id === activeId) return;
+      activeId = id;
+      links.forEach((a) => {
+        a.toggleAttribute('data-active', a.dataset.tocLink === id);
+      });
+    };
+
+    const onScroll = () => {
+      const offset = 120;
+      let current: string | null = null;
+      for (const h of headings) {
+        const rect = h.getBoundingClientRect();
+        if (rect.top - offset <= 0) current = h.id;
+        else break;
+      }
+      setActive(current ?? headings[0]?.id ?? null);
+    };
+
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+  }
+</script>
