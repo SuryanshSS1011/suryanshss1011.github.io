@@ -1,16 +1,16 @@
-// Visible hero bio is rendered line-by-line from this array. The single-string
-// `description` below is reserved for og:description and is the joined form.
-const bioLines = [
-  "Penn State CS.",
-  "IEEE AITest 2025 · LCTES 2026 WIP.",
-  "Research that ships and systems that get used."
-];
-
 export const site = {
   name: "Suryansh Sijwali",
+  // Subtitle pairs affiliation with role for instant identity. Renders italic.
+  subtitle: "Penn State CS · AI/ML Engineer & Researcher",
+  // Real publication credits only (submissions belong in the status block).
+  // Renders as a small muted line under the subtitle.
+  credentials: "IEEE AITest 2025 · LCTES 2026 WIP",
+  // Editorial closing line. Renders after the status block as its own moment.
+  closingLine: "Research that ships and systems that get used.",
+  // og:description, used for social unfurls when no per-page override is set.
+  description: "Penn State CS. AI/ML Engineer & Researcher. IEEE AITest 2025, LCTES 2026 WIP. Research that ships and systems that get used.",
+  // Kept for backwards compatibility with any code that imports site.title.
   title: "AI/ML Engineer & Researcher",
-  bioLines,
-  description: bioLines.join(' '),
   url: "https://suryanshss1011.github.io",
   social: {
     github: "https://github.com/SuryanshSS1011",

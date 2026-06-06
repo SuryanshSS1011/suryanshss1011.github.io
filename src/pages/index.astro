@@ -33,7 +33,8 @@ const flagships = flagshipTitles
 >
   <section class="profile">
     <h1>{site.name}</h1>
-    <p class="subtitle">{site.title}</p>
+    <p class="subtitle">{site.subtitle}</p>
+    <p class="credentials">{site.credentials}</p>
     <dl class="status">
       <div class="status-row">
         <dt>Currently working on</dt>
@@ -48,9 +49,7 @@ const flagships = flagshipTitles
         <dd>{about.upcoming}</dd>
       </div>
     </dl>
-    <div class="bio">
-      {site.bioLines.map((line) => <p>{line}</p>)}
-    </div>
+    <p class="closing-line">{site.closingLine}</p>
 
     <div class="links">
       <a href={site.social.github} target="_blank" rel="noopener">GitHub</a>

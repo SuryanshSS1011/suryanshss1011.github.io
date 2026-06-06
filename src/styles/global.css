@@ -728,18 +728,26 @@ nav .links a[aria-current="page"] {
   line-height: 1.5;
 }
 
-.profile .bio {
-  font-size: 1.05rem;
-  margin-bottom: var(--spacing-xl);
-  line-height: 1.7;
-}
-
-.profile .bio p {
-  margin: 0;
-}
-
-.profile .bio p + p {
+/* Credentials line: small muted line under the subtitle for real publication credits. */
+.profile .credentials {
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  letter-spacing: 0.01em;
   margin-top: 0.15rem;
+  margin-bottom: var(--spacing-lg);
+}
+
+/* Closing line: editorial sentence after the status block, before the links. */
+.profile .closing-line {
+  font-family: var(--font-body);
+  font-size: 1.02rem;
+  color: var(--text-secondary);
+  font-style: italic;
+  line-height: 1.55;
+  margin-top: var(--spacing-lg);
+  margin-bottom: var(--spacing-xl);
+  max-width: 48ch;
 }
 
 .profile .links {
