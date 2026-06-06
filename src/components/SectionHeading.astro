@@ -1,7 +1,7 @@
 ---
 interface Props {
   eyebrow?: string;
-  title: string;
+  title?: string;
   description?: string;
   level?: 'h1' | 'h2';
   align?: 'left' | 'center';
@@ -20,7 +20,7 @@ const Heading = level;
 
 <div class={`section-heading ${align === 'center' ? 'is-center' : ''}`}>
   {eyebrow && <span class="eyebrow">{eyebrow}</span>}
-  <Heading>{title}</Heading>
+  {title && <Heading>{title}</Heading>}
   {description && <p class="description">{description}</p>}
 </div>
 

@@ -1,5 +1,5 @@
 ---
-title: "Match Your Loss to Your Cost: asymmetric losses and conformal capacity bands for backbone traffic forecasting"
+title: "Match Your Loss to Your Cost: Asymmetric Losses and Conformal Capacity Bands for Backbone Traffic Forecasting"
 description: "Backbone operators care about SLA violations and over-provisioning, not RMSE. A drop-in cost-aware loss and a conformal wrapper that cut realized cost up to +76% on Abilene at equal forecast accuracy. Submitted to CNSM 2026 (June 1, 2026)."
 date: 2026-05-28T12:00:00
 tags: ["Research", "Time Series", "Conformal Prediction", "Networks"]

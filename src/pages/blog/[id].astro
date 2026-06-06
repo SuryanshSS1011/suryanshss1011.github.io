@@ -5,10 +5,12 @@ import { site } from '../../data/site';
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog');
-  return posts.map((post) => ({
-    params: { id: post.id },
-    props: { post },
-  }));
+  return posts
+    .filter((post) => !post.data.draft)
+    .map((post) => ({
+      params: { id: post.id },
+      props: { post },
+    }));
 }
 
 const { post } = Astro.props;
@@ -152,7 +154,7 @@ const blogPostingSchema = {
     display: grid;
     grid-template-columns: 1.75rem 1fr;
     align-items: baseline;
-    gap: 0.5rem;
+    column-gap: 0.5rem;
     line-height: 1.4;
     margin: 0;
     padding: 0;
@@ -162,8 +164,13 @@ const blogPostingSchema = {
     content: none;
   }
 
-  .toc-item.toc-sub {
-    padding-left: var(--spacing-md);
+  /* Sub-items (H3 under H2): collapse to a single column and indent via padding.
+     Avoids reserving the hidden-number column and lets long titles wrap cleanly
+     aligned to the link text's left edge. Specificity matches the base rule
+     above (.toc-list > li.toc-item) by re-using the same selector chain. */
+  ol.toc-list > li.toc-item.toc-sub {
+    grid-template-columns: 1fr;
+    padding-left: 1.25rem;
   }
 
   .toc-num {
@@ -173,10 +180,6 @@ const blogPostingSchema = {
     color: var(--text-muted);
     font-variant-numeric: tabular-nums;
     letter-spacing: 0.02em;
-  }
-
-  .toc-sub .toc-num {
-    visibility: hidden;
   }
 
   .toc a {

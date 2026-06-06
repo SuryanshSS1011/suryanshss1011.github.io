@@ -9,6 +9,10 @@ const blog = defineCollection({
     date: z.coerce.date(),
     tags: z.array(z.string()).optional(),
     draft: z.boolean().optional().default(false),
+    // When true, the post is pinned to the bottom of the writing list and its
+    // date is hidden. Intended for intro / about-this-blog posts that should
+    // anchor the list regardless of chronology.
+    pinBottom: z.boolean().optional().default(false),
   }),
 });
 

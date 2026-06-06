@@ -19,12 +19,14 @@ const readingTime = Math.max(1, Math.ceil(wordCount / 220));
 
 <li class="post-item">
   <a href={`/blog/${post.id}`} class="post-title">{post.data.title}</a>
-  <p class="post-meta">
-    <time datetime={post.data.date.toISOString()}>{formatDate(post.data.date)}</time>
-    {showReadingTime && wordCount > 0 && (
-      <>{' · '}{readingTime} min read</>
-    )}
-  </p>
+  {!post.data.pinBottom && (
+    <p class="post-meta">
+      <time datetime={post.data.date.toISOString()}>{formatDate(post.data.date)}</time>
+      {showReadingTime && wordCount > 0 && (
+        <>{' · '}{readingTime} min read</>
+      )}
+    </p>
+  )}
   {showExcerpt && post.data.description && (
     <p class="post-excerpt">{post.data.description}</p>
   )}

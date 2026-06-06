@@ -8,13 +8,18 @@ import { getCollection } from 'astro:content';
 
 const posts = (await getCollection('blog'))
   .filter(post => !post.data.draft)
-  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+  .sort((a, b) => {
+    if (a.data.pinBottom !== b.data.pinBottom) {
+      return a.data.pinBottom ? 1 : -1;
+    }
+    return b.data.date.valueOf() - a.data.date.valueOf();
+  })
   .slice(0, 3);
 
 // Three hand-picked flagships for the home page. Comprehensive lists live on /research and /engineering.
 const flagshipTitles = [
   "Warren",
-  "SecureCodeRL",
+  "Scheduled Partial-Credit RL for Reliable Code Generation with Small Language Models",
   "Match Your Loss to Your Cost"
 ];
 const flagships = flagshipTitles
@@ -24,7 +29,7 @@ const flagships = flagshipTitles
 
 <BaseLayout
   title={`${site.name} · ${site.title}`}
-  description="Suryansh Sijwali, Penn State CS. Currently building Warren. Research on SecureCodeRL (LCTES 2026 WIP), Match Your Loss to Your Cost (CNSM 2026 submission), and LLM explanations for Java performance bugs (IEEE AITest 2025)."
+  description="Suryansh Sijwali, Penn State CS. Currently building Warren. Research on Scheduled Partial-Credit RL for Reliable Code Generation with SLMs (LCTES 2026 WIP), Match Your Loss to Your Cost (CNSM 2026 submission), and LLM explanations for Java performance bugs (IEEE AITest 2025)."
 >
   <section class="profile">
     <h1>{site.name}</h1>
@@ -75,13 +80,14 @@ const flagships = flagshipTitles
 
   {flagships.length > 0 && (
     <section>
-      <SectionHeading eyebrow="Selected work" title="Three things, in depth" />
+      <SectionHeading eyebrow="Selected work" />
       <div class="project-list">
         {flagships.map((project) => (
           <ProjectCard project={project} compact />
         ))}
       </div>
-      <p class="mt-md"><a href="/research">All research →</a> &nbsp; <a href="/engineering">All engineering →</a></p>
+      <p class="mt-md"><a href="/research">All research →</a></p>
+      <p><a href="/engineering">All engineering →</a></p>
     </section>
   )}
 

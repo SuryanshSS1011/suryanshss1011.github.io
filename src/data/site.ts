@@ -37,7 +37,12 @@ export type ProjectLink = { label: string; url: string };
 export type ProjectImage = { src: string; alt: string };
 
 export type ProjectFigure =
-  | { type: 'reward-ladder'; rows: { label: string; value: string; fill: number }[] };
+  | { type: 'reward-ladder'; rows: { label: string; value: string; fill: number }[] }
+  | {
+      type: 'result-bars';
+      caption?: string;
+      rows: { label: string; valueDisplay: string; fill: number; delta?: string }[];
+    };
 
 export type Project = {
   title: string;
@@ -88,7 +93,6 @@ export const projects: Project[] = [
     ],
     stack: ["Python", "FastAPI", "LangChain", "Docker", "Kubernetes", "AWS", "SCADA/PLC/MQTT", "TypeScript"],
     links: [
-      { label: "Read the writeup", url: "/blog/wynlabs/" },
       { label: "wynlabs.ai", url: "https://wynlabs.ai" }
     ],
     sourceNote: "Source code is private (commercial product).",
@@ -96,8 +100,8 @@ export const projects: Project[] = [
     category: "engineering"
   },
   {
-    title: "SecureCodeRL",
-    role: "Scheduled Partial-Credit RL for Reliable Code Generation with Small Language Models · LCTES 2026 (WIP) · Patishnock Award",
+    title: "Scheduled Partial-Credit RL for Reliable Code Generation with Small Language Models",
+    role: "LCTES 2026 (WIP) · Patishnock Award",
     badge: "WIP · Accepted",
     summary:
       "Reliability-first RL for small language models in code generation. Joint reward R = 0.6·R_func + 0.4·R_sec with a five-stage partial-credit functional ladder.",
@@ -127,7 +131,7 @@ export const projects: Project[] = [
   },
   {
     title: "Match Your Loss to Your Cost",
-    role: "CNSM 2026 (submitted June 1, 2026)",
+    role: "CNSM 2026 Submission",
     badge: "Submitted",
     summary:
       "Decision-aware traffic forecasting for backbone capacity planning. Asymmetric losses and conformal capacity bands trained against operator cost, not RMSE. Three real backbones, 20 seeds, paired-bootstrap CIs.",
@@ -141,6 +145,15 @@ export const projects: Project[] = [
       { label: "Read the writeup", url: "/blog/match-loss-to-cost/" },
       { label: "GitHub", url: "https://github.com/SuryanshSS1011/match-loss-to-cost" }
     ],
+    figure: {
+      type: 'result-bars',
+      caption: "Operator-cost reduction vs MSE-trained LSTM, cusp-linear loss at top operator asymmetry",
+      rows: [
+        { label: "Abilene", valueDisplay: "+76%", fill: 76 },
+        { label: "GÉANT",   valueDisplay: "+75%", fill: 75 },
+        { label: "CESNET",  valueDisplay: "+54%", fill: 54 }
+      ]
+    },
     current: false,
     category: "research"
   },
@@ -222,6 +235,14 @@ export const projects: Project[] = [
       { label: "Project site", url: "https://suryanshss1011.github.io/Performance-Bugs-LLM" },
       { label: "GitHub", url: "https://github.com/SuryanshSS1011/Performance-Bugs-LLM" }
     ],
+    figure: {
+      type: 'result-bars',
+      caption: "Detection on 490-bug test set after fine-tuning GPT-4o-mini with explanations",
+      rows: [
+        { label: "Accuracy", valueDisplay: "83.7%", fill: 83.7, delta: "+16.4pp vs 67.3% baseline" },
+        { label: "F1",       valueDisplay: "82.3%", fill: 82.3, delta: "+17.7pp vs 64.6% baseline" }
+      ]
+    },
     current: false,
     category: "research"
   }

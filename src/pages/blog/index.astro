@@ -6,7 +6,13 @@ import { getCollection } from 'astro:content';
 
 const posts = (await getCollection('blog'))
   .filter(post => !post.data.draft)
-  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+  .sort((a, b) => {
+    // Pinned-bottom posts sink to the end regardless of date.
+    if (a.data.pinBottom !== b.data.pinBottom) {
+      return a.data.pinBottom ? 1 : -1;
+    }
+    return b.data.date.valueOf() - a.data.date.valueOf();
+  });
 ---
 
 <BaseLayout

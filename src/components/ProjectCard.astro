@@ -54,6 +54,22 @@ const isExternal = (url: string) => {
     </div>
   )}
 
+  {project.figure?.type === 'result-bars' && (
+    <div class="figure result-bars" role="figure" aria-label={project.figure.caption ?? 'Key results'}>
+      {project.figure.rows.map((row) => (
+        <div class="bars-row">
+          <span class="bars-label">{row.label}</span>
+          <span class="bars-track"><span class="bars-fill" style={`width: ${Math.min(row.fill, 100)}%;`}></span></span>
+          <span class="bars-value">{row.valueDisplay}</span>
+          {row.delta && <span class="bars-delta">{row.delta}</span>}
+        </div>
+      ))}
+      {project.figure.caption && (
+        <p class="bars-caption">{project.figure.caption}</p>
+      )}
+    </div>
+  )}
+
   {!compact && (
     <ul class="project-highlights">
       {project.highlights.map((h) => (
