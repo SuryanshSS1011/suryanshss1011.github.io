@@ -13,7 +13,7 @@ export const site = {
 };
 
 export const about = {
-  currently: "Causality-aware secure reward design for RL-based C code generation.",
+  currently: "Causality-aware security reward design for RL-based C code generation.",
   submitted: "Match Your Loss to Your Cost · CNSM 2026",
   upcoming: "LCTES 2026 presentation · June 16 · Boulder, CO.",
 
