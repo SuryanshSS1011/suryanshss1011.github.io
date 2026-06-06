@@ -42,7 +42,7 @@ const isExternal = (url: string) => {
 
   <p class="project-summary">{project.summary}</p>
 
-  {project.figure?.type === 'reward-ladder' && (
+  {compact && project.figure?.type === 'reward-ladder' && (
     <div class="figure reward-ladder" role="figure" aria-label="Partial-credit reward ladder">
       {project.figure.rows.map((row) => (
         <div class="ladder-row">
@@ -54,7 +54,7 @@ const isExternal = (url: string) => {
     </div>
   )}
 
-  {project.figure?.type === 'result-bars' && (
+  {compact && project.figure?.type === 'result-bars' && (
     <div class="figure result-bars" role="figure" aria-label={project.figure.caption ?? 'Key results'}>
       {project.figure.rows.map((row) => (
         <div class="bars-row">

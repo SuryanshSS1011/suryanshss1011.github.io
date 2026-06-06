@@ -63,7 +63,7 @@ export type Project = {
 export const projects: Project[] = [
   {
     title: "Warren",
-    role: "Solo · in active development",
+    role: "In active development for Mind the Product's World Product Day 2026",
     badge: "Building",
     summary:
       "Turn your Wikipedia rabbit hole into a beautiful, shareable map. Your actual clicked path becomes a bright animated spine; all other links sit as faint context so the graph never becomes a hairball.",
