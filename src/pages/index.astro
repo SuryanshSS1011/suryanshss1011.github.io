@@ -19,8 +19,8 @@ const posts = (await getCollection('blog'))
 // Three hand-picked flagships for the home page. Comprehensive lists live on /research and /engineering.
 const flagshipTitles = [
   "Warren",
-  "Scheduled Partial-Credit RL for Reliable Code Generation with Small Language Models",
-  "Match Your Loss to Your Cost"
+  "Match Your Loss to Your Cost",
+  "Scheduled Partial-Credit RL for Reliable Code Generation with Small Language Models"
 ];
 const flagships = flagshipTitles
   .map(t => projects.find(p => p.title === t))

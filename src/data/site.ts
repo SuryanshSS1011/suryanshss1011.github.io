@@ -4,7 +4,7 @@ export const site = {
   subtitle: "Penn State CS · AI/ML Engineer & Researcher",
   // Real publication credits only (submissions belong in the status block).
   // Renders as a small muted line under the subtitle.
-  credentials: "IEEE AITest 2025 · LCTES 2026 WIP",
+  credentials: "IEEE AITest 2025 · LCTES 2026 WIP · Patishnock Undergraduate Research Award",
   // Editorial closing line. Renders after the status block as its own moment.
   closingLine: "Research that ships and systems that get used.",
   // og:description, used for social unfurls when no per-page override is set.
@@ -109,36 +109,6 @@ export const projects: Project[] = [
     category: "engineering"
   },
   {
-    title: "Scheduled Partial-Credit RL for Reliable Code Generation with Small Language Models",
-    role: "LCTES 2026 (WIP) · Patishnock Award",
-    badge: "WIP · Accepted",
-    summary:
-      "Reliability-first RL for small language models in code generation. Joint reward R = 0.6·R_func + 0.4·R_sec with a five-stage partial-credit functional ladder.",
-    highlights: [
-      "On DeepSeek-Coder-1.3B over 100 APPS+ prompts: SFT 44% syntax / 3% ≥1-pass. Binary-reward PPO degrades to 18% / 0%. Partial-credit from scratch reaches 27% / 2%.",
-      "Binary-to-partial-credit schedule (PPO-continue) wins: 63% syntax, 9% ≥1-pass, 2% all-pass (single attempt). Curriculum learning the schedule matters more than the reward shape alone.",
-      "LoRA r=16 (6.3M trainable params, 0.47%), single V100 16GB, Bandit-graded R_sec. Security null on APPS+ (algorithmic); CWE-mapped partial credit is the next step."
-    ],
-    stack: ["Python", "PyTorch", "TRL (PPO)", "PEFT (LoRA)", "Bandit", "DeepSeek-Coder-1.3B", "APPS+"],
-    links: [
-      { label: "Read the writeup", url: "/blog/securecoderl/" },
-      { label: "Paper (arXiv:2601.01184)", url: "https://arxiv.org/abs/2601.01184" },
-      { label: "GitHub", url: "https://github.com/SuryanshSS1011/SecureCodeRL" }
-    ],
-    figure: {
-      type: 'reward-ladder',
-      rows: [
-        { label: "syntax error", value: "0.0", fill: 8 },
-        { label: "valid syntax", value: "0.2", fill: 24 },
-        { label: "runs, no crash", value: "0.4", fill: 42 },
-        { label: "produces output", value: "0.6", fill: 60 },
-        { label: "passes k of T", value: "0.6 + 0.4·k/T", fill: 92 }
-      ]
-    },
-    current: false,
-    category: "research"
-  },
-  {
     title: "Match Your Loss to Your Cost",
     role: "CNSM 2026 Submission",
     badge: "Submitted",
@@ -161,6 +131,36 @@ export const projects: Project[] = [
         { label: "Abilene", valueDisplay: "+76%", fill: 76 },
         { label: "GÉANT",   valueDisplay: "+75%", fill: 75 },
         { label: "CESNET",  valueDisplay: "+54%", fill: 54 }
+      ]
+    },
+    current: false,
+    category: "research"
+  },
+  {
+    title: "Scheduled Partial-Credit RL for Reliable Code Generation with Small Language Models",
+    role: "LCTES 2026 (WIP)",
+    badge: "WIP · Accepted",
+    summary:
+      "Reliability-first RL for small language models in code generation. Joint reward R = 0.6·R_func + 0.4·R_sec with a five-stage partial-credit functional ladder.",
+    highlights: [
+      "On DeepSeek-Coder-1.3B over 100 APPS+ prompts: SFT 44% syntax / 3% ≥1-pass. Binary-reward PPO degrades to 18% / 0%. Partial-credit from scratch reaches 27% / 2%.",
+      "Binary-to-partial-credit schedule (PPO-continue) wins: 63% syntax, 9% ≥1-pass, 2% all-pass (single attempt). Curriculum learning the schedule matters more than the reward shape alone.",
+      "LoRA r=16 (6.3M trainable params, 0.47%), single V100 16GB, Bandit-graded R_sec. Security null on APPS+ (algorithmic); CWE-mapped partial credit is the next step."
+    ],
+    stack: ["Python", "PyTorch", "TRL (PPO)", "PEFT (LoRA)", "Bandit", "DeepSeek-Coder-1.3B", "APPS+"],
+    links: [
+      { label: "Read the writeup", url: "/blog/securecoderl/" },
+      { label: "Paper (arXiv:2601.01184)", url: "https://arxiv.org/abs/2601.01184" },
+      { label: "GitHub", url: "https://github.com/SuryanshSS1011/SecureCodeRL" }
+    ],
+    figure: {
+      type: 'reward-ladder',
+      rows: [
+        { label: "syntax error", value: "0.0", fill: 8 },
+        { label: "valid syntax", value: "0.2", fill: 24 },
+        { label: "runs, no crash", value: "0.4", fill: 42 },
+        { label: "produces output", value: "0.6", fill: 60 },
+        { label: "passes k of T", value: "0.6 + 0.4·k/T", fill: 92 }
       ]
     },
     current: false,

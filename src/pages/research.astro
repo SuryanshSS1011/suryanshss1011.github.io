@@ -60,19 +60,19 @@ const allPaperSchemas = [aiTestPaperSchema, lctesPaperSchema, cnsmPaperSchema];
 
 <BaseLayout
   title="Research · Suryansh Sijwali"
-  description="Peer-reviewed and WIP research by Suryansh Sijwali. Fixing Performance Bugs Through LLM Explanations (IEEE AITest 2025), Scheduled Partial-Credit RL for Reliable Code Generation with SLMs (LCTES 2026 WIP, Patishnock Award), Match Your Loss to Your Cost: Asymmetric Losses and Conformal Capacity Bands for Backbone Traffic Forecasting (CNSM 2026 submission)."
+  description="Peer-reviewed and WIP research by Suryansh Sijwali (Patishnock Undergraduate Research Award, Penn State). Fixing Performance Bugs Through LLM Explanations (IEEE AITest 2025), Scheduled Partial-Credit RL for Reliable Code Generation with SLMs (LCTES 2026 WIP), Match Your Loss to Your Cost: Asymmetric Losses and Conformal Capacity Bands for Backbone Traffic Forecasting (CNSM 2026 submission)."
   jsonLd={allPaperSchemas}
 >
   <SectionHeading
     eyebrow="Research"
     title="Papers and ongoing investigations"
-    description="Peer-reviewed work, work-in-progress papers, and research-grade builds. Status reflects publication or interim findings."
+    description="Peer-reviewed work, work-in-progress papers, and research-grade builds."
     level="h1"
   />
 
   {current.length > 0 && (
     <section>
-      <p class="bucket-label">In progress</p>
+      <p class="bucket-label">Current</p>
       <div class="project-list">
         {current.map((project) => (
           <ProjectCard project={project} />
@@ -83,7 +83,7 @@ const allPaperSchemas = [aiTestPaperSchema, lctesPaperSchema, cnsmPaperSchema];
 
   {past.length > 0 && (
     <section>
-      <p class="bucket-label">Published</p>
+      <p class="bucket-label">Recent</p>
       <div class="project-list">
         {past.map((project) => (
           <ProjectCard project={project} />

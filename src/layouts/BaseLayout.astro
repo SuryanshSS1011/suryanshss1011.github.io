@@ -1,5 +1,6 @@
 ---
 import { site } from '../data/site';
+import Specimen from '../components/Specimen.astro';
 
 interface Props {
   title: string;
@@ -137,6 +138,7 @@ const allSchemas = [...baseSchemas, ...extraSchemas];
   </head>
   <body>
     <a href="#main" class="skip-link">Skip to content</a>
+    <Specimen />
     <div class="container">
       <nav>
         {!isHome && <a href="/" class="logo">Suryansh Sijwali</a>}

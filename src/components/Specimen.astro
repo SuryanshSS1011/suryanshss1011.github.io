@@ -1,0 +1,15 @@
+---
+import { specimenForPath } from '../data/specimens';
+
+const specimen = specimenForPath(Astro.url.pathname);
+---
+
+{specimen && (
+  <figure class="specimen" aria-hidden="true">
+    <img src={`/specimens/${specimen.slug}.png`} alt="" loading="lazy" />
+    <figcaption>
+      <span class="binomial">{specimen.binomial}</span>
+      <span class="common">{specimen.common}</span>
+    </figcaption>
+  </figure>
+)}
