@@ -32,6 +32,16 @@ export const specimens: Specimen[] = [
 ];
 
 /**
+ * Minimum number of specimens required before the system renders anything.
+ *
+ * Below this threshold, every page would show the same one (or two) specimen(s),
+ * which defeats the "fresh every page" idea. Render only kicks in once there are
+ * enough specimens that variety is real. Bump the array to length >= this value
+ * to enable.
+ */
+const MIN_SPECIMENS_TO_RENDER = 3;
+
+/**
  * Deterministic per-route specimen pick.
  *
  * Hashing the pathname keeps the choice stable for a given route (so users
@@ -39,7 +49,7 @@ export const specimens: Specimen[] = [
  * varying it across routes (so navigating around the site reveals new ones).
  */
 export function specimenForPath(pathname: string): Specimen | null {
-  if (specimens.length === 0) return null;
+  if (specimens.length < MIN_SPECIMENS_TO_RENDER) return null;
   const normalized = pathname.replace(/\/+$/, '') || '/';
   let hash = 0;
   for (let i = 0; i < normalized.length; i++) {
