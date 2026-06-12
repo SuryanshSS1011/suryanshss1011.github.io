@@ -4,11 +4,11 @@ export const site = {
   subtitle: "Penn State CS · AI/ML Engineer & Researcher",
   // Real publication credits only (submissions belong in the status block).
   // Renders as a small muted line under the subtitle.
-  credentials: "IEEE AITest 2025 · LCTES 2026 WIP · Patishnock Undergraduate Research Award",
+  credentials: "IEEE AITest 2025 · LCTES 2026 · Patishnock Undergraduate Research Award",
   // Editorial closing line. Renders after the status block as its own moment.
   closingLine: "Research that ships and systems that get used.",
   // og:description, used for social unfurls when no per-page override is set.
-  description: "Penn State CS. AI/ML Engineer & Researcher. IEEE AITest 2025, LCTES 2026 WIP. Research that ships and systems that get used.",
+  description: "Penn State CS. AI/ML Engineer & Researcher. IEEE AITest 2025, LCTES 2026. Research that ships and systems that get used.",
   // Kept for backwards compatibility with any code that imports site.title.
   title: "AI/ML Engineer & Researcher",
   url: "https://suryanshss1011.github.io",
@@ -24,7 +24,6 @@ export const site = {
 export const about = {
   currently: "Causality-aware security reward design for RL-based C code generation.",
   submitted: "Match Your Loss to Your Cost · CNSM 2026",
-  upcoming: "LCTES 2026 presentation · June 16 · Boulder, CO.",
 
   bio: `I'm a Computer Science student at Penn State, passionate about building intelligent systems at the intersection of AI research and practical software engineering.
 
@@ -137,9 +136,9 @@ export const projects: Project[] = [
     category: "research"
   },
   {
-    title: "Scheduled Partial-Credit RL for Reliable Code Generation with Small Language Models",
-    role: "LCTES 2026 (WIP)",
-    badge: "WIP · Accepted",
+    title: "Scheduled Partial-Credit RL for Reliable Code Generation with Small Language Models (WIP)",
+    role: "LCTES 2026",
+    badge: "Published",
     summary:
       "Reliability-first RL for small language models in code generation. Joint reward R = 0.6·R_func + 0.4·R_sec with a five-stage partial-credit functional ladder.",
     highlights: [
@@ -150,7 +149,7 @@ export const projects: Project[] = [
     stack: ["Python", "PyTorch", "TRL (PPO)", "PEFT (LoRA)", "Bandit", "DeepSeek-Coder-1.3B", "APPS+"],
     links: [
       { label: "Read the writeup", url: "/blog/securecoderl/" },
-      { label: "Paper (arXiv:2601.01184)", url: "https://arxiv.org/abs/2601.01184" },
+      { label: "Paper (ACM DL)", url: "https://doi.org/10.1145/3814943.3816167" },
       { label: "GitHub", url: "https://github.com/SuryanshSS1011/SecureCodeRL" }
     ],
     figure: {

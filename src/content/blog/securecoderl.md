@@ -1,6 +1,6 @@
 ---
-title: "Scheduled Partial-Credit RL for Reliable Code Generation with Small Language Models"
-description: "A reliability-first RL framework for SLM code generation. Partial-credit functional reward, binary-to-partial curriculum, on DeepSeek-Coder-1.3B and APPS+. LCTES 2026 WIP."
+title: "Scheduled Partial-Credit RL for Reliable Code Generation with Small Language Models (WIP)"
+description: "A reliability-first RL framework for SLM code generation. Partial-credit functional reward, binary-to-partial curriculum, on DeepSeek-Coder-1.3B and APPS+. LCTES 2026."
 date: 2026-05-30T12:00:00
 tags: ["Research", "Reinforcement Learning", "Code Generation", "LCTES 2026"]
 ---
@@ -97,8 +97,7 @@ This is where my current research direction is heading: causality-chain CWEs and
 
 ## Links
 
-- LCTES 2026 WIP (accepted, presenting June 16 in Boulder, CO)
-- [Paper PDF (in repo)](https://github.com/SuryanshSS1011/SecureCodeRL/blob/main/paper/lctes26-paper.pdf)
+- [Paper (ACM DL, DOI 10.1145/3814943.3816167)](https://doi.org/10.1145/3814943.3816167) — LCTES 2026, Boulder, CO
 - [GitHub: SecureCodeRL](https://github.com/SuryanshSS1011/SecureCodeRL)
 - [Zenodo DOI: 10.5281/zenodo.19999642](https://doi.org/10.5281/zenodo.19999642)
 - Patishnock Undergraduate Research Award winner at Penn State (Information Literacy)

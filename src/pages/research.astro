@@ -28,7 +28,7 @@ const aiTestPaperSchema = {
 const lctesPaperSchema = {
   "@context": "https://schema.org",
   "@type": "ScholarlyArticle",
-  name: "Scheduled Partial-Credit RL for Reliable Code Generation with Small Language Models",
+  name: "Scheduled Partial-Credit RL for Reliable Code Generation with Small Language Models (WIP)",
   alternateName: "SecureCodeRL",
   author,
   isPartOf: {
@@ -37,8 +37,9 @@ const lctesPaperSchema = {
     publishedBy: { "@type": "Organization", name: "ACM" },
     location: "Boulder, Colorado, United States"
   },
-  creativeWorkStatus: "WIP — Accepted",
-  url: "https://github.com/SuryanshSS1011/SecureCodeRL/blob/main/paper/lctes26-paper.pdf"
+  datePublished: "2026",
+  identifier: "10.1145/3814943.3816167",
+  url: "https://doi.org/10.1145/3814943.3816167"
 };
 
 const cnsmPaperSchema = {
@@ -60,7 +61,7 @@ const allPaperSchemas = [aiTestPaperSchema, lctesPaperSchema, cnsmPaperSchema];
 
 <BaseLayout
   title="Research · Suryansh Sijwali"
-  description="Peer-reviewed and WIP research by Suryansh Sijwali (Patishnock Undergraduate Research Award, Penn State). Fixing Performance Bugs Through LLM Explanations (IEEE AITest 2025), Scheduled Partial-Credit RL for Reliable Code Generation with SLMs (LCTES 2026 WIP), Match Your Loss to Your Cost: Asymmetric Losses and Conformal Capacity Bands for Backbone Traffic Forecasting (CNSM 2026 submission)."
+  description="Peer-reviewed research by Suryansh Sijwali (Patishnock Undergraduate Research Award, Penn State). Fixing Performance Bugs Through LLM Explanations (IEEE AITest 2025), Scheduled Partial-Credit RL for Reliable Code Generation with SLMs (WIP) (LCTES 2026), Match Your Loss to Your Cost: Asymmetric Losses and Conformal Capacity Bands for Backbone Traffic Forecasting (CNSM 2026 submission)."
   jsonLd={allPaperSchemas}
 >
   <SectionHeading

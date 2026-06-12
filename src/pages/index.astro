@@ -20,7 +20,7 @@ const posts = (await getCollection('blog'))
 const flagshipTitles = [
   "Warren",
   "Match Your Loss to Your Cost",
-  "Scheduled Partial-Credit RL for Reliable Code Generation with Small Language Models"
+  "Scheduled Partial-Credit RL for Reliable Code Generation with Small Language Models (WIP)"
 ];
 const flagships = flagshipTitles
   .map(t => projects.find(p => p.title === t))
@@ -29,7 +29,7 @@ const flagships = flagshipTitles
 
 <BaseLayout
   title={`${site.name} · ${site.title}`}
-  description="Suryansh Sijwali, Penn State CS. Currently building Warren. Research on Scheduled Partial-Credit RL for Reliable Code Generation with SLMs (LCTES 2026 WIP), Match Your Loss to Your Cost (CNSM 2026 submission), and LLM explanations for Java performance bugs (IEEE AITest 2025)."
+  description="Suryansh Sijwali, Penn State CS. Currently building Warren. Research on Scheduled Partial-Credit RL for Reliable Code Generation with SLMs (WIP) (LCTES 2026), Match Your Loss to Your Cost (CNSM 2026 submission), and LLM explanations for Java performance bugs (IEEE AITest 2025)."
 >
   <section class="profile">
     <h1>{site.name}</h1>
@@ -43,10 +43,6 @@ const flagships = flagshipTitles
       <div class="status-row">
         <dt>Recently submitted</dt>
         <dd>{about.submitted}</dd>
-      </div>
-      <div class="status-row">
-        <dt>Upcoming</dt>
-        <dd>{about.upcoming}</dd>
       </div>
     </dl>
     <p class="closing-line">{site.closingLine}</p>
