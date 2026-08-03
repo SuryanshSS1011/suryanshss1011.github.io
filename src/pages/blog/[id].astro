@@ -24,8 +24,9 @@ function formatDate(date: Date) {
   });
 }
 
+// wordCount feeds the BlogPosting schema only; it is no longer shown as a
+// "N min read" estimate, which was meaningless on posts full of tables and math.
 const wordCount = (post.body ?? '').split(/\s+/).filter(Boolean).length;
-const readingTime = Math.max(1, Math.ceil(wordCount / 220));
 
 const tocHeadings = headings.filter(h => h.depth === 2 || h.depth === 3);
 
@@ -72,14 +73,9 @@ const blogPostingSchema = {
   <article>
     <header style="margin-bottom: var(--spacing-xl);">
       <h1>{post.data.title}</h1>
-      <p class="text-muted text-sm" style="font-family: var(--font-display);">
-        By Suryansh Sijwali · <time datetime={post.data.date.toISOString()}>{formatDate(post.data.date)}</time>
-        {wordCount > 0 && (
-          <> · {readingTime} min read</>
-        )}
-        {post.data.tags && post.data.tags.length > 0 && (
-          <span> · {post.data.tags.slice(0, 3).join(', ')}</span>
-        )}
+      <p class="post-byline">
+        <time datetime={post.data.date.toISOString()}>{formatDate(post.data.date)}</time>
+        {post.data.venue && <span class="post-venue">{post.data.venue}</span>}
       </p>
     </header>
 
@@ -204,14 +200,23 @@ const blogPostingSchema = {
     border-left-color: var(--accent);
   }
 
-  /* Desktop: float to the right of the prose as a sticky rail. */
-  @media (min-width: 1100px) {
+  /* Desktop: float to the right of the prose as a sticky rail.
+     The rail hangs outside the container, so it only fits once the viewport is
+     wide enough to hold it in the gutter. With a container of --max-width and a
+     negative margin M, the rail's right edge lands at
+       (V - max-width)/2 + max-width - padding + M
+     which must stay inside the viewport. For an 880px container that resolves to
+     V >= 848px + 2M. The breakpoints below are those thresholds, not round
+     numbers — picking round ones is what pushed the rail off-screen before.
+     Under the first threshold the TOC falls back to sitting inline above the
+     article, which is the right behaviour on tablets anyway. */
+  @media (min-width: 1380px) {
     .toc {
       position: sticky;
       top: var(--spacing-2xl);
       float: right;
-      width: 16rem;
-      margin: 0 -19rem 0 0;
+      width: 14rem;
+      margin: 0 -16.5rem 0 0;
       padding-left: var(--spacing-lg);
       max-height: calc(100vh - 4rem);
       overflow-y: auto;
@@ -227,10 +232,10 @@ const blogPostingSchema = {
     }
   }
 
-  @media (min-width: 1280px) {
+  @media (min-width: 1450px) {
     .toc {
-      width: 18rem;
-      margin-right: -21rem;
+      width: 16rem;
+      margin-right: -18.5rem;
     }
   }
 </style>

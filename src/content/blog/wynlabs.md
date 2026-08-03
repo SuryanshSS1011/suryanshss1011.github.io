@@ -2,6 +2,7 @@
 title: "Wynlabs: an industrial copilot for the plant floor"
 description: "Founding-engineer notes from a year of shipping multi-agent AI workflows over live SCADA, PLC, MQTT, and SQL Server data."
 date: 2026-05-20T12:00:00
+venue: "Wynlabs · founding engineer"
 tags: ["Engineering", "AI Systems", "Industrial"]
 draft: true
 ---

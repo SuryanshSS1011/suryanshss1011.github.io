@@ -2,6 +2,7 @@
 title: "Scheduled Partial-Credit RL for Reliable Code Generation with Small Language Models (WIP)"
 description: "A reliability-first RL framework for SLM code generation. Partial-credit functional reward, binary-to-partial curriculum, on DeepSeek-Coder-1.3B and APPS+. LCTES 2026."
 date: 2026-05-30T12:00:00
+venue: "LCTES 2026"
 tags: ["Research", "Reinforcement Learning", "Code Generation", "LCTES 2026"]
 ---
 
@@ -31,9 +32,9 @@ A generation that crashes still earns 0.4. A generation that prints something bu
 
 **Security reward.** Static-analysis-based guardrail against unsafe shortcuts. Define a normalized severity score V from Bandit findings (HIGH = 1.0, MEDIUM = 0.5, LOW excluded since APPS+ requires stdin `input()` usage). Then:
 
-$$ R_{\text{sec}} = \exp(-V) $$
+$$ R_{\text{sec}} = 1 - V $$
 
-Clean code yields R_sec = 1.0. Higher-severity findings reduce the reward smoothly.
+Clean code yields R_sec = 1.0. Higher-severity findings reduce the reward linearly. The weights are set so a HIGH-severity finding costs β·V = 0.4, which exceeds the largest single-step functional gain (α·0.4 = 0.24), keeping unsafe shortcuts a net-negative gradient.
 
 ## The numbers
 
@@ -41,9 +42,9 @@ DeepSeek-Coder-1.3B-Instruct, LoRA (r=16, α=32, 6.3M trainable parameters, 0.47
 
 Three PPO variants are compared:
 
-- **PPO-simple** — binary reward, initialized from SFT
-- **PPO-fresh** — partial credit, initialized from SFT
-- **PPO-continue** — partial credit, initialized from the PPO-simple checkpoint
+- **PPO-simple**: binary reward, initialized from SFT
+- **PPO-fresh**: partial credit, initialized from SFT
+- **PPO-continue**: partial credit, initialized from the PPO-simple checkpoint
 
 Results on 100 APPS+ prompts (~85 held-out):
 
@@ -93,11 +94,11 @@ The paper outlines four directions:
 3. Fine-grained security partial credit, mapping static-analysis findings to a vulnerability taxonomy (e.g., CWE), with staged credit for removing high-severity issues.
 4. C code generation for embedded toolchains with C-focused analyzers, evaluated under resource-constrained compilation and execution.
 
-This is where my current research direction is heading: causality-chain CWEs and safe/secure deployment of AI/ML systems are the natural continuation of the security half of the framework.
+The security half of the framework is the part with the most headroom left in it.
 
 ## Links
 
-- [Paper (ACM DL, DOI 10.1145/3814943.3816167)](https://doi.org/10.1145/3814943.3816167) — LCTES 2026, Boulder, CO
+- [Paper (ACM DL, DOI 10.1145/3814943.3816167)](https://doi.org/10.1145/3814943.3816167). LCTES 2026, Boulder, CO
 - [GitHub: SecureCodeRL](https://github.com/SuryanshSS1011/SecureCodeRL)
 - [Zenodo DOI: 10.5281/zenodo.19999642](https://doi.org/10.5281/zenodo.19999642)
 - Patishnock Undergraduate Research Award winner at Penn State (Information Literacy)

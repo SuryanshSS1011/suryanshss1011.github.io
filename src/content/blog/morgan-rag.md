@@ -2,6 +2,7 @@
 title: "A citation-grounded RAG for technical documents at Morgan Advanced Materials"
 description: "Capstone build for the Penn State Learning Factory, sponsored by Morgan Advanced Materials. Offline RAG that refuses to answer without a citation."
 date: 2026-05-10T12:00:00
+venue: "Learning Factory capstone"
 tags: ["Engineering", "RAG", "Capstone"]
 ---
 

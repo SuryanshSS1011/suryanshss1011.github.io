@@ -2,6 +2,7 @@
 title: "TruthCast: multi-agent fact-checking with on-chain provenance"
 description: "A fact-checking pipeline that decomposes claims, weights evidence by source credibility, debates ambiguous cases, and writes verdicts to a Solana ledger. HackPSU Spring 2026, Solana track winner."
 date: 2026-04-15T12:00:00
+venue: "HackPSU Spring 2026"
 tags: ["Engineering", "Hackathon", "Multi-agent", "Solana"]
 ---
 

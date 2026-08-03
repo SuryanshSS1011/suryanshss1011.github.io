@@ -2,6 +2,7 @@
 title: "Match Your Loss to Your Cost: Asymmetric Losses and Conformal Capacity Bands for Backbone Traffic Forecasting"
 description: "Backbone operators care about SLA violations and over-provisioning, not RMSE. A drop-in cost-aware loss and a conformal wrapper that cut realized cost up to +76% on Abilene at equal forecast accuracy. Submitted to CNSM 2026 (June 1, 2026)."
 date: 2026-05-28T12:00:00
+venue: "CNSM 2026 submission"
 tags: ["Research", "Time Series", "Conformal Prediction", "Networks"]
 ---
 
@@ -129,6 +130,6 @@ The paper explicitly outlines: a regret bound linking conformal miscoverage to r
 ## Links
 
 - Submitted to CNSM 2026 on June 1, 2026
-- [GitHub: match-loss-to-cost](https://github.com/SuryanshSS1011/match-loss-to-cost) — code, configs, seed lists, trained checkpoints
-- [HuggingFace dataset: per-seed predictions](https://huggingface.co/datasets/SuryanshSS1011/match-loss-to-cost-predictions) — 3,500+ per-seed forecast .npz files (every table and figure reproducible without retraining)
+- [GitHub: match-loss-to-cost](https://github.com/SuryanshSS1011/match-loss-to-cost): code, configs, seed lists, trained checkpoints
+- [HuggingFace dataset: per-seed predictions](https://huggingface.co/datasets/SuryanshSS1011/match-loss-to-cost-predictions): 3,500+ per-seed forecast .npz files (every table and figure reproducible without retraining)
 - [HuggingFace: model checkpoints](https://huggingface.co/SuryanshSS1011/match-loss-to-cost-checkpoints)

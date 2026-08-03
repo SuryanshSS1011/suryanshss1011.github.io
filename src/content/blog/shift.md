@@ -2,6 +2,7 @@
 title: "Shift: personalized sustainability with radical transparency about AI's energy cost"
 description: "12-hour hackathon build that delivers one tailored climate action per day while disclosing the carbon cost of every inference. GDG Solution Challenge winner."
 date: 2026-03-20T12:00:00
+venue: "GDG Solution Challenge"
 tags: ["Engineering", "Hackathon", "Sustainability"]
 ---
 
