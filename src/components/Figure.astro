@@ -1,0 +1,41 @@
+---
+// Shared figure renderer. Single source of truth for every figure the site
+// draws, used both inside project cards and at the top of writeups. One
+// component means a card figure and its writeup figure never drift apart.
+//
+// Two kinds, deliberately treated differently:
+//   figure   — an argument. Framed, captioned in the register of a paper figure.
+//   artifact — the thing itself. Bleeds to the card edge, no frame, one line of
+//              orientation instead of a claim.
+import type { ProjectFigure } from '../data/site';
+
+interface Props {
+  figure: ProjectFigure;
+}
+
+const { figure } = Astro.props;
+---
+
+{figure.kind === 'figure' && (
+  <figure class="fig" role="figure">
+    <div class={`fig-frame${figure.srcDark ? ' has-dark' : ''}`}>
+      <img src={figure.src} alt={figure.alt} loading="lazy" class="fig-light" />
+      {figure.srcDark && (
+        <img src={figure.srcDark} alt={figure.alt} loading="lazy" class="fig-dark" />
+      )}
+    </div>
+    <figcaption class="fig-caption">{figure.caption}</figcaption>
+  </figure>
+)}
+
+{figure.kind === 'artifact' && (
+  <figure class="artifact" role="figure">
+    <div class={`artifact-frame${figure.srcDark ? ' has-dark' : ''}`}>
+      <img src={figure.src} alt={figure.alt} loading="lazy" class="fig-light" />
+      {figure.srcDark && (
+        <img src={figure.srcDark} alt={figure.alt} loading="lazy" class="fig-dark" />
+      )}
+    </div>
+    {figure.note && <figcaption class="artifact-note">{figure.note}</figcaption>}
+  </figure>
+)}

@@ -1,33 +1,32 @@
 ---
+// Post row. The rail carries the date and, where the post is tied to published
+// work, the venue. No reading-time estimate: a word count over 220 says little
+// about a post carrying tables, figures, and math.
 import type { CollectionEntry } from 'astro:content';
 
 interface Props {
   post: CollectionEntry<'blog'>;
   showExcerpt?: boolean;
-  showReadingTime?: boolean;
 }
 
-const { post, showExcerpt = true, showReadingTime = true } = Astro.props;
+const { post, showExcerpt = true } = Astro.props;
 
 function formatDate(date: Date) {
   return date.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
 }
-
-const wordCount = (post.body ?? '').split(/\s+/).filter(Boolean).length;
-const readingTime = Math.max(1, Math.ceil(wordCount / 220));
 ---
 
 <li class="post-item">
-  <a href={`/blog/${post.id}`} class="post-title">{post.data.title}</a>
-  {!post.data.pinBottom && (
-    <p class="post-meta">
+  <p class="post-meta">
+    {!post.data.pinBottom && (
       <time datetime={post.data.date.toISOString()}>{formatDate(post.data.date)}</time>
-      {showReadingTime && wordCount > 0 && (
-        <>{' · '}{readingTime} min read</>
-      )}
-    </p>
-  )}
-  {showExcerpt && post.data.description && (
-    <p class="post-excerpt">{post.data.description}</p>
-  )}
+    )}
+    {post.data.venue && <span class="post-meta-venue">{post.data.venue}</span>}
+  </p>
+  <div class="post-body">
+    <a href={`/blog/${post.id}`} class="post-title">{post.data.title}</a>
+    {showExcerpt && post.data.description && (
+      <p class="post-excerpt">{post.data.description}</p>
+    )}
+  </div>
 </li>
