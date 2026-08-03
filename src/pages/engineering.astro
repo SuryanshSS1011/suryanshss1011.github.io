@@ -1,6 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import ProjectCard from '../components/ProjectCard.astro';
+import ProjectRow from '../components/ProjectRow.astro';
 import SectionHeading from '../components/SectionHeading.astro';
 import { projects } from '../data/site';
 
@@ -14,18 +14,18 @@ const past = engineering.filter(p => !p.current);
   description="Engineering projects by Suryansh Sijwali. Currently building Warren (Wikipedia rabbit-hole map). Past: Wynlabs (founding engineer, industrial AI copilot), a Morgan Advanced Materials-sponsored citation-grounded RAG capstone, TruthCast (HackPSU Solana track winner), Shift (GDG climate track winner)."
 >
   <SectionHeading
-    eyebrow="Engineering"
+    label="engineering"
     title="Industry systems and shipped builds"
-    description="Production AI work, founding-engineer projects, and weekend builds that won tracks."
+    description="Production AI work, founding-engineer projects, and hackathon builds."
     level="h1"
   />
 
   {current.length > 0 && (
     <section>
-      <p class="bucket-label">Building now</p>
-      <div class="project-list">
+      <p class="section-label">Building now</p>
+      <div class="index-list">
         {current.map((project) => (
-          <ProjectCard project={project} />
+          <ProjectRow project={project} detailed />
         ))}
       </div>
     </section>
@@ -33,10 +33,10 @@ const past = engineering.filter(p => !p.current);
 
   {past.length > 0 && (
     <section>
-      <p class="bucket-label">Shipped</p>
-      <div class="project-list">
+      <p class="section-label">Shipped</p>
+      <div class="index-list">
         {past.map((project) => (
-          <ProjectCard project={project} />
+          <ProjectRow project={project} detailed />
         ))}
       </div>
     </section>

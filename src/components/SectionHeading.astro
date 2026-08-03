@@ -1,31 +1,38 @@
 ---
+// Two shapes, one component.
+//
+// Page header (level="h1"): mono label, then a display-cut serif heading and a
+// description. Used once per page.
+//
+// Section marker (default): the mono label IS the heading. A rust `>` prompt —
+// the same mark as the LinkedIn banner — a lowercase word, and a hairline rule
+// to the right margin. Announcing a section is structural work, so a rule does
+// it rather than a second oversized heading competing with the page title.
 interface Props {
-  eyebrow?: string;
+  label?: string;
   title?: string;
   description?: string;
   level?: 'h1' | 'h2';
-  align?: 'left' | 'center';
 }
 
-const {
-  eyebrow,
-  title,
-  description,
-  level = 'h2',
-  align = 'left'
-} = Astro.props;
-
+const { label, title, description, level = 'h2' } = Astro.props;
 const Heading = level;
+
+// A section with no display title needs no wrapper: the label carries the
+// heading semantics itself.
+const isBareSection = level === 'h2' && !title && !description;
 ---
 
-<div class={`section-heading ${align === 'center' ? 'is-center' : ''}`}>
-  {eyebrow && <span class="eyebrow">{eyebrow}</span>}
-  {title && <Heading>{title}</Heading>}
-  {description && <p class="description">{description}</p>}
-</div>
-
-<style>
-  .is-center {
-    text-align: center;
-  }
-</style>
+{isBareSection ? (
+  <h2 class="section-label">
+    <span class="prompt" aria-hidden="true">&gt;</span>{label}
+  </h2>
+) : (
+  <div class="section-heading">
+    {label && (
+      <span class="section-label"><span class="prompt" aria-hidden="true">&gt;</span>{label}</span>
+    )}
+    {title && <Heading>{title}</Heading>}
+    {description && <p class="description">{description}</p>}
+  </div>
+)}

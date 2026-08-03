@@ -1,0 +1,116 @@
+---
+// Ambient edge glow: a slow travelling conic gradient around the viewport plus a
+// soft inner bloom, in the site accent. Purely decorative, so it is inert to
+// assistive tech and to the pointer.
+//
+// Tuned rather than literal. Orange on cream goes muddy, so light mode runs at a
+// fraction of dark mode's intensity. Dial the whole effect from --glow-strength
+// (0 turns it off entirely without removing the component).
+---
+
+<div class="page-glow" aria-hidden="true"></div>
+
+<style>
+  @property --glow-angle {
+    syntax: '<angle>';
+    initial-value: 0deg;
+    inherits: false;
+  }
+
+  .page-glow {
+    /* Light mode: orange bloom on warm paper reads as a print artifact well
+       before it reads as a glow, so it runs much weaker than dark. */
+    --glow-strength: 0.16;
+    --glow-blur: 100px;
+    --glow-spread: -34px;
+    --glow-spin: 14s;
+
+    position: fixed;
+    inset: 0;
+    z-index: 60;
+    pointer-events: none;
+    /* The bloom. Sits inside the frame so content near the edge stays legible. */
+    box-shadow: inset 0 0 var(--glow-blur) var(--glow-spread)
+      rgb(180 71 31 / calc(var(--glow-strength) * 1.5));
+  }
+
+  :global([data-theme='dark']) .page-glow {
+    --glow-strength: 0.32;
+    --glow-blur: 110px;
+    --glow-spread: -32px;
+    box-shadow: inset 0 0 var(--glow-blur) var(--glow-spread)
+      rgb(217 122 74 / calc(var(--glow-strength) * 1.2));
+  }
+
+  /* The travelling border. A conic gradient clipped to a hairline ring by
+     masking out everything but the padding box. */
+  .page-glow::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    padding: 1.5px;
+    background: conic-gradient(
+      from var(--glow-angle),
+      transparent 0%,
+      rgb(180 71 31 / var(--glow-strength)) 12%,
+      transparent 30%,
+      transparent 58%,
+      rgb(180 71 31 / calc(var(--glow-strength) * 0.7)) 74%,
+      transparent 92%
+    );
+    -webkit-mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+    mask-composite: exclude;
+    animation: glow-spin var(--glow-spin) linear infinite;
+  }
+
+  :global([data-theme='dark']) .page-glow::before {
+    background: conic-gradient(
+      from var(--glow-angle),
+      transparent 0%,
+      rgb(217 122 74 / var(--glow-strength)) 12%,
+      transparent 30%,
+      transparent 58%,
+      rgb(217 122 74 / calc(var(--glow-strength) * 0.7)) 74%,
+      transparent 92%
+    );
+  }
+
+  @keyframes glow-spin {
+    to { --glow-angle: 360deg; }
+  }
+
+  /* Reduced motion keeps the frame, drops the travel. */
+  @media (prefers-reduced-motion: reduce) {
+    .page-glow::before {
+      animation: none;
+    }
+  }
+
+  /* On a phone the ring hugs the reading column and reads as a rendering fault
+     rather than atmosphere, so it goes entirely.
+     The bloom needs re-proportioning rather than just dimming: the blur is an
+     absolute length, so a 100px spread covers about a seventh of a 1440px
+     viewport but close to half of a 420px one. Tightening the blur keeps it on
+     the edge instead of washing across the text, and the strength drops with it. */
+  @media (max-width: 640px) {
+    .page-glow {
+      --glow-strength: 0.08;
+      --glow-blur: 46px;
+      --glow-spread: -22px;
+    }
+
+    :global([data-theme='dark']) .page-glow {
+      --glow-strength: 0.17;
+      --glow-blur: 52px;
+      --glow-spread: -22px;
+    }
+
+    .page-glow::before { display: none; }
+  }
+</style>

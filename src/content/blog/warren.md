@@ -2,6 +2,7 @@
 title: "Warren: the plan"
 description: "What I'm building, why now, and the design lessons it's reverse-engineered from. Notes from the plan rather than a post-mortem. In active development."
 date: 2026-06-04T12:00:00
+venue: "World Product Day 2026"
 tags: ["Engineering", "In Progress", "Knowledge Tools"]
 ---
 

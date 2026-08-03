@@ -1,6 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import ProjectCard from '../components/ProjectCard.astro';
+import ProjectRow from '../components/ProjectRow.astro';
 import SectionHeading from '../components/SectionHeading.astro';
 import { projects, site } from '../data/site';
 
@@ -65,7 +65,7 @@ const allPaperSchemas = [aiTestPaperSchema, lctesPaperSchema, cnsmPaperSchema];
   jsonLd={allPaperSchemas}
 >
   <SectionHeading
-    eyebrow="Research"
+    label="research"
     title="Papers and ongoing investigations"
     description="Peer-reviewed work, work-in-progress papers, and research-grade builds."
     level="h1"
@@ -73,10 +73,10 @@ const allPaperSchemas = [aiTestPaperSchema, lctesPaperSchema, cnsmPaperSchema];
 
   {current.length > 0 && (
     <section>
-      <p class="bucket-label">Current</p>
-      <div class="project-list">
+      <p class="section-label">Current</p>
+      <div class="index-list">
         {current.map((project) => (
-          <ProjectCard project={project} />
+          <ProjectRow project={project} detailed />
         ))}
       </div>
     </section>
@@ -84,10 +84,10 @@ const allPaperSchemas = [aiTestPaperSchema, lctesPaperSchema, cnsmPaperSchema];
 
   {past.length > 0 && (
     <section>
-      <p class="bucket-label">Recent</p>
-      <div class="project-list">
+      <p class="section-label">Recent</p>
+      <div class="index-list">
         {past.map((project) => (
-          <ProjectCard project={project} />
+          <ProjectRow project={project} detailed />
         ))}
       </div>
     </section>

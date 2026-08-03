@@ -2,6 +2,7 @@
 title: "Fixing performance bugs through LLM explanations"
 description: "Training an LLM to explain a performance bug, not just classify it, produces a stronger detection signal. 490-bug dataset, fine-tuned GPT-4o-mini, IEEE AITest 2025."
 date: 2026-05-15T12:00:00
+venue: "IEEE AITest 2025"
 tags: ["Research", "LLM", "Software Engineering", "AITest 2025"]
 ---
 

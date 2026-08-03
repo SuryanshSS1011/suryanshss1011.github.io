@@ -1,0 +1,48 @@
+---
+// Link row shared by project rows and project cards. Internal links get a
+// forward arrow, external links a north-east arrow, so the destination is
+// legible before the click.
+import type { ProjectLink } from '../data/site';
+import { site } from '../data/site';
+
+interface Props {
+  links: ProjectLink[];
+  limit?: number;
+}
+
+const { links, limit } = Astro.props;
+const visible = typeof limit === 'number' ? links.slice(0, limit) : links;
+
+const siteHost = new URL(site.url).host;
+const isExternal = (url: string) => {
+  try {
+    return new URL(url, site.url).host !== siteHost;
+  } catch {
+    return false;
+  }
+};
+---
+
+{visible.length > 0 && (
+  <div class="project-links">
+    {visible.map((link) => {
+      const external = isExternal(link.url);
+      return (
+        <a href={link.url} {...(external ? { target: '_blank', rel: 'noopener' } : {})}>
+          <span>{link.label}</span>
+          {external ? (
+            <svg class="link-arrow" width="11" height="11" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M3 9 L9 3" />
+              <path d="M4 3 L9 3 L9 8" />
+            </svg>
+          ) : (
+            <svg class="link-arrow" width="11" height="11" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M2 6 L10 6" />
+              <path d="M7 3 L10 6 L7 9" />
+            </svg>
+          )}
+        </a>
+      );
+    })}
+  </div>
+)}

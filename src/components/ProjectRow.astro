@@ -1,0 +1,61 @@
+---
+// One treatment for every project: a metadata rail and a content column,
+// separated by a hairline rule.
+//
+// An earlier version gave figure-bearing projects a bordered card and everything
+// else a flat row. That made the rule ("a figure earns a card") visible as
+// structure, but it also made the page lumpy — tall boxes interleaved with flat
+// rows, with the grid restarting at every boundary. The rule's real purpose was
+// to keep box chrome off things with nothing to show, and removing the boxes
+// altogether serves that better. A figure is now simply another block inside the
+// content column, so the page keeps one rhythm whether or not a figure exists.
+import type { Project } from '../data/site';
+import Figure from './Figure.astro';
+import ProjectLinks from './ProjectLinks.astro';
+
+interface Props {
+  project: Project;
+  headingLevel?: 'h2' | 'h3';
+  /** Detail pages show highlights and stack; index rows stay to one sentence. */
+  detailed?: boolean;
+}
+
+const { project, headingLevel = 'h3', detailed = false } = Astro.props;
+const Heading = headingLevel;
+const rail = project.venue ?? project.badge;
+---
+
+<article class="row">
+  <div class="row-rail">
+    {rail && <span class="row-venue">{rail}</span>}
+    {project.venue && project.badge && (
+      <span class="row-status">{project.badge}</span>
+    )}
+    {project.period && <span class="row-period">{project.period}</span>}
+  </div>
+
+  <div class="row-body">
+    <Heading class="row-title">{project.title}</Heading>
+    <p class="row-summary">{project.summary}</p>
+
+    {project.figure && <Figure figure={project.figure} />}
+
+    {detailed && project.highlights.length > 0 && (
+      <ul class="row-highlights">
+        {project.highlights.map((h) => <li>{h}</li>)}
+      </ul>
+    )}
+
+    {detailed && project.stack.length > 0 && (
+      <ul class="row-stack">
+        {project.stack.map((s) => <li class="tag">{s}</li>)}
+      </ul>
+    )}
+
+    <ProjectLinks links={project.links} limit={detailed ? undefined : 3} />
+
+    {detailed && project.sourceNote && (
+      <p class="source-note">{project.sourceNote}</p>
+    )}
+  </div>
+</article>
