@@ -1,0 +1,313 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="459.085781pt" height="271.432742pt" viewBox="0 0 459.085781 271.432742" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:date>2026-08-03T05:01:57.162802</dc:date>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>Matplotlib v3.11.1, https://matplotlib.org/</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 271.432742 
+L 459.085781 271.432742 
+L 459.085781 0 
+L 0 0 
+L 0 271.432742 
+z
+" style="fill: none; opacity: 0"/>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path d="M 50.125781 231.732 
+L 451.885781 231.732 
+L 451.885781 7.2 
+L 50.125781 7.2 
+L 50.125781 231.732 
+z
+" style="fill: none; opacity: 0"/>
+   </g>
+   <g id="matplotlib.axis_1">
+    <g id="xtick_1">
+     <g id="line2d_1">
+      <defs>
+       <path id="mee2809170d" d="M 0 0 
+L 0 3 
+" style="stroke: #6b6157; stroke-width: 0.8"/>
+      </defs>
+      <g>
+       <use xlink:href="#mee2809170d" x="80.008756" y="231.732" style="fill: #6b6157; stroke: #6b6157; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_1">
+      <text style="font-size: 8.5px; font-family: JetBrains Mono, ui-monospace, SF Mono, Menlo, monospace; text-anchor: middle; fill: #6b6157" x="80.008756" y="244.690008" transform="rotate(-0 80.008756 244.690008)">0%</text>
+     </g>
+    </g>
+    <g id="xtick_2">
+     <g id="line2d_2">
+      <g>
+       <use xlink:href="#mee2809170d" x="146.415368" y="231.732" style="fill: #6b6157; stroke: #6b6157; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_2">
+      <text style="font-size: 8.5px; font-family: JetBrains Mono, ui-monospace, SF Mono, Menlo, monospace; text-anchor: middle; fill: #6b6157" x="146.415368" y="244.690008" transform="rotate(-0 146.415368 244.690008)">20%</text>
+     </g>
+    </g>
+    <g id="xtick_3">
+     <g id="line2d_3">
+      <g>
+       <use xlink:href="#mee2809170d" x="212.82198" y="231.732" style="fill: #6b6157; stroke: #6b6157; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_3">
+      <text style="font-size: 8.5px; font-family: JetBrains Mono, ui-monospace, SF Mono, Menlo, monospace; text-anchor: middle; fill: #6b6157" x="212.82198" y="244.690008" transform="rotate(-0 212.82198 244.690008)">40%</text>
+     </g>
+    </g>
+    <g id="xtick_4">
+     <g id="line2d_4">
+      <g>
+       <use xlink:href="#mee2809170d" x="279.228591" y="231.732" style="fill: #6b6157; stroke: #6b6157; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_4">
+      <text style="font-size: 8.5px; font-family: JetBrains Mono, ui-monospace, SF Mono, Menlo, monospace; text-anchor: middle; fill: #6b6157" x="279.228591" y="244.690008" transform="rotate(-0 279.228591 244.690008)">60%</text>
+     </g>
+    </g>
+    <g id="xtick_5">
+     <g id="line2d_5">
+      <g>
+       <use xlink:href="#mee2809170d" x="345.635203" y="231.732" style="fill: #6b6157; stroke: #6b6157; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_5">
+      <text style="font-size: 8.5px; font-family: JetBrains Mono, ui-monospace, SF Mono, Menlo, monospace; text-anchor: middle; fill: #6b6157" x="345.635203" y="244.690008" transform="rotate(-0 345.635203 244.690008)">80%</text>
+     </g>
+    </g>
+    <g id="xtick_6">
+     <g id="line2d_6">
+      <g>
+       <use xlink:href="#mee2809170d" x="412.041814" y="231.732" style="fill: #6b6157; stroke: #6b6157; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_6">
+      <text style="font-size: 8.5px; font-family: JetBrains Mono, ui-monospace, SF Mono, Menlo, monospace; text-anchor: middle; fill: #6b6157" x="412.041814" y="244.690008" transform="rotate(-0 412.041814 244.690008)">100%</text>
+     </g>
+    </g>
+    <g id="text_7">
+     <text style="font-size: 9.5px; font-family: Geist, Inter, system-ui, sans-serif; text-anchor: middle; fill: #6b6157" x="251.005781" y="261.950516" transform="rotate(-0 251.005781 261.950516)">Cloud spend, share of cloud-only</text>
+    </g>
+   </g>
+   <g id="matplotlib.axis_2">
+    <g id="ytick_1">
+     <g id="line2d_7">
+      <path d="M 50.125781 231.732 
+L 451.885781 231.732 
+" clip-path="url(#p6dba81010a)" style="fill: none; stroke: #c9c0b4; stroke-opacity: 0.55; stroke-width: 0.5; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_8">
+      <defs>
+       <path id="m2aecde2749" d="M 0 0 
+L -3 0 
+" style="stroke: #6b6157; stroke-width: 0.8"/>
+      </defs>
+      <g>
+       <use xlink:href="#m2aecde2749" x="50.125781" y="231.732" style="fill: #6b6157; stroke: #6b6157; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_8">
+      <text style="font-size: 8.5px; font-family: JetBrains Mono, ui-monospace, SF Mono, Menlo, monospace; text-anchor: end; fill: #6b6157" x="43.625781" y="234.961004" transform="rotate(-0 43.625781 234.961004)">0.94</text>
+     </g>
+    </g>
+    <g id="ytick_2">
+     <g id="line2d_9">
+      <path d="M 50.125781 194.923475 
+L 451.885781 194.923475 
+" clip-path="url(#p6dba81010a)" style="fill: none; stroke: #c9c0b4; stroke-opacity: 0.55; stroke-width: 0.5; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_10">
+      <g>
+       <use xlink:href="#m2aecde2749" x="50.125781" y="194.923475" style="fill: #6b6157; stroke: #6b6157; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_9">
+      <text style="font-size: 8.5px; font-family: JetBrains Mono, ui-monospace, SF Mono, Menlo, monospace; text-anchor: end; fill: #6b6157" x="43.625781" y="198.152479" transform="rotate(-0 43.625781 198.152479)">0.95</text>
+     </g>
+    </g>
+    <g id="ytick_3">
+     <g id="line2d_11">
+      <path d="M 50.125781 158.114951 
+L 451.885781 158.114951 
+" clip-path="url(#p6dba81010a)" style="fill: none; stroke: #c9c0b4; stroke-opacity: 0.55; stroke-width: 0.5; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_12">
+      <g>
+       <use xlink:href="#m2aecde2749" x="50.125781" y="158.114951" style="fill: #6b6157; stroke: #6b6157; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_10">
+      <text style="font-size: 8.5px; font-family: JetBrains Mono, ui-monospace, SF Mono, Menlo, monospace; text-anchor: end; fill: #6b6157" x="43.625781" y="161.343955" transform="rotate(-0 43.625781 161.343955)">0.96</text>
+     </g>
+    </g>
+    <g id="ytick_4">
+     <g id="line2d_13">
+      <path d="M 50.125781 121.306426 
+L 451.885781 121.306426 
+" clip-path="url(#p6dba81010a)" style="fill: none; stroke: #c9c0b4; stroke-opacity: 0.55; stroke-width: 0.5; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_14">
+      <g>
+       <use xlink:href="#m2aecde2749" x="50.125781" y="121.306426" style="fill: #6b6157; stroke: #6b6157; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_11">
+      <text style="font-size: 8.5px; font-family: JetBrains Mono, ui-monospace, SF Mono, Menlo, monospace; text-anchor: end; fill: #6b6157" x="43.625781" y="124.53543" transform="rotate(-0 43.625781 124.53543)">0.97</text>
+     </g>
+    </g>
+    <g id="ytick_5">
+     <g id="line2d_15">
+      <path d="M 50.125781 84.497902 
+L 451.885781 84.497902 
+" clip-path="url(#p6dba81010a)" style="fill: none; stroke: #c9c0b4; stroke-opacity: 0.55; stroke-width: 0.5; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_16">
+      <g>
+       <use xlink:href="#m2aecde2749" x="50.125781" y="84.497902" style="fill: #6b6157; stroke: #6b6157; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_12">
+      <text style="font-size: 8.5px; font-family: JetBrains Mono, ui-monospace, SF Mono, Menlo, monospace; text-anchor: end; fill: #6b6157" x="43.625781" y="87.726906" transform="rotate(-0 43.625781 87.726906)">0.98</text>
+     </g>
+    </g>
+    <g id="ytick_6">
+     <g id="line2d_17">
+      <path d="M 50.125781 47.689377 
+L 451.885781 47.689377 
+" clip-path="url(#p6dba81010a)" style="fill: none; stroke: #c9c0b4; stroke-opacity: 0.55; stroke-width: 0.5; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_18">
+      <g>
+       <use xlink:href="#m2aecde2749" x="50.125781" y="47.689377" style="fill: #6b6157; stroke: #6b6157; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_13">
+      <text style="font-size: 8.5px; font-family: JetBrains Mono, ui-monospace, SF Mono, Menlo, monospace; text-anchor: end; fill: #6b6157" x="43.625781" y="50.918381" transform="rotate(-0 43.625781 50.918381)">0.99</text>
+     </g>
+    </g>
+    <g id="ytick_7">
+     <g id="line2d_19">
+      <path d="M 50.125781 10.880852 
+L 451.885781 10.880852 
+" clip-path="url(#p6dba81010a)" style="fill: none; stroke: #c9c0b4; stroke-opacity: 0.55; stroke-width: 0.5; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_20">
+      <g>
+       <use xlink:href="#m2aecde2749" x="50.125781" y="10.880852" style="fill: #6b6157; stroke: #6b6157; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_14">
+      <text style="font-size: 8.5px; font-family: JetBrains Mono, ui-monospace, SF Mono, Menlo, monospace; text-anchor: end; fill: #6b6157" x="43.625781" y="14.109856" transform="rotate(-0 43.625781 14.109856)">1.00</text>
+     </g>
+    </g>
+    <g id="text_15">
+     <text style="font-size: 9.5px; font-family: Geist, Inter, system-ui, sans-serif; text-anchor: middle; fill: #6b6157" x="14.417773" y="119.466" transform="rotate(-90 14.417773 119.466)">Accuracy</text>
+    </g>
+   </g>
+   <g id="line2d_21">
+    <path d="M 80.008756 191.242623 
+L 269.267599 55.051082 
+L 412.041814 40.327672 
+" clip-path="url(#p6dba81010a)" style="fill: none; stroke: #9a9086; stroke-opacity: 0.7; stroke-width: 1.2; stroke-linecap: square"/>
+   </g>
+   <g id="patch_3">
+    <path d="M 50.125781 231.732 
+L 50.125781 7.2 
+" style="fill: none; stroke: #c9c0b4; stroke-width: 0.8; stroke-linejoin: miter; stroke-linecap: square"/>
+   </g>
+   <g id="patch_4">
+    <path d="M 50.125781 231.732 
+L 451.885781 231.732 
+" style="fill: none; stroke: #c9c0b4; stroke-width: 0.8; stroke-linejoin: miter; stroke-linecap: square"/>
+   </g>
+   <g id="line2d_22">
+    <defs>
+     <path id="m06a408d37b" d="M 0 3 
+C 0.795609 3 1.55874 2.683901 2.12132 2.12132 
+C 2.683901 1.55874 3 0.795609 3 0 
+C 3 -0.795609 2.683901 -1.55874 2.12132 -2.12132 
+C 1.55874 -2.683901 0.795609 -3 0 -3 
+C -0.795609 -3 -1.55874 -2.683901 -2.12132 -2.12132 
+C -2.683901 -1.55874 -3 -0.795609 -3 0 
+C -3 0.795609 -2.683901 1.55874 -2.12132 2.12132 
+C -1.55874 2.683901 -0.795609 3 0 3 
+z
+" style="stroke: #000000; stroke-opacity: 0"/>
+    </defs>
+    <g clip-path="url(#p6dba81010a)">
+     <use xlink:href="#m06a408d37b" x="80.008756" y="191.242623" style="fill: #9a9086; stroke: #000000; stroke-opacity: 0"/>
+    </g>
+   </g>
+   <g id="line2d_23">
+    <defs>
+     <path id="m3228b8dec7" d="M 0 4.5 
+C 1.193414 4.5 2.338109 4.025852 3.181981 3.181981 
+C 4.025852 2.338109 4.5 1.193414 4.5 0 
+C 4.5 -1.193414 4.025852 -2.338109 3.181981 -3.181981 
+C 2.338109 -4.025852 1.193414 -4.5 0 -4.5 
+C -1.193414 -4.5 -2.338109 -4.025852 -3.181981 -3.181981 
+C -4.025852 -2.338109 -4.5 -1.193414 -4.5 0 
+C -4.5 1.193414 -4.025852 2.338109 -3.181981 3.181981 
+C -2.338109 4.025852 -1.193414 4.5 0 4.5 
+z
+" style="stroke: #000000; stroke-opacity: 0"/>
+    </defs>
+    <g clip-path="url(#p6dba81010a)">
+     <use xlink:href="#m3228b8dec7" x="269.267599" y="55.051082" style="fill: #b4471f; stroke: #000000; stroke-opacity: 0"/>
+    </g>
+   </g>
+   <g id="line2d_24">
+    <g clip-path="url(#p6dba81010a)">
+     <use xlink:href="#m06a408d37b" x="412.041814" y="40.327672" style="fill: #9a9086; stroke: #000000; stroke-opacity: 0"/>
+    </g>
+   </g>
+   <g id="text_16">
+    <text style="font-size: 9.5px; font-family: Geist, Inter, system-ui, sans-serif; text-anchor: middle; fill: #6b6157" x="80.008756" y="211.242623" transform="rotate(-0 80.008756 211.242623)">Local-only</text>
+   </g>
+   <g id="text_17">
+    <text style="font-size: 8.5px; font-family: JetBrains Mono, ui-monospace, SF Mono, Menlo, monospace; text-anchor: middle; fill: #6b6157" x="80.008756" y="224.242623" transform="rotate(-0 80.008756 224.242623)">0.951</text>
+   </g>
+   <g id="text_18">
+    <text style="font-weight: 600; font-size: 9.5px; font-family: Geist, Inter, system-ui, sans-serif; text-anchor: middle; fill: #b4471f" x="269.267599" y="40.051082" transform="rotate(-0 269.267599 40.051082)">Hybrid</text>
+   </g>
+   <g id="text_19">
+    <text style="font-size: 8.5px; font-family: JetBrains Mono, ui-monospace, SF Mono, Menlo, monospace; text-anchor: middle; fill: #6b6157" x="269.267599" y="27.051082" transform="rotate(-0 269.267599 27.051082)">0.988</text>
+   </g>
+   <g id="text_20">
+    <text style="font-size: 9.5px; font-family: Geist, Inter, system-ui, sans-serif; text-anchor: middle; fill: #6b6157" x="412.041814" y="60.327672" transform="rotate(-0 412.041814 60.327672)">Cloud-only</text>
+   </g>
+   <g id="text_21">
+    <text style="font-size: 8.5px; font-family: JetBrains Mono, ui-monospace, SF Mono, Menlo, monospace; text-anchor: middle; fill: #6b6157" x="412.041814" y="73.327672" transform="rotate(-0 412.041814 73.327672)">0.992</text>
+   </g>
+   <g id="text_22">
+    <text style="font-style: italic; font-size: 8.5px; font-family: Geist, Inter, system-ui, sans-serif; fill: #6b6157" transform="translate(293.153652 83.487053)">43% less cloud spend,</text>
+    <text style="font-style: italic; font-size: 8.5px; font-family: Geist, Inter, system-ui, sans-serif; fill: #6b6157" transform="translate(288.165879 93.689377)">0.004 accuracy given up</text>
+   </g>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="p6dba81010a">
+   <rect x="50.125781" y="7.2" width="401.76" height="224.532"/>
+  </clipPath>
+ </defs>
+</svg>
