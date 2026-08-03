@@ -1,16 +1,16 @@
 export const site = {
   name: "Suryansh Sijwali",
-  // Subtitle pairs affiliation with role for instant identity. Renders italic.
-  subtitle: "Penn State CS · AI/ML Engineer & Researcher",
+  // Subtitle pairs affiliation with focus for instant identity. Renders italic.
+  subtitle: "Honors undergraduate in Computer Science & Engineering at Penn State",
   // Real publication credits only (submissions belong in the status block).
   // Renders as a small muted line under the subtitle.
   credentials: "IEEE AITest 2025 · LCTES 2026 · Patishnock Undergraduate Research Award",
   // Editorial closing line. Renders after the status block as its own moment.
-  closingLine: "Research that ships and systems that get used.",
+  closingLine: "Driven by a passion for research, engineering, and open science.",
   // og:description, used for social unfurls when no per-page override is set.
-  description: "Penn State CS. AI/ML Engineer & Researcher. IEEE AITest 2025, LCTES 2026. Research that ships and systems that get used.",
+  description: "Suryansh Sijwali, honors undergraduate in Computer Science & Engineering at Penn State. My work centers on AI/ML systems and static analysis, and their safe, secure, and reliable deployment. IEEE AITest 2025, LCTES 2026.",
   // Kept for backwards compatibility with any code that imports site.title.
-  title: "AI/ML Engineer & Researcher",
+  title: "Research, engineering, and open science",
   url: "https://suryanshss1011.github.io",
   social: {
     github: "https://github.com/SuryanshSS1011",
@@ -22,12 +22,15 @@ export const site = {
 };
 
 export const about = {
-  currently: "Causality-aware security reward design for RL-based C code generation.",
+  // Kept deliberately general. The specific direction names work that is under
+  // double-blind review, and this site is indexed under his name.
+  currently: "Reinforcement learning for reliable and secure code generation.",
   submitted: "Match Your Loss to Your Cost · CNSM 2026",
 
-  bio: `I'm a Computer Science student at Penn State, passionate about building intelligent systems at the intersection of AI research and practical software engineering.
-
-Currently focused on LLM-powered code analysis, full-stack development, and exploring how AI can solve real-world problems in manufacturing, education, and beyond.`,
+  // One line, at the foot of the home page. The old two-paragraph bio said
+  // "passionate about building intelligent systems at the intersection of" and
+  // was the weakest copy on the site; the work above it now does that job.
+  openSource: "Astral, Infer, Hugging Face, PyTorch.",
 
   education: {
     degree: "B.S. Computer Science",
@@ -44,19 +47,38 @@ export type ProjectLink = { label: string; url: string };
 
 export type ProjectImage = { src: string; alt: string };
 
+/**
+ * A figure earns a card; everything else is a row. Two kinds, because research
+ * and builds show different things and flattening them into one treatment makes
+ * a measured result read as decoration.
+ *
+ * `figure`   — an argument. A plot that makes a claim, framed, with a caption in
+ *              the register of a paper figure.
+ * `artifact` — the thing itself. A screenshot or diagram, bleeding to the card
+ *              edge with no frame, and one line of orientation rather than a claim.
+ *
+ * Both take an optional `srcDark`; without one, the image sits on a light paper
+ * ground in both themes so a figure drawn for white paper never floats on black.
+ * Regenerate the plots with `scripts/figures/*.py`.
+ *
+ * A card figure must be legible at 700px with no zooming. Architecture diagrams
+ * and dense heatmaps fail that test and belong in the writeup instead.
+ */
 export type ProjectFigure =
-  | { type: 'reward-ladder'; rows: { label: string; value: string; fill: number }[] }
-  | {
-      type: 'result-bars';
-      caption?: string;
-      rows: { label: string; valueDisplay: string; fill: number; delta?: string }[];
-    };
+  | { kind: 'figure'; src: string; srcDark?: string; alt: string; caption: string }
+  | { kind: 'artifact'; src: string; srcDark?: string; alt: string; note?: string };
 
 export type Project = {
   title: string;
   role: string;
+  // Short venue or context for the index-row rail ("CNSM 2026", "Open source").
+  // Falls back to `badge` when absent. Keep it to two or three words.
+  venue?: string;
   period?: string;
   badge?: string;
+  // One plain sentence: what this is, readable by someone outside the subfield.
+  // Everything that needs jargon goes in `highlights`, which only the detail
+  // pages render.
   summary: string;
   highlights: string[];
   stack: string[];
@@ -64,58 +86,100 @@ export type Project = {
   sourceNote?: string;
   current: boolean;
   category: 'research' | 'engineering';
+  // Surfaced on the home index. Keep this list short — the home page is an
+  // index, not a portfolio dump.
+  featured?: boolean;
   image?: ProjectImage;
   figure?: ProjectFigure;
 };
 
+/**
+ * Ordered most-recent first. Order is by recency, never by whether an item has
+ * a figure — a row sitting above a card is correct, and keeps card-vs-row
+ * reading as "this one has something to show" rather than "this one matters more".
+ */
 export const projects: Project[] = [
+  {
+    title: "Exhibit A",
+    role: "Evidence engine for AI code review",
+    venue: "Open source",
+    badge: "Building",
+    summary:
+      "An AI code reviewer that may only report a bug when it can hand you a test that fails on the broken code and passes on the fix, and stays silent when it cannot.",
+    highlights: [
+      "One rule, enforced by construction rather than by a confidence threshold: no runnable proof, no comment. A deterministic, model-free flip check is the sole judge of what counts as evidence.",
+      "Two modes on one evidence engine. Detective reproduces a bug from a stack trace; Prosecutor reviews a pull request and comments only when a flip is proven.",
+      "Every proof is an execution-validated fail-to-pass test tied to a commit, so each one doubles as a contamination-free benchmark instance for AI4SE research."
+    ],
+    stack: ["Python", "pytest", "Git", "LLM tool use"],
+    links: [
+      { label: "Project site", url: "https://suryanshss1011.github.io/Exhibit-A/" },
+      { label: "GitHub", url: "https://github.com/SuryanshSS1011/Exhibit-A" }
+    ],
+    current: true,
+    category: "engineering",
+    featured: true
+  },
+  {
+    title: "Tollgate",
+    role: "Cost-aware edge inspection agent",
+    venue: "Open source",
+    badge: "Shipped",
+    summary:
+      "An industrial inspection agent that sends a frame to the cloud based on what a mistake would cost, not on how confident the model happens to feel.",
+    highlights: [
+      "One inequality yields three properties at once. Routing on cost rather than confidence gives privacy (only a cropped region ever leaves the device), offline tolerance (queue and reconcile), and cloud economy from the same decision.",
+      "Measured on real MVTec data across six categories: 0.988 accuracy at 57% of cloud-only spend, against 0.992 at full spend and 0.951 running purely local.",
+      "Six-category robustness 0.969 ± 0.015, and a backbone ablation moves the hybrid result by only -0.024 to +0.023 — the router absorbs local-model variance. 168 tests green."
+    ],
+    stack: ["Python", "ONNX", "DINOv2", "qwen3-vl-plus", "MCP", "Docker", "Alibaba Cloud", "SQLite"],
+    links: [
+      { label: "Project site", url: "https://suryanshss1011.github.io/edge-inspection-agent/" },
+      { label: "GitHub", url: "https://github.com/SuryanshSS1011/edge-inspection-agent" }
+    ],
+    figure: {
+      kind: 'figure',
+      src: "/figures/tollgate-tradeoff-light.svg",
+      srcDark: "/figures/tollgate-tradeoff-dark.svg",
+      alt: "Accuracy against cloud spend for three routing modes. Local-only reaches 0.951 accuracy at zero cloud spend, the hybrid router 0.988 at 57% of cloud-only spend, and cloud-only 0.992 at full spend.",
+      caption: "Accuracy vs cloud spend on MVTec, six categories. Routing by cost keeps 99.6% of cloud-only accuracy for 57% of the spend."
+    },
+    current: true,
+    category: "engineering",
+    featured: true
+  },
   {
     title: "Warren",
     role: "In active development for Mind the Product's World Product Day 2026",
+    venue: "Open source",
     badge: "Building",
     summary:
-      "Turn your Wikipedia rabbit hole into a beautiful, shareable map. Your actual clicked path becomes a bright animated spine; all other links sit as faint context so the graph never becomes a hairball.",
+      "Turns a Wikipedia rabbit hole into a shareable map, where the path you actually clicked stays bright and every other link fades into context.",
     highlights: [
-      "Spine-and-focus graph principle: clicked path is a thick animated edge, neighbors dim, distant nodes fade. Sidesteps the Obsidian/Roam-style hairball at 200+ nodes.",
-      "Reads inside the map: clicking a node opens a floating burrow card anchored to the node, so the map never leaves the screen.",
-      "Reverse-engineered from the share card inward: the artifact is designed first (Spotify Wrapped lesson), then the experience fills it."
+      "Spine-and-focus graph principle: the clicked path is a thick animated edge, neighbours dim, distant nodes fade. Sidesteps the Obsidian/Roam-style hairball at 200+ nodes.",
+      "Reads inside the map: clicking a node opens a floating burrow card anchored to it, so the map never leaves the screen.",
+      "Reverse-engineered from the share card inward — the artifact is designed first (the Spotify Wrapped lesson), then the experience fills it."
     ],
     stack: ["Next.js 16", "TypeScript", "Tailwind v4", "Supabase", "Claude Haiku 4.5", "react-force-graph-2d", "@vercel/og", "Wikimedia REST"],
     links: [
+      { label: "Try it", url: "https://wikiwarren.vercel.app" },
       { label: "Read the writeup", url: "/blog/warren/" },
       { label: "GitHub", url: "https://github.com/SuryanshSS1011/Warren" }
     ],
     current: true,
-    category: "engineering"
+    category: "engineering",
+    featured: true
   },
   {
-    title: "Wynlabs",
-    role: "Founding Engineer · Jan 2025 – Mar 2026",
-    badge: "Industry / Startup",
-    summary:
-      "Founding engineer on an industrial copilot platform. Multi-agent AI workflows over live SCADA, PLC, MQTT, and SQL Server data on the plant floor.",
-    highlights: [
-      "Multi-agent workflows on per-deployment knowledge graphs (2k to 5k nodes), orchestrated through LangChain.",
-      "Shipped 15+ client POCs end-to-end, embedded with manufacturing teams.",
-      "Built FastAPI services + a provisioning CLI for Dockerized pipelines on AWS and Kubernetes."
-    ],
-    stack: ["Python", "FastAPI", "LangChain", "Docker", "Kubernetes", "AWS", "SCADA/PLC/MQTT", "TypeScript"],
-    links: [
-      { label: "wynlabs.ai", url: "https://wynlabs.ai" }
-    ],
-    sourceNote: "Source code is private (commercial product).",
-    current: false,
-    category: "engineering"
-  },
-  {
-    title: "Match Your Loss to Your Cost",
+    title: "Match Your Loss to Your Cost: Asymmetric Losses and Conformal Capacity Bands for Backbone Traffic Forecasting",
     role: "CNSM 2026 Submission",
+    venue: "CNSM 2026",
     badge: "Submitted",
     summary:
-      "Decision-aware traffic forecasting for backbone capacity planning. Asymmetric losses and conformal capacity bands trained against operator cost, not RMSE. Three real backbones, 20 seeds, paired-bootstrap CIs.",
+      "A network operator pays far more for a capacity shortfall than for spare headroom, so this trains the traffic forecaster on that real cost instead of on RMSE.",
     highlights: [
       "Cusp-linear loss matched to operator ratio: +76% Abilene, +75% GÉANT, +54% CESNET vs MSE at top operator asymmetry. L1 is the canonical consistent scoring rule for the τ-quantile (Gneiting 2011); squared asymmetric collapses on heavy-tailed GÉANT.",
-      "Cross-architecture: matched 5:1 win reproduces on DLinear (+30 to +97%) and iTransformer (+28 to +79%) across Abilene/GÉANT/CESNET.",
+      "Cross-architecture: the matched 5:1 win reproduces on DLinear (+30 to +97%) and iTransformer (+28 to +79%) across Abilene/GÉANT/CESNET.",
       "ACI vs split CQR: overload rate 155× lower on Abilene, 9.1× lower on GÉANT, 3.8× lower on CESNET. ACI's across-seed coverage variance is 30 to 200× smaller."
     ],
     stack: ["Python", "PyTorch", "statsmodels", "NumPy", "Pandas", "scikit-learn"],
@@ -124,26 +188,26 @@ export const projects: Project[] = [
       { label: "GitHub", url: "https://github.com/SuryanshSS1011/match-loss-to-cost" }
     ],
     figure: {
-      type: 'result-bars',
-      caption: "Operator-cost reduction vs MSE-trained LSTM, cusp-linear loss at top operator asymmetry",
-      rows: [
-        { label: "Abilene", valueDisplay: "+76%", fill: 76 },
-        { label: "GÉANT",   valueDisplay: "+75%", fill: 75 },
-        { label: "CESNET",  valueDisplay: "+54%", fill: 54 }
-      ]
+      kind: 'figure',
+      src: "/figures/pareto-frontier-light.svg",
+      srcDark: "/figures/pareto-frontier-dark.svg",
+      alt: "Mean overload rate against mean over-provisioning cost on Abilene as the training ratio is swept from 1:1 to 100:1. Overload falls by more than two orders of magnitude as cost rises, and the 1:1 point coincides with the MSE baseline.",
+      caption: "Sweeping the training ratio on Abilene (DLinear, 20 seeds). The 1:1 point lands on the MSE baseline exactly, since α = β = 1 recovers MSE."
     },
     current: false,
-    category: "research"
+    category: "research",
+    featured: true
   },
   {
     title: "Scheduled Partial-Credit RL for Reliable Code Generation with Small Language Models (WIP)",
     role: "LCTES 2026",
+    venue: "LCTES 2026",
     badge: "Published",
     summary:
-      "Reliability-first RL for small language models in code generation. Joint reward R = 0.6·R_func + 0.4·R_sec with a five-stage partial-credit functional ladder.",
+      "Handing a small model from binary rewards to partial credit partway through training lifts its syntax-valid output from 18% to 63%.",
     highlights: [
       "On DeepSeek-Coder-1.3B over 100 APPS+ prompts: SFT 44% syntax / 3% ≥1-pass. Binary-reward PPO degrades to 18% / 0%. Partial-credit from scratch reaches 27% / 2%.",
-      "Binary-to-partial-credit schedule (PPO-continue) wins: 63% syntax, 9% ≥1-pass, 2% all-pass (single attempt). Curriculum learning the schedule matters more than the reward shape alone.",
+      "The binary-to-partial-credit schedule (PPO-continue) wins: 63% syntax, 9% ≥1-pass, 2% all-pass on a single attempt. Curriculum on the reward matters more than the reward shape alone.",
       "LoRA r=16 (6.3M trainable params, 0.47%), single V100 16GB, Bandit-graded R_sec. Security null on APPS+ (algorithmic); CWE-mapped partial credit is the next step."
     ],
     stack: ["Python", "PyTorch", "TRL (PPO)", "PEFT (LoRA)", "Bandit", "DeepSeek-Coder-1.3B", "APPS+"],
@@ -152,27 +216,41 @@ export const projects: Project[] = [
       { label: "Paper (ACM DL)", url: "https://doi.org/10.1145/3814943.3816167" },
       { label: "GitHub", url: "https://github.com/SuryanshSS1011/SecureCodeRL" }
     ],
-    figure: {
-      type: 'reward-ladder',
-      rows: [
-        { label: "syntax error", value: "0.0", fill: 8 },
-        { label: "valid syntax", value: "0.2", fill: 24 },
-        { label: "runs, no crash", value: "0.4", fill: 42 },
-        { label: "produces output", value: "0.6", fill: 60 },
-        { label: "passes k of T", value: "0.6 + 0.4·k/T", fill: 92 }
-      ]
-    },
     current: false,
-    category: "research"
+    category: "research",
+    featured: true
+  },
+  {
+    title: "Wynlabs",
+    role: "Founding Engineer",
+    venue: "Startup",
+    period: "Jan 2025 – Mar 2026",
+    badge: "Industry",
+    summary:
+      "Founding engineer on an industrial copilot, running multi-agent workflows over live plant-floor SCADA, PLC, and MQTT data.",
+    highlights: [
+      "Multi-agent workflows on per-deployment knowledge graphs (2k to 5k nodes), orchestrated through LangChain.",
+      "Shipped 15+ client POCs end-to-end, embedded with manufacturing teams.",
+      "Built FastAPI services and a provisioning CLI for Dockerized pipelines on AWS and Kubernetes."
+    ],
+    stack: ["Python", "FastAPI", "LangChain", "Docker", "Kubernetes", "AWS", "SCADA/PLC/MQTT", "TypeScript"],
+    links: [
+      { label: "wynlabs.ai", url: "https://wynlabs.ai" }
+    ],
+    sourceNote: "Source code is private (commercial product).",
+    current: false,
+    category: "engineering",
+    featured: true
   },
   {
     title: "Knowledge Retrieval System for Technical Documents",
     role: "Penn State Learning Factory · Morgan Advanced Materials",
-    badge: "Capstone",
+    venue: "Capstone",
+    badge: "Sponsored",
     summary:
-      "Offline, citation-grounded RAG for technical documents. Refuses to answer when it can't cite a source. Deployed on a local GPU workstation at the sponsor's office.",
+      "A document assistant for a materials manufacturer that refuses to answer at all when it cannot cite the source it drew from.",
     highlights: [
-      "Citation enforcement blocks ungrounded outputs before the user sees them. That is the policy that makes the system safe on regulated content.",
+      "Citation enforcement blocks ungrounded outputs before the user sees them. That policy is what makes the system safe on regulated content.",
       "Hybrid retrieval: FAISS + BM25 fused via Reciprocal Rank Fusion, then a cross-encoder reranker.",
       "FastAPI + SSE backend, Chainlit chat UI, evaluation harness for Recall@K, nDCG@K, MRR, and latency."
     ],
@@ -188,9 +266,10 @@ export const projects: Project[] = [
   {
     title: "TruthCast",
     role: "Solana Track Winner · HackPSU Spring 2026",
-    badge: "Hackathon Winner",
+    venue: "HackPSU 2026",
+    badge: "Winner",
     summary:
-      "Multi-agent fact-checking pipeline with adversarial debate, source-credibility weighting, and on-chain provenance via Solana memos on devnet.",
+      "A fact-checker where AI agents argue both sides of a claim, and the verdict is written to a public ledger so it cannot be quietly edited later.",
     highlights: [
       "Decomposes claims via HiSS, retrieves with Gemini + google_search, weights by MBFC source credibility (~4,000 domains).",
       "Pro/con debate fires only when inter-agent agreement falls below 80%. Emits one of 7 verdicts (TRUE through UNVERIFIABLE), not a boolean.",
@@ -198,8 +277,8 @@ export const projects: Project[] = [
     ],
     stack: ["Next.js 14", "TypeScript", "Gemini 2.0 Flash", "Solana (devnet)", "ElevenLabs TTS", "Turso/SQLite", "MBFC dataset"],
     links: [
-      { label: "Read the writeup", url: "/blog/truthcast/" },
       { label: "Live demo", url: "https://truth-cast-web.vercel.app" },
+      { label: "Read the writeup", url: "/blog/truthcast/" },
       { label: "GitHub", url: "https://github.com/SuryanshSS1011/TruthCast" }
     ],
     current: false,
@@ -208,9 +287,10 @@ export const projects: Project[] = [
   {
     title: "Shift",
     role: "Climate Change Track Winner · GDG @ Penn State Solution Challenge",
-    badge: "Hackathon Winner",
+    venue: "Solution Challenge",
+    badge: "Winner",
     summary:
-      "One AI-personalized sustainability action per day, with radical transparency about the carbon cost of every inference. Built in 12 hours.",
+      "One personalised climate action a day, with the energy and carbon cost of every AI call it makes shown openly rather than hidden.",
     highlights: [
       "Daily actions tailored to commute, diet, live grid carbon intensity, and weather, drawn from EPA + DEFRA emissions data and 190 curated actions.",
       "Chrome extension and Eco-LLM dashboard track energy (Wh), carbon (gCO2), and water (mL) per Gemini prompt. Semantic caching serves repeat queries at zero added inference cost.",
@@ -218,8 +298,8 @@ export const projects: Project[] = [
     ],
     stack: ["Next.js 14 (PWA)", "TypeScript", "Tailwind", "Groq (Llama 3.3-70B)", "Gemini", "Supabase", "Upstash Vector", "EcoLogits"],
     links: [
-      { label: "Read the writeup", url: "/blog/shift/" },
       { label: "Live demo", url: "https://useshift.vercel.app" },
+      { label: "Read the writeup", url: "/blog/shift/" },
       { label: "GitHub", url: "https://github.com/SuryanshSS1011/Shift" }
     ],
     current: false,
@@ -228,11 +308,12 @@ export const projects: Project[] = [
   {
     title: "Fixing Performance Bugs Through LLM Explanations",
     role: "IEEE AITest 2025",
+    venue: "IEEE AITest 2025",
     badge: "Published",
     summary:
-      "Using LLM explanations as a training signal (not just labels) to detect Java performance bugs. Peer-reviewed at IEEE AITest 2025.",
+      "Training a model on written explanations of Java performance bugs, rather than on labels alone, raises detection accuracy from 67% to 84%.",
     highlights: [
-      "Curated dataset of 490 performance bugs across 17 Defects4J projects, 5-category taxonomy (algorithmic, memory, CPU, redundant, I/O).",
+      "Curated dataset of 490 performance bugs across 17 Defects4J projects, with a 5-category taxonomy (algorithmic, memory, CPU, redundant, I/O).",
       "Fine-tuned GPT-4o-mini to produce explanations alongside predictions. Detection accuracy 67.3% → 83.7%, F1 64.6% → 82.3%.",
       "Full reproduction stack public: extraction, categorization, fine-tuning, evaluation harness."
     ],
@@ -243,14 +324,6 @@ export const projects: Project[] = [
       { label: "Project site", url: "https://suryanshss1011.github.io/Performance-Bugs-LLM" },
       { label: "GitHub", url: "https://github.com/SuryanshSS1011/Performance-Bugs-LLM" }
     ],
-    figure: {
-      type: 'result-bars',
-      caption: "Detection on 490-bug test set after fine-tuning GPT-4o-mini with explanations",
-      rows: [
-        { label: "Accuracy", valueDisplay: "83.7%", fill: 83.7, delta: "+16.4pp vs 67.3% baseline" },
-        { label: "F1",       valueDisplay: "82.3%", fill: 82.3, delta: "+17.7pp vs 64.6% baseline" }
-      ]
-    },
     current: false,
     category: "research"
   }
