@@ -1,4 +1,4 @@
-"""Cost/overload Pareto frontier for the CNSM 2026 work, in the site palette.
+"""Cost/overload Pareto frontier for the match-loss-to-cost work, in the site palette.
 
 Source data: results/abilene_pareto_asym/summary.json in SuryanshSS1011/match-loss-to-cost
 (DLinear sweep on Abilene; the public repo carries the full ratio sweep for

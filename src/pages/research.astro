@@ -42,26 +42,21 @@ const lctesPaperSchema = {
   url: "https://doi.org/10.1145/3814943.3816167"
 };
 
-const cnsmPaperSchema = {
+const matchLossPaperSchema = {
   "@context": "https://schema.org",
   "@type": "ScholarlyArticle",
   name: "Match Your Loss to Your Cost: Asymmetric Losses and Conformal Capacity Bands for Backbone Traffic Forecasting",
   author,
-  isPartOf: {
-    "@type": "PublicationEvent",
-    name: "21st International Conference on Network and Service Management (CNSM 2026)"
-  },
-  creativeWorkStatus: "Submitted",
   dateCreated: "2026-06-01",
   url: "https://github.com/SuryanshSS1011/match-loss-to-cost"
 };
 
-const allPaperSchemas = [aiTestPaperSchema, lctesPaperSchema, cnsmPaperSchema];
+const allPaperSchemas = [aiTestPaperSchema, lctesPaperSchema, matchLossPaperSchema];
 ---
 
 <BaseLayout
   title="Research · Suryansh Sijwali"
-  description="Peer-reviewed research by Suryansh Sijwali (Patishnock Undergraduate Research Award, Penn State). Fixing Performance Bugs Through LLM Explanations (IEEE AITest 2025), Scheduled Partial-Credit RL for Reliable Code Generation with SLMs (WIP) (LCTES 2026), Match Your Loss to Your Cost: Asymmetric Losses and Conformal Capacity Bands for Backbone Traffic Forecasting (CNSM 2026 submission)."
+  description="Peer-reviewed research by Suryansh Sijwali (Patishnock Undergraduate Research Award, Penn State). Fixing Performance Bugs Through LLM Explanations (IEEE AITest 2025), Scheduled Partial-Credit RL for Reliable Code Generation with SLMs (WIP) (LCTES 2026), Match Your Loss to Your Cost: Asymmetric Losses and Conformal Capacity Bands for Backbone Traffic Forecasting."
   jsonLd={allPaperSchemas}
 >
   <SectionHeading

@@ -2,8 +2,7 @@ export const site = {
   name: "Suryansh Sijwali",
   // Subtitle pairs affiliation with focus for instant identity. Renders italic.
   subtitle: "Honors undergraduate in Computer Science & Engineering at Penn State",
-  // Real publication credits only (submissions belong in the status block).
-  // Renders as a small muted line under the subtitle.
+  // Real publication credits only. Renders as a small muted line under the subtitle.
   credentials: "IEEE AITest 2025 · LCTES 2026 · Patishnock Undergraduate Research Award",
   // Editorial closing line. Renders after the status block as its own moment.
   closingLine: "Driven by a passion for research, engineering, and open science.",
@@ -25,7 +24,6 @@ export const about = {
   // Kept deliberately general. The specific direction names work that is under
   // double-blind review, and this site is indexed under his name.
   currently: "Reinforcement learning for reliable and secure code generation.",
-  submitted: "Match Your Loss to Your Cost · CNSM 2026",
 
   // One line, at the foot of the home page. The old two-paragraph bio said
   // "passionate about building intelligent systems at the intersection of" and
@@ -71,7 +69,7 @@ export type ProjectFigure =
 export type Project = {
   title: string;
   role: string;
-  // Short venue or context for the index-row rail ("CNSM 2026", "Open source").
+  // Short venue or context for the index-row rail ("LCTES 2026", "Open source").
   // Falls back to `badge` when absent. Keep it to two or three words.
   venue?: string;
   period?: string;
@@ -172,9 +170,8 @@ export const projects: Project[] = [
   },
   {
     title: "Match Your Loss to Your Cost: Asymmetric Losses and Conformal Capacity Bands for Backbone Traffic Forecasting",
-    role: "CNSM 2026 Submission",
-    venue: "CNSM 2026",
-    badge: "Submitted",
+    role: "Cost-aware backbone traffic forecasting",
+    badge: "Working paper",
     summary:
       "A network operator pays far more for a capacity shortfall than for spare headroom, so this trains the traffic forecaster on that real cost instead of on RMSE.",
     highlights: [
