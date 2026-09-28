@@ -3,11 +3,11 @@ export const site = {
   // Subtitle pairs affiliation with focus for instant identity. Renders italic.
   subtitle: "Honors undergraduate in Computer Science & Engineering at Penn State",
   // Real publication credits only. Renders as a small muted line under the subtitle.
-  credentials: "IEEE AITest 2025 · LCTES 2026 · Patishnock Undergraduate Research Award",
+  credentials: "IEEE AITest 2025 · LCTES 2026 · ICTAI 2026 · Patishnock Undergraduate Research Award",
   // Editorial closing line. Renders after the status block as its own moment.
   closingLine: "Driven by a passion for research, engineering, and open science.",
   // og:description, used for social unfurls when no per-page override is set.
-  description: "Suryansh Sijwali, honors undergraduate in Computer Science & Engineering at Penn State. My work centers on AI/ML systems and static analysis, and their safe, secure, and reliable deployment. IEEE AITest 2025, LCTES 2026.",
+  description: "Suryansh Sijwali, honors undergraduate in Computer Science & Engineering at Penn State. My work centers on AI/ML systems and static analysis, and their safe, secure, and reliable deployment. IEEE AITest 2025, LCTES 2026, ICTAI 2026.",
   // Kept for backwards compatibility with any code that imports site.title.
   title: "Research, engineering, and open science",
   url: "https://suryanshss1011.github.io",
@@ -21,9 +21,7 @@ export const site = {
 };
 
 export const about = {
-  // Kept deliberately general. The specific direction names work that is under
-  // double-blind review, and this site is indexed under his name.
-  currently: "Reinforcement learning for reliable and secure code generation.",
+  currently: "Causality-aware RL and alignment problems.",
 
   // One line, at the foot of the home page. The old two-paragraph bio said
   // "passionate about building intelligent systems at the intersection of" and
@@ -166,6 +164,34 @@ export const projects: Project[] = [
     ],
     current: true,
     category: "engineering",
+    featured: true
+  },
+  {
+    title: "Continuous Retrieval-Grounded Reward Design for Secure Code Generation on Small Language Models (CARGO)",
+    role: "ICTAI 2026",
+    venue: "ICTAI 2026",
+    badge: "Accepted",
+    summary:
+      "Small code models trained on security-scanner verdicts stall because nearly every early attempt scores the same zero, so this also scores each attempt against a retrieved secure fix to give training something to climb.",
+    highlights: [
+      "SAST-only GRPO on Qwen2.5-Coder-1.5B updates the policy on fewer than 9% of steps: rollouts that fail to parse all score zero and the group-relative advantage collapses. A copy-guarded cosine reward against a CWE-retrieved secure fix lifts that to 94.8%.",
+      "Over SAST-only GRPO on 1,582 prompts across 19 CWEs in Python, C, and C++: +19.9 pp Compile@1, +16.6 pp Secure@1|Compile, +26.5 pp Functional-Secure@1.",
+      "Not tied to one optimizer: the retrieval reward lifts GRPO, PPO, RLOO, and RAFT by 22.5 to 26.5 pp, and reproduces on Qwen2.5-Coder-3B (+20.9) and StarCoder2-3B (+19.2)."
+    ],
+    stack: ["Python", "PyTorch", "PEFT (LoRA)", "GRPO / PPO / RLOO / RAFT", "CodeQL", "Semgrep", "Bandit", "Cppcheck", "BM25 + bge-base", "Qwen2.5-Coder"],
+    links: [
+      { label: "Read the writeup", url: "/blog/cargo/" },
+      { label: "GitHub", url: "https://github.com/SuryanshSS1011/SecureCodeRL-RAG" }
+    ],
+    figure: {
+      kind: 'figure',
+      src: "/figures/cargo-factorial-light.svg",
+      srcDark: "/figures/cargo-factorial-dark.svg",
+      alt: "Functional-Secure@1 for four RL algorithms with and without the retrieval reward. GRPO rises from 8.6 to 35.1, PPO from 10.5 to 36.2, RLOO from 8.6 to 33.7, and RAFT from 7.9 to 30.4.",
+      caption: "Functional-Secure@1 on the 156-prompt test-equipped subset (Qwen2.5-Coder-1.5B). All four gains fall within 4 pp of each other, so the reward, not the estimator, carries the effect."
+    },
+    current: false,
+    category: "research",
     featured: true
   },
   {

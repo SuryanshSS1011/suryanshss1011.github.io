@@ -101,6 +101,7 @@ The security half of the framework is the part with the most headroom left in it
 - [Paper (ACM DL, DOI 10.1145/3814943.3816167)](https://doi.org/10.1145/3814943.3816167). LCTES 2026, Boulder, CO
 - [GitHub: SecureCodeRL](https://github.com/SuryanshSS1011/SecureCodeRL)
 - [Zenodo DOI: 10.5281/zenodo.19999642](https://doi.org/10.5281/zenodo.19999642)
+- Follow-up: [CARGO](/blog/cargo/), ICTAI 2026, takes the security half forward with a retrieval-grounded reward
 - Patishnock Undergraduate Research Award winner at Penn State (Information Literacy)
 
 Co-author: Suman Saha.

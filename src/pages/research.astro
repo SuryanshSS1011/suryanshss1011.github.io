@@ -42,6 +42,21 @@ const lctesPaperSchema = {
   url: "https://doi.org/10.1145/3814943.3816167"
 };
 
+const ictaiPaperSchema = {
+  "@context": "https://schema.org",
+  "@type": "ScholarlyArticle",
+  name: "Continuous Retrieval-Grounded Reward Design for Secure Code Generation on Small Language Models (CARGO)",
+  alternateName: "CARGO",
+  author,
+  isPartOf: {
+    "@type": "PublicationEvent",
+    name: "IEEE International Conference on Tools with Artificial Intelligence (ICTAI 2026)",
+    publishedBy: { "@type": "Organization", name: "IEEE" }
+  },
+  datePublished: "2026",
+  url: "https://github.com/SuryanshSS1011/SecureCodeRL-RAG"
+};
+
 const matchLossPaperSchema = {
   "@context": "https://schema.org",
   "@type": "ScholarlyArticle",
@@ -51,12 +66,12 @@ const matchLossPaperSchema = {
   url: "https://github.com/SuryanshSS1011/match-loss-to-cost"
 };
 
-const allPaperSchemas = [aiTestPaperSchema, lctesPaperSchema, matchLossPaperSchema];
+const allPaperSchemas = [aiTestPaperSchema, lctesPaperSchema, ictaiPaperSchema, matchLossPaperSchema];
 ---
 
 <BaseLayout
   title="Research · Suryansh Sijwali"
-  description="Peer-reviewed research by Suryansh Sijwali (Patishnock Undergraduate Research Award, Penn State). Fixing Performance Bugs Through LLM Explanations (IEEE AITest 2025), Scheduled Partial-Credit RL for Reliable Code Generation with SLMs (WIP) (LCTES 2026), Match Your Loss to Your Cost: Asymmetric Losses and Conformal Capacity Bands for Backbone Traffic Forecasting."
+  description="Peer-reviewed research by Suryansh Sijwali (Patishnock Undergraduate Research Award, Penn State). Fixing Performance Bugs Through LLM Explanations (IEEE AITest 2025), Scheduled Partial-Credit RL for Reliable Code Generation with SLMs (WIP) (LCTES 2026), Continuous Retrieval-Grounded Reward Design for Secure Code Generation on SLMs (CARGO) (ICTAI 2026), Match Your Loss to Your Cost: Asymmetric Losses and Conformal Capacity Bands for Backbone Traffic Forecasting."
   jsonLd={allPaperSchemas}
 >
   <SectionHeading
