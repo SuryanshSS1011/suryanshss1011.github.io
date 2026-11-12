@@ -14,7 +14,7 @@ export const site = {
   social: {
     github: "https://github.com/SuryanshSS1011",
     linkedin: "https://linkedin.com/in/suryansh-sijwali",
-    email: "suryansh.sijwali@gmail.com",
+    email: "suryanshss1011@gmail.com",
     orcid: "https://orcid.org/0009-0005-7739-1657",
     scholar: "https://scholar.google.com/citations?user=aEkJyD0AAAAJ&hl=en"
   }
@@ -26,7 +26,7 @@ export const about = {
   // One line, at the foot of the home page. The old two-paragraph bio said
   // "passionate about building intelligent systems at the intersection of" and
   // was the weakest copy on the site; the work above it now does that job.
-  openSource: "Astral, Infer, Hugging Face, PyTorch.",
+  openSource: "SAELens, Astral, Infer, Hugging Face, PyTorch.",
 
   education: {
     degree: "B.S. Computer Science",
@@ -167,10 +167,47 @@ export const projects: Project[] = [
     featured: true
   },
   {
+    title: "Intelligence and Morality",
+    role: "Research assistant · Rock Ethics Institute",
+    venue: "Rock Ethics Institute",
+    period: "Fall 2026 – Present",
+    badge: "Research assistant",
+    summary:
+      "A project led by Prof. Laura Cabrera and Prof. Hadi Hosseini on what intelligence means across humans, animals, and AI systems, and how it connects to moral judgment.",
+    highlights: [
+      "Its directions include a review of intelligence and morality across species and AI systems, an online Intelligence Map platform, and experiments on how the normative judgments of generative AI align with those of humans and animals.",
+      "Research assistant on the project, contributing under the direction of its leads."
+    ],
+    stack: [],
+    links: [],
+    current: true,
+    category: "research"
+  },
+  {
+    title: "The Last Word Wins: Retractions and Peer Alibis in Swarm Logs Mislead LLM Incident Investigators",
+    role: "Apart Research Swarm Alignment Hackathon",
+    venue: "Apart Research",
+    badge: "Hackathon",
+    summary:
+      "When an AI agent takes back its own admission in a log, the LLMs auditing that log catch far fewer violations, unless the log records what each tool call actually did.",
+    highlights: [
+      "40 synthetic multi-agent swarm logs with planted violations, each paired with a line-matched benign twin, audited 22,880 times under a pre-registered design by seven LLM investigators from four model families.",
+      "An agent retracting its own admission cut pooled detection from 78% to 42%.",
+      "Logging what each tool call actually did, rather than what the agent said it did, restored detection for every investigator."
+    ],
+    stack: ["Python", "LLM-as-judge", "Multi-agent simulation", "Pre-registered evaluation"],
+    links: [
+      { label: "GitHub", url: "https://github.com/SuryanshSS1011/swarm-investigators" },
+      { label: "Apart Research", url: "https://apartresearch.com/sprints/projects/the-last-word-wins-retractions-and-peer-alibis-in-swarm-logs-mislead-llm-incident-investigators-zsuglkosxm" }
+    ],
+    current: false,
+    category: "research"
+  },
+  {
     title: "Continuous Retrieval-Grounded Reward Design for Secure Code Generation on Small Language Models (CARGO)",
     role: "ICTAI 2026",
     venue: "ICTAI 2026",
-    badge: "Accepted",
+    badge: "Published",
     summary:
       "Small code models trained on security-scanner verdicts stall because nearly every early attempt scores the same zero, so this also scores each attempt against a retrieved secure fix to give training something to climb.",
     highlights: [
@@ -193,6 +230,46 @@ export const projects: Project[] = [
     current: false,
     category: "research",
     featured: true
+  },
+  {
+    title: "The Undercover Seller: Sting Audits of LLM Sellers in a Double Auction",
+    role: "Apart Research AI Collusion Research Sprint",
+    venue: "Apart Research",
+    badge: "Research sprint",
+    summary:
+      "A planted seller offers a cartel deal inside a simulated market, to test whether LLM sellers that refuse the offer still go on to coordinate prices.",
+    highlights: [
+      "Pre-registered study of 980 simulated double-auction markets across Claude Haiku 5.5, Claude Sonnet 5.5, Qwen3-32B, and gpt-oss-20b.",
+      "Refusing was not the same as complying. 41 of 72 Claude sellers that rejected an explicit cartel offer still coordinated.",
+      "An audit notice stating the penalty cut Qwen coordination from 29 of 40 to 1 of 40."
+    ],
+    stack: ["Python", "Claude", "Qwen3-32B", "gpt-oss-20b", "Pre-registered evaluation"],
+    links: [
+      { label: "GitHub", url: "https://github.com/SuryanshSS1011/collusion-sting" },
+      { label: "Apart Research", url: "https://apartresearch.com/sprints/projects/the-undercover-seller-sting-audits-of-llm-sellers-in-a-double-auction-pqb3" }
+    ],
+    current: false,
+    category: "research"
+  },
+  {
+    title: "RootSink: Reproducible C/C++ Crashes with Tested Repair Sites",
+    role: "Under review at MSR 2027",
+    venue: "MSR 2027",
+    badge: "Under review",
+    summary:
+      "A dataset of real C/C++ crashes that records both the line that crashed and where the bug really is, with the evidence for each, so a patching tool can be checked on whether it fixed the cause or only the crash.",
+    highlights: [
+      "3,341 records. In 1,954 of them the crash replays on the vulnerable build and the fixed build runs the same input clean twice.",
+      "1,384 records carry a tested repair site, where one hunk of the developer's fix, applied alone, stopped the crash.",
+      "Treating the crashing function as the root cause recovers only 37% of held-out repair sites, so a patcher that edits where the program crashes is usually fixing a symptom."
+    ],
+    stack: ["C/C++", "Python", "ASan/MSan/UBSan", "Docker"],
+    links: [
+      { label: "GitHub", url: "https://github.com/SuryanshSS1011/RootSink" },
+      { label: "Dataset (Zenodo)", url: "https://doi.org/10.5281/zenodo.24068722" }
+    ],
+    current: false,
+    category: "research"
   },
   {
     title: "Match Your Loss to Your Cost: Asymmetric Losses and Conformal Capacity Bands for Backbone Traffic Forecasting",
@@ -254,6 +331,7 @@ export const projects: Project[] = [
     highlights: [
       "Multi-agent workflows on per-deployment knowledge graphs (2k to 5k nodes), orchestrated through LangChain.",
       "Shipped 15+ client POCs end-to-end, embedded with manufacturing teams.",
+      "Built domain-adapted retrieval over technical manuals and an LLM-as-judge harness over agent tool-use traces.",
       "Built FastAPI services and a provisioning CLI for Dockerized pipelines on AWS and Kubernetes."
     ],
     stack: ["Python", "FastAPI", "LangChain", "Docker", "Kubernetes", "AWS", "SCADA/PLC/MQTT", "TypeScript"],
