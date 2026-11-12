@@ -14,7 +14,7 @@ export const site = {
   social: {
     github: "https://github.com/SuryanshSS1011",
     linkedin: "https://linkedin.com/in/suryansh-sijwali",
-    email: "suryansh.sijwali@gmail.com",
+    email: "suryanshss1011@gmail.com",
     orcid: "https://orcid.org/0009-0005-7739-1657",
     scholar: "https://scholar.google.com/citations?user=aEkJyD0AAAAJ&hl=en"
   }
@@ -167,7 +167,24 @@ export const projects: Project[] = [
     featured: true
   },
   {
-    title: "The Last Word Wins: Retractions and Peer Alibis Mislead LLM Incident Investigators",
+    title: "Intelligence and Morality",
+    role: "Rock Ethics Institute · supervised by Prof. Laura Cabrera and Prof. Hadi Hosseini",
+    venue: "Rock Ethics Institute",
+    period: "Fall 2026 – Present",
+    badge: "Literature review",
+    summary:
+      "A review of what intelligence means across humans, animals, and AI systems, and how it connects to moral and ethical judgment.",
+    highlights: [
+      "Supervised by Prof. Laura Cabrera and Prof. Hadi Hosseini at Penn State's Rock Ethics Institute.",
+      "Scoping experiments on how the normative judgments of generative AI align with those of humans and animals."
+    ],
+    stack: [],
+    links: [],
+    current: true,
+    category: "research"
+  },
+  {
+    title: "The Last Word Wins: Retractions and Peer Alibis in Swarm Logs Mislead LLM Incident Investigators",
     role: "Apart Research Swarm Alignment Hackathon",
     venue: "Apart Research",
     badge: "Hackathon",
@@ -179,24 +196,11 @@ export const projects: Project[] = [
       "Logging what each tool call actually did, rather than what the agent said it did, restored detection for every investigator."
     ],
     stack: ["Python", "LLM-as-judge", "Multi-agent simulation", "Pre-registered evaluation"],
-    links: [],
-    current: false,
-    category: "research"
-  },
-  {
-    title: "The Undercover Seller: Sting Audits of LLM Sellers in a Double Auction",
-    role: "Apart Research AI Collusion Research Sprint",
-    venue: "Apart Research",
-    badge: "Research sprint",
-    summary:
-      "A planted seller offers a cartel deal inside a simulated market, to test whether LLM sellers that refuse the offer still go on to coordinate prices.",
-    highlights: [
-      "Pre-registered study of 980 simulated double-auction markets across Claude Haiku 5.5, Claude Sonnet 5.5, Qwen3-32B, and gpt-oss-20b.",
-      "Refusing was not the same as complying. 41 of 72 Claude sellers that rejected an explicit cartel offer still coordinated.",
-      "An audit notice stating the penalty cut Qwen coordination from 29 of 40 to 1 of 40."
+    links: [
+      { label: "Report (PDF)", url: "https://pys8vc40ox3z7qxp.public.blob.vercel-storage.com/submissions/swarm-alignment-2026/The-Last-Word-Wins---Swarm-Alignment-Hackathon-report-WOmg63jjtlfZQFqHGcNeurAZfg8scR.pdf" },
+      { label: "GitHub", url: "https://github.com/SuryanshSS1011/swarm-investigators" },
+      { label: "Apart Research", url: "https://apartresearch.com/sprints/projects/the-last-word-wins-retractions-and-peer-alibis-in-swarm-logs-mislead-llm-incident-investigators-zsuglkosxm" }
     ],
-    stack: ["Python", "Claude", "Qwen3-32B", "gpt-oss-20b", "Pre-registered evaluation"],
-    links: [],
     current: false,
     category: "research"
   },
@@ -204,7 +208,7 @@ export const projects: Project[] = [
     title: "Continuous Retrieval-Grounded Reward Design for Secure Code Generation on Small Language Models (CARGO)",
     role: "ICTAI 2026",
     venue: "ICTAI 2026",
-    badge: "Accepted",
+    badge: "Published",
     summary:
       "Small code models trained on security-scanner verdicts stall because nearly every early attempt scores the same zero, so this also scores each attempt against a retrieved secure fix to give training something to climb.",
     highlights: [
@@ -227,6 +231,43 @@ export const projects: Project[] = [
     current: false,
     category: "research",
     featured: true
+  },
+  {
+    title: "The Undercover Seller: Sting Audits of LLM Sellers in a Double Auction",
+    role: "Apart Research AI Collusion Research Sprint",
+    venue: "Apart Research",
+    badge: "Research sprint",
+    summary:
+      "A planted seller offers a cartel deal inside a simulated market, to test whether LLM sellers that refuse the offer still go on to coordinate prices.",
+    highlights: [
+      "Pre-registered study of 980 simulated double-auction markets across Claude Haiku 5.5, Claude Sonnet 5.5, Qwen3-32B, and gpt-oss-20b.",
+      "Refusing was not the same as complying. 41 of 72 Claude sellers that rejected an explicit cartel offer still coordinated.",
+      "An audit notice stating the penalty cut Qwen coordination from 29 of 40 to 1 of 40."
+    ],
+    stack: ["Python", "Claude", "Qwen3-32B", "gpt-oss-20b", "Pre-registered evaluation"],
+    links: [
+      { label: "Report (PDF)", url: "https://pys8vc40ox3z7qxp.public.blob.vercel-storage.com/submissions/ai-collusion-research-sprint-2026-10-23-to-2026-10-25/undercover_seller-sXDtvms5GVbVyyIjbyQv6TyvO3iFhH.pdf" },
+      { label: "GitHub", url: "https://github.com/SuryanshSS1011/collusion-sting" },
+      { label: "Apart Research", url: "https://apartresearch.com/sprints/projects/the-undercover-seller-sting-audits-of-llm-sellers-in-a-double-auction-pqb3" }
+    ],
+    current: false,
+    category: "research"
+  },
+  {
+    title: "RootSink: Reproducible C/C++ Crashes with Tested Repair Sites",
+    role: "Under review at MSR 2027",
+    venue: "MSR 2027",
+    badge: "Under review",
+    summary:
+      "A dataset of real C/C++ vulnerabilities whose crashes replay on the vulnerable build and stop on the fixed one, with the repair site of each fix marked, so a patching tool can be checked on whether it fixed the cause or only the crash.",
+    highlights: [
+      "1,942 records from 362 C/C++ projects replay to a crash on the vulnerable build and run clean on the fixed one.",
+      "Treating the crashing function as the root cause recovers only 42% of held-out repair sites, so a patcher that edits where the program crashes is usually fixing a symptom."
+    ],
+    stack: ["C/C++", "Python"],
+    links: [],
+    current: false,
+    category: "research"
   },
   {
     title: "Match Your Loss to Your Cost: Asymmetric Losses and Conformal Capacity Bands for Backbone Traffic Forecasting",
@@ -371,7 +412,7 @@ export const projects: Project[] = [
     summary:
       "Training a model on written explanations of Java performance bugs, rather than on labels alone, raises detection accuracy from 67% to 84%.",
     highlights: [
-      "Curated dataset of 490 performance bugs across 17 Defects4J projects, with a 5-category taxonomy (algorithmic, memory, CPU, redundant, I/O).",
+      "Curated dataset of 392 performance bugs across 17 Defects4J projects, with a 5-category taxonomy (algorithmic, memory, CPU, redundant, I/O).",
       "Fine-tuned GPT-4o-mini to produce explanations alongside predictions. Detection accuracy 67.3% → 83.7%, F1 64.6% → 82.3%.",
       "Full reproduction stack public: extraction, categorization, fine-tuning, evaluation harness."
     ],
