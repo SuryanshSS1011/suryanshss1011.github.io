@@ -173,10 +173,10 @@ export const projects: Project[] = [
     period: "Fall 2026 – Present",
     badge: "Research assistant",
     summary:
-      "Prof. Laura Cabrera and Prof. Hadi Hosseini lead this literature review on what intelligence means across humans, animals, and AI systems, and how it connects to moral judgment.",
+      "A project led by Prof. Laura Cabrera and Prof. Hadi Hosseini on what intelligence means across humans, animals, and AI systems, and how it connects to moral judgment.",
     highlights: [
-      "Research assistant on the project, contributing to the literature review.",
-      "The project is also scoping experiments on how the normative judgments of generative AI align with those of humans and animals."
+      "Its directions include a review of intelligence and morality across species and AI systems, an online Intelligence Map platform, and experiments on how the normative judgments of generative AI align with those of humans and animals.",
+      "Research assistant on the project, contributing under the direction of its leads."
     ],
     stack: [],
     links: [],
