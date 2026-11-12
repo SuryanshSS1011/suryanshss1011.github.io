@@ -26,7 +26,7 @@ export const about = {
   // One line, at the foot of the home page. The old two-paragraph bio said
   // "passionate about building intelligent systems at the intersection of" and
   // was the weakest copy on the site; the work above it now does that job.
-  openSource: "Astral, Infer, Hugging Face, PyTorch.",
+  openSource: "SAELens, Astral, Infer, Hugging Face, PyTorch.",
 
   education: {
     degree: "B.S. Computer Science",
@@ -167,6 +167,40 @@ export const projects: Project[] = [
     featured: true
   },
   {
+    title: "The Last Word Wins: Retractions and Peer Alibis Mislead LLM Incident Investigators",
+    role: "Apart Research Swarm Alignment Hackathon",
+    venue: "Apart Research",
+    badge: "Hackathon",
+    summary:
+      "When an AI agent takes back its own admission in a log, the LLMs auditing that log catch far fewer violations, unless the log records what each tool call actually did.",
+    highlights: [
+      "40 synthetic multi-agent swarm logs with planted violations, each paired with a line-matched benign twin, audited 22,880 times under a pre-registered design by seven LLM investigators from four model families.",
+      "An agent retracting its own admission cut pooled detection from 78% to 42%.",
+      "Logging what each tool call actually did, rather than what the agent said it did, restored detection for every investigator."
+    ],
+    stack: ["Python", "LLM-as-judge", "Multi-agent simulation", "Pre-registered evaluation"],
+    links: [],
+    current: false,
+    category: "research"
+  },
+  {
+    title: "The Undercover Seller: Sting Audits of LLM Sellers in a Double Auction",
+    role: "Apart Research AI Collusion Research Sprint",
+    venue: "Apart Research",
+    badge: "Research sprint",
+    summary:
+      "A planted seller offers a cartel deal inside a simulated market, to test whether LLM sellers that refuse the offer still go on to coordinate prices.",
+    highlights: [
+      "Pre-registered study of 980 simulated double-auction markets across Claude Haiku 5.5, Claude Sonnet 5.5, Qwen3-32B, and gpt-oss-20b.",
+      "Refusing was not the same as complying. 41 of 72 Claude sellers that rejected an explicit cartel offer still coordinated.",
+      "An audit notice stating the penalty cut Qwen coordination from 29 of 40 to 1 of 40."
+    ],
+    stack: ["Python", "Claude", "Qwen3-32B", "gpt-oss-20b", "Pre-registered evaluation"],
+    links: [],
+    current: false,
+    category: "research"
+  },
+  {
     title: "Continuous Retrieval-Grounded Reward Design for Secure Code Generation on Small Language Models (CARGO)",
     role: "ICTAI 2026",
     venue: "ICTAI 2026",
@@ -254,6 +288,7 @@ export const projects: Project[] = [
     highlights: [
       "Multi-agent workflows on per-deployment knowledge graphs (2k to 5k nodes), orchestrated through LangChain.",
       "Shipped 15+ client POCs end-to-end, embedded with manufacturing teams.",
+      "Built domain-adapted retrieval over technical manuals and an LLM-as-judge harness over agent tool-use traces.",
       "Built FastAPI services and a provisioning CLI for Dockerized pipelines on AWS and Kubernetes."
     ],
     stack: ["Python", "FastAPI", "LangChain", "Docker", "Kubernetes", "AWS", "SCADA/PLC/MQTT", "TypeScript"],
