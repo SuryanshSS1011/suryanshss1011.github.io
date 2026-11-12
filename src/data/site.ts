@@ -168,15 +168,15 @@ export const projects: Project[] = [
   },
   {
     title: "Intelligence and Morality",
-    role: "Rock Ethics Institute · supervised by Prof. Laura Cabrera and Prof. Hadi Hosseini",
+    role: "Research assistant · Rock Ethics Institute",
     venue: "Rock Ethics Institute",
     period: "Fall 2026 – Present",
-    badge: "Literature review",
+    badge: "Research assistant",
     summary:
-      "A review of what intelligence means across humans, animals, and AI systems, and how it connects to moral and ethical judgment.",
+      "Prof. Laura Cabrera and Prof. Hadi Hosseini lead this literature review on what intelligence means across humans, animals, and AI systems, and how it connects to moral judgment.",
     highlights: [
-      "Supervised by Prof. Laura Cabrera and Prof. Hadi Hosseini at Penn State's Rock Ethics Institute.",
-      "Scoping experiments on how the normative judgments of generative AI align with those of humans and animals."
+      "Research assistant on the project, contributing to the literature review.",
+      "The project is also scoping experiments on how the normative judgments of generative AI align with those of humans and animals."
     ],
     stack: [],
     links: [],
