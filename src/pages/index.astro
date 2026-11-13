@@ -16,10 +16,10 @@ const posts = (await getCollection('blog'))
   })
   .slice(0, 3);
 
-// The home page is an index, not a portfolio dump. Papers carry the whole
-// record because that is the differentiating credential; builds show only the
-// featured set. Depth lives on /research and /engineering.
-const papers = projects.filter(p => p.category === 'research');
+// The home page is an index, not a portfolio dump. Both sections show only the
+// featured set: papers for research, the main builds for engineering. Depth
+// lives on /research and /engineering.
+const papers = projects.filter(p => p.category === 'research' && p.featured);
 const builds = projects.filter(p => p.category === 'engineering' && p.featured);
 
 const ed = about.education;

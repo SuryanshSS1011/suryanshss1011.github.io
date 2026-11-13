@@ -184,6 +184,27 @@ export const projects: Project[] = [
     category: "research"
   },
   {
+    title: "RootSink: Reproducible C/C++ Crashes with Tested Repair Sites",
+    role: "Under review at MSR 2027",
+    venue: "MSR 2027",
+    badge: "Under review",
+    summary:
+      "A dataset of real C/C++ crashes that records both the line that crashed and where the bug really is, with the evidence for each, so a patching tool can be checked on whether it fixed the cause or only the crash.",
+    highlights: [
+      "3,341 records. In 1,954 of them the crash replays on the vulnerable build and the fixed build runs the same input clean twice.",
+      "1,384 records carry a tested repair site, where one hunk of the developer's fix, applied alone, stopped the crash.",
+      "Treating the crashing function as the root cause recovers only 37% of held-out repair sites, so a patcher that edits where the program crashes is usually fixing a symptom."
+    ],
+    stack: ["C/C++", "Python", "ASan/MSan/UBSan", "Docker"],
+    links: [
+      { label: "GitHub", url: "https://github.com/SuryanshSS1011/RootSink" },
+      { label: "Dataset (Zenodo)", url: "https://doi.org/10.5281/zenodo.24068722" }
+    ],
+    current: false,
+    category: "research",
+    featured: true
+  },
+  {
     title: "The Last Word Wins: Retractions and Peer Alibis in Swarm Logs Mislead LLM Incident Investigators",
     role: "Apart Research Swarm Alignment Hackathon",
     venue: "Apart Research",
@@ -252,26 +273,6 @@ export const projects: Project[] = [
     category: "research"
   },
   {
-    title: "RootSink: Reproducible C/C++ Crashes with Tested Repair Sites",
-    role: "Under review at MSR 2027",
-    venue: "MSR 2027",
-    badge: "Under review",
-    summary:
-      "A dataset of real C/C++ crashes that records both the line that crashed and where the bug really is, with the evidence for each, so a patching tool can be checked on whether it fixed the cause or only the crash.",
-    highlights: [
-      "3,341 records. In 1,954 of them the crash replays on the vulnerable build and the fixed build runs the same input clean twice.",
-      "1,384 records carry a tested repair site, where one hunk of the developer's fix, applied alone, stopped the crash.",
-      "Treating the crashing function as the root cause recovers only 37% of held-out repair sites, so a patcher that edits where the program crashes is usually fixing a symptom."
-    ],
-    stack: ["C/C++", "Python", "ASan/MSan/UBSan", "Docker"],
-    links: [
-      { label: "GitHub", url: "https://github.com/SuryanshSS1011/RootSink" },
-      { label: "Dataset (Zenodo)", url: "https://doi.org/10.5281/zenodo.24068722" }
-    ],
-    current: false,
-    category: "research"
-  },
-  {
     title: "Match Your Loss to Your Cost: Asymmetric Losses and Conformal Capacity Bands for Backbone Traffic Forecasting",
     role: "Cost-aware backbone traffic forecasting",
     badge: "Working paper",
@@ -295,8 +296,7 @@ export const projects: Project[] = [
       caption: "Sweeping the training ratio on Abilene (DLinear, 20 seeds). The 1:1 point lands on the MSE baseline exactly, since α = β = 1 recovers MSE."
     },
     current: false,
-    category: "research",
-    featured: true
+    category: "research"
   },
   {
     title: "Scheduled Partial-Credit RL for Reliable Code Generation with Small Language Models (WIP)",
@@ -426,6 +426,7 @@ export const projects: Project[] = [
       { label: "GitHub", url: "https://github.com/SuryanshSS1011/Performance-Bugs-LLM" }
     ],
     current: false,
-    category: "research"
+    category: "research",
+    featured: true
   }
 ];
