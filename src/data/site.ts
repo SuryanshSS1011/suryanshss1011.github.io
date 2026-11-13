@@ -77,7 +77,8 @@ export type Project = {
   // pages render.
   summary: string;
   highlights: string[];
-  stack: string[];
+  // Engineering only. Research rows let the venue and highlights carry the work.
+  stack?: string[];
   links: ProjectLink[];
   sourceNote?: string;
   current: boolean;
@@ -178,7 +179,6 @@ export const projects: Project[] = [
       "Its directions include a review of intelligence and morality across species and AI systems, an online Intelligence Map platform, and experiments on how the normative judgments of generative AI align with those of humans and animals.",
       "Research assistant on the project, contributing under the direction of its leads."
     ],
-    stack: [],
     links: [],
     current: true,
     category: "research"
@@ -195,7 +195,6 @@ export const projects: Project[] = [
       "1,384 records carry a tested repair site, where one hunk of the developer's fix, applied alone, stopped the crash.",
       "Treating the crashing function as the root cause recovers only 37% of held-out repair sites, so a patcher that edits where the program crashes is usually fixing a symptom."
     ],
-    stack: ["C/C++", "Python", "ASan/MSan/UBSan", "Docker"],
     links: [
       { label: "GitHub", url: "https://github.com/SuryanshSS1011/RootSink" },
       { label: "Dataset (Zenodo)", url: "https://doi.org/10.5281/zenodo.24068722" }
@@ -216,7 +215,6 @@ export const projects: Project[] = [
       "An agent retracting its own admission cut pooled detection from 78% to 42%.",
       "Logging what each tool call actually did, rather than what the agent said it did, restored detection for every investigator."
     ],
-    stack: ["Python", "LLM-as-judge", "Multi-agent simulation", "Pre-registered evaluation"],
     links: [
       { label: "GitHub", url: "https://github.com/SuryanshSS1011/swarm-investigators" },
       { label: "Apart Research", url: "https://apartresearch.com/sprints/projects/the-last-word-wins-retractions-and-peer-alibis-in-swarm-logs-mislead-llm-incident-investigators-zsuglkosxm" }
@@ -236,7 +234,6 @@ export const projects: Project[] = [
       "Over SAST-only GRPO on 1,582 prompts across 19 CWEs in Python, C, and C++: +19.9 pp Compile@1, +16.6 pp Secure@1|Compile, +26.5 pp Functional-Secure@1.",
       "Not tied to one optimizer: the retrieval reward lifts GRPO, PPO, RLOO, and RAFT by 22.5 to 26.5 pp, and reproduces on Qwen2.5-Coder-3B (+20.9) and StarCoder2-3B (+19.2)."
     ],
-    stack: ["Python", "PyTorch", "PEFT (LoRA)", "GRPO / PPO / RLOO / RAFT", "CodeQL", "Semgrep", "Bandit", "Cppcheck", "BM25 + bge-base", "Qwen2.5-Coder"],
     links: [
       { label: "Read the writeup", url: "/blog/cargo/" },
       { label: "GitHub", url: "https://github.com/SuryanshSS1011/SecureCodeRL-RAG" }
@@ -264,7 +261,6 @@ export const projects: Project[] = [
       "Refusing was not the same as complying. 41 of 72 Claude sellers that rejected an explicit cartel offer still coordinated.",
       "An audit notice stating the penalty cut Qwen coordination from 29 of 40 to 1 of 40."
     ],
-    stack: ["Python", "Claude", "Qwen3-32B", "gpt-oss-20b", "Pre-registered evaluation"],
     links: [
       { label: "GitHub", url: "https://github.com/SuryanshSS1011/collusion-sting" },
       { label: "Apart Research", url: "https://apartresearch.com/sprints/projects/the-undercover-seller-sting-audits-of-llm-sellers-in-a-double-auction-pqb3" }
@@ -283,7 +279,6 @@ export const projects: Project[] = [
       "Cross-architecture: the matched 5:1 win reproduces on DLinear (+30 to +97%) and iTransformer (+28 to +79%) across Abilene/GÉANT/CESNET.",
       "ACI vs split CQR: overload rate 155× lower on Abilene, 9.1× lower on GÉANT, 3.8× lower on CESNET. ACI's across-seed coverage variance is 30 to 200× smaller."
     ],
-    stack: ["Python", "PyTorch", "statsmodels", "NumPy", "Pandas", "scikit-learn"],
     links: [
       { label: "Read the writeup", url: "/blog/match-loss-to-cost/" },
       { label: "GitHub", url: "https://github.com/SuryanshSS1011/match-loss-to-cost" }
@@ -310,7 +305,6 @@ export const projects: Project[] = [
       "The binary-to-partial-credit schedule (PPO-continue) wins: 63% syntax, 9% ≥1-pass, 2% all-pass on a single attempt. Curriculum on the reward matters more than the reward shape alone.",
       "LoRA r=16 (6.3M trainable params, 0.47%), single V100 16GB, Bandit-graded R_sec. Security null on APPS+ (algorithmic); CWE-mapped partial credit is the next step."
     ],
-    stack: ["Python", "PyTorch", "TRL (PPO)", "PEFT (LoRA)", "Bandit", "DeepSeek-Coder-1.3B", "APPS+"],
     links: [
       { label: "Read the writeup", url: "/blog/securecoderl/" },
       { label: "Paper (ACM DL)", url: "https://doi.org/10.1145/3814943.3816167" },
@@ -418,7 +412,6 @@ export const projects: Project[] = [
       "Fine-tuned GPT-4o-mini to produce explanations alongside predictions. Detection accuracy 67.3% → 83.7%, F1 64.6% → 82.3%.",
       "Full reproduction stack public: extraction, categorization, fine-tuning, evaluation harness."
     ],
-    stack: ["Python", "GPT-4o-mini fine-tuning", "Defects4J", "Java", "OpenAI API"],
     links: [
       { label: "Read the writeup", url: "/blog/performance-bugs-llm/" },
       { label: "Paper (IEEE)", url: "https://doi.org/10.1109/AITest66680.2025.00020" },

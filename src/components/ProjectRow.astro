@@ -46,7 +46,7 @@ const rail = project.venue ?? project.badge;
       </ul>
     )}
 
-    {detailed && project.stack.length > 0 && (
+    {detailed && project.stack && project.stack.length > 0 && (
       <ul class="row-stack">
         {project.stack.map((s) => <li class="tag">{s}</li>)}
       </ul>
